@@ -1,0 +1,59 @@
+<!-- this index.html originated from an example of datamap -->
+<!-- link: https://github.com/markmarkoh/datamaps/blob/master/src/examples/highmaps_world.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+.box {
+  position: absolute;
+  padding: 5px;
+  background: #f0f3f9;
+  font-size: 12px;
+  -moz-box-shadow: 2px 2px 4px #666666;
+  -webkit-box-shadow: 2px 2px 4px #666666;
+}
+.main {
+  border: 1px solid #a0b3d6;
+  background: white;
+}
+.bar {
+  line-height: 24px;
+  background: #beceeb;
+  border-bottom: 1px solid #a0b3d6;
+  padding-left: 5px;
+  cursor: move;
+}
+.content {
+  width: 420px;
+  height: 250px;
+  padding: 10px 5px;
+}
+.left {
+  float: left;
+  width: 33%;
+}
+</style>
+</head>
+<body>
+
+<script src="./src/drag.js" type="text/javascript"></script>
+<script src="./src/box.js" type="text/javascript"></script>
+<button type="button" onclick="createBox()">add new module</button>
+<button type="button" onclick="deleteBox()">delete a module</button>
+<div id="root"></div>
+
+<div>
+  <div class="left">...</div>
+  <div class="left">...</div>
+  <div class="left">...</div>
+</div>
+
+<script type="text/javascript">
+    var oBox = document.getElementById("foo");
+    var oBar = document.getElementById("baz");
+    startDrag(oBar, oBox);
+</script>
+
+</body>
+</html>
