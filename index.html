@@ -75,21 +75,35 @@
         <div class="row">
           <div class="col-lg-12" id="map">
             <script>
-              var dkv = {lat: 59.3509652, lng: 18.0655007};
+              var turbine = './lib/assets/img/wind-turbine.png';
+              var positions = [
+                {lat: 59.3509652, lng: 18.0655007},
+                {lat: 60.1639305, lng: 24.9001875},
+                {lat: 59.4249402, lng: 24.6682025},
+                {lat: 59.8937806, lng: 10.6450364},
+                {lat: 55.6712474, lng: 12.4907997},
+                {lat: 56.9713962, lng: 23.9901754},
+                {lat: 54.7000902, lng: 25.1128513},
+                {lat: 59.9171483, lng: 30.0448892}
+              ];
               var map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 16,
-                center: dkv
+                zoom: 6,
+                center: positions[0]
               });
-              var marker = new google.maps.Marker({
-                position: dkv,
-                map: map
+
+              positions.forEach(function(p) {
+                var marker = new google.maps.Marker({
+                  position: p,
+                  map: map,
+                  icon: turbine
+                });
+                marker.addListener('click', function(){
+                  window.location = './dashboard.html';
+                });
               });
-              marker.addListener('click', function(){
-                window.location = './dashboard.html';
-              });
-              marker.addListener('mouseover', function(){
-                //console.log('it works');
-              });
+              // marker.addListener('mouseover', function(){
+              //   //console.log('it works');
+              // });
             </script>
           </div>
         </div>
@@ -105,7 +119,6 @@
   </div>
   <!-- /#wrapper -->
 
-  <script type="text/javascript" src="./lib/assets/js/meta.js"></script>
 </body>
 
 </html>
