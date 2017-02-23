@@ -11,20 +11,10 @@
 
   <title>PreWind - kth dh2321 ivis17 project (demo)</title>
 
-  <!-- Bootstrap Core CSS -->
-  <link href="css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Custom CSS -->
-  <link href="css/sb-admin.css" rel="stylesheet">
-
-  <!-- Morris Charts CSS -->
-  <link href="css/plugins/morris.css" rel="stylesheet">
-
-  <!-- Custom Fonts -->
-  <link href="./src/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-  <!-- Plotly.js -->
-  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <link href="./lib/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="./lib/assets/css/sb-admin.css" rel="stylesheet">
+  <link href="./lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <script src="./lib/assets/js/plotly-latest.min.js"></script>
 </head>
 
 <body>
@@ -125,7 +115,6 @@
 
     var productionArray = [0.3,0.35,0.747,0.747,0.747,0.2,0.521,0.521,0.521,0.361,0.361,0.361,0.361,0.456,0.456,0.456,0.822,0.822,0.822,0.822,0.576,0.576,0.576,0.351,0.351,0.351,0.351,0.135,0.135,0.135,0.175,0.175,0.175,0.175,0.065,0.065,0.065,0.09,0.09,0.09,0.09,0.336,0.336,0.336,0.551,0.551,0.551,0.551,0.777,0.777,0.777,0.045,0.8,0.551,0.777,0.045,0.551,0.8,0.1,0.5];
 
-
     var trace1 = {
       x: dateArray,
       y: windspeedArray,
@@ -157,12 +146,10 @@
     };
 
     var data = [trace1, trace2];
-
     Plotly.newPlot('wind-production-chart', data, layout);
   </script>
 
   <script type="text/javascript">
-
     var trace1 = {
       r: [77.5, 72.5, 70.0, 45.0, 22.5, 42.5, 40.0, 62.5],
       t: ['North', 'N-E', 'East', 'S-E', 'South', 'S-W', 'West', 'N-W'],
@@ -208,24 +195,8 @@
     Plotly.newPlot('wind-direction-chart', data, layout);
   </script>
 
-  <!-- jQuery -->
-  <script src="js/jquery.js"></script>
-
-  <!-- Bootstrap Core JavaScript -->
-  <script src="js/bootstrap.min.js"></script>
-
-  <!-- Morris Charts JavaScript -->
-  <script src="js/plugins/morris/raphael.min.js"></script>
-  <script src="js/plugins/morris/morris.min.js"></script>
-  <script src="js/plugins/morris/morris-data.js"></script>
-
-  <!-- Flot Charts JavaScript -->
-  <!--[if lte IE 8]><script src="js/excanvas.min.js"></script><![endif]-->
-  <script src="js/plugins/flot/jquery.flot.js"></script> <script src="js/plugins/flot/jquery.flot.tooltip.min.js"></script>
-  <script src="js/plugins/flot/jquery.flot.resize.js"></script>
-  <script src="js/plugins/flot/jquery.flot.pie.js"></script>
-  <script src="js/plugins/flot/flot-data.js"></script>
-
+  <script src="./lib/bower_components/jquery/dist/jquery.js"></script>
+  <script src="./lib/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 </body>
 
 </html>
