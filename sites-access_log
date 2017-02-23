@@ -327,3 +327,67 @@
 ::1 - - [23/Feb/2017:14:10:24 +0100] "GET /css/bootstrap.min.css.map HTTP/1.1" 404 223
 ::1 - - [23/Feb/2017:14:10:25 +0100] "GET /dashboard.html HTTP/1.1" 200 12835
 ::1 - - [23/Feb/2017:14:10:26 +0100] "GET /css/bootstrap.min.css.map HTTP/1.1" 404 223
+::1 - - [23/Feb/2017:14:12:22 +0100] "GET / HTTP/1.1" 200 11111
+::1 - - [23/Feb/2017:14:12:22 +0100] "GET /css/bootstrap.min.css HTTP/1.1" 200 121200
+::1 - - [23/Feb/2017:14:12:22 +0100] "GET /css/sb-admin.css HTTP/1.1" 200 3480
+::1 - - [23/Feb/2017:14:12:22 +0100] "GET /src/bower_components/tether/dist/js/tether.min.js HTTP/1.1" 200 24989
+::1 - - [23/Feb/2017:14:12:22 +0100] "GET /src/bower_components/holderjs/holder.js HTTP/1.1" 200 89936
+::1 - - [23/Feb/2017:14:12:22 +0100] "GET /src/bower_components/bootstrap/dist/js/bootstrap.min.js HTTP/1.1" 200 46653
+::1 - - [23/Feb/2017:14:12:22 +0100] "GET /js/jquery.js HTTP/1.1" 200 95785
+::1 - - [23/Feb/2017:14:12:22 +0100] "GET /js/bootstrap.min.js HTTP/1.1" 200 37045
+::1 - - [23/Feb/2017:14:12:22 +0100] "GET /js/plugins/morris/raphael.min.js HTTP/1.1" 200 92872
+::1 - - [23/Feb/2017:14:12:22 +0100] "GET /src/assets/js/meta.js HTTP/1.1" 200 1228
+::1 - - [23/Feb/2017:14:12:22 +0100] "GET /src/bower_components/keen-js/dist/keen.min.js HTTP/1.1" 200 98687
+::1 - - [23/Feb/2017:14:12:23 +0100] "GET /src/bower_components/keen-dashboards/dist/keen-dashboards.css HTTP/1.1" 200 1269
+::1 - - [23/Feb/2017:14:12:24 +0100] "GET /css/plugins/morris.css HTTP/1.1" 200 433
+::1 - - [23/Feb/2017:14:12:24 +0100] "GET /font-awesome/css/font-awesome.min.css HTTP/1.1" 200 21984
+::1 - - [23/Feb/2017:14:12:25 +0100] "GET /src/bower_components/jquery/dist/jquery.min.js HTTP/1.1" 200 86709
+::1 - - [23/Feb/2017:14:12:26 +0100] "GET /font-awesome/fonts/fontawesome-webfont.woff?v=4.2.0 HTTP/1.1" 200 65452
+::1 - - [23/Feb/2017:14:12:27 +0100] "GET /favicon.ico HTTP/1.1" 404 209
+::1 - - [23/Feb/2017:14:12:27 +0100] "GET /dashboard.html HTTP/1.1" 200 12835
+::1 - - [23/Feb/2017:14:12:27 +0100] "GET /js/plugins/flot/jquery.flot.pie.js HTTP/1.1" 200 23809
+::1 - - [23/Feb/2017:14:12:27 +0100] "GET /js/plugins/flot/jquery.flot.resize.js HTTP/1.1" 200 3314
+::1 - - [23/Feb/2017:14:12:27 +0100] "GET /js/plugins/morris/morris-data.js HTTP/1.1" 200 5337
+::1 - - [23/Feb/2017:14:12:27 +0100] "GET /js/plugins/flot/jquery.flot.tooltip.min.js HTTP/1.1" 200 3930
+::1 - - [23/Feb/2017:14:12:27 +0100] "GET /js/plugins/flot/flot-data.js HTTP/1.1" 200 38480
+::1 - - [23/Feb/2017:14:12:27 +0100] "GET /js/plugins/morris/morris.min.js HTTP/1.1" 200 35652
+::1 - - [23/Feb/2017:14:12:27 +0100] "GET /js/plugins/flot/jquery.flot.js HTTP/1.1" 200 122971
+::1 - - [23/Feb/2017:14:12:50 +0100] "GET /dashboard.html HTTP/1.1" 304 -
+::1 - - [23/Feb/2017:14:12:50 +0100] "GET /css/bootstrap.min.css.map HTTP/1.1" 404 223
+::1 - - [23/Feb/2017:14:13:10 +0100] "-" 408 -
+::1 - - [23/Feb/2017:14:13:10 +0100] "-" 408 -
+::1 - - [23/Feb/2017:14:13:10 +0100] "-" 408 -
+::1 - - [23/Feb/2017:14:13:10 +0100] "-" 408 -
+::1 - - [23/Feb/2017:14:13:10 +0100] "-" 408 -
+::1 - - [23/Feb/2017:14:13:15 +0100] "GET /css/bootstrap.min.css.map HTTP/1.1" 404 223
+::1 - - [23/Feb/2017:14:25:49 +0100] "GET /index.html HTTP/1.1" 200 5085
+::1 - - [23/Feb/2017:14:25:49 +0100] "GET /css/bootstrap.min.css.map HTTP/1.1" 404 223
+::1 - - [23/Feb/2017:14:25:52 +0100] "GET /dashboard.html HTTP/1.1" 304 -
+::1 - - [23/Feb/2017:14:25:52 +0100] "GET /css/bootstrap.min.css.map HTTP/1.1" 404 223
+::1 - - [23/Feb/2017:14:27:17 +0100] "GET /dashboard.html HTTP/1.1" 200 12835
+::1 - - [23/Feb/2017:14:27:18 +0100] "GET /css/bootstrap.min.css HTTP/1.1" 200 121200
+::1 - - [23/Feb/2017:14:27:18 +0100] "GET /js/plugins/morris/raphael.min.js HTTP/1.1" 200 92872
+::1 - - [23/Feb/2017:14:27:18 +0100] "GET /js/plugins/morris/morris.min.js HTTP/1.1" 200 35652
+::1 - - [23/Feb/2017:14:27:18 +0100] "GET /js/plugins/morris/morris-data.js HTTP/1.1" 200 5337
+::1 - - [23/Feb/2017:14:27:18 +0100] "GET /js/plugins/flot/jquery.flot.js HTTP/1.1" 200 122971
+::1 - - [23/Feb/2017:14:27:18 +0100] "GET /js/plugins/flot/jquery.flot.tooltip.min.js HTTP/1.1" 200 3930
+::1 - - [23/Feb/2017:14:27:18 +0100] "GET /js/plugins/flot/jquery.flot.resize.js HTTP/1.1" 200 3314
+::1 - - [23/Feb/2017:14:27:18 +0100] "GET /css/sb-admin.css HTTP/1.1" 200 3480
+::1 - - [23/Feb/2017:14:27:18 +0100] "GET /js/plugins/flot/flot-data.js HTTP/1.1" 200 38480
+::1 - - [23/Feb/2017:14:27:18 +0100] "GET /js/plugins/flot/jquery.flot.pie.js HTTP/1.1" 200 23809
+::1 - - [23/Feb/2017:14:27:19 +0100] "GET /css/plugins/morris.css HTTP/1.1" 200 433
+::1 - - [23/Feb/2017:14:27:19 +0100] "GET /font-awesome/css/font-awesome.min.css HTTP/1.1" 200 21984
+::1 - - [23/Feb/2017:14:27:19 +0100] "GET /css/bootstrap.min.css.map HTTP/1.1" 404 223
+::1 - - [23/Feb/2017:14:27:19 +0100] "GET /font-awesome/fonts/fontawesome-webfont.woff?v=4.2.0 HTTP/1.1" 200 65452
+::1 - - [23/Feb/2017:14:27:20 +0100] "GET /js/bootstrap.min.js HTTP/1.1" 200 37045
+::1 - - [23/Feb/2017:14:27:20 +0100] "GET /js/jquery.js HTTP/1.1" 200 95785
+::1 - - [23/Feb/2017:14:27:22 +0100] "GET /index.html HTTP/1.1" 200 5085
+::1 - - [23/Feb/2017:14:27:22 +0100] "GET /src/bower_components/keen-dashboards/dist/keen-dashboards.css HTTP/1.1" 200 1269
+::1 - - [23/Feb/2017:14:27:22 +0100] "GET /src/bower_components/jquery/dist/jquery.min.js HTTP/1.1" 200 86709
+::1 - - [23/Feb/2017:14:27:22 +0100] "GET /src/bower_components/tether/dist/js/tether.min.js HTTP/1.1" 200 24989
+::1 - - [23/Feb/2017:14:27:22 +0100] "GET /src/bower_components/bootstrap/dist/js/bootstrap.min.js HTTP/1.1" 200 46653
+::1 - - [23/Feb/2017:14:27:22 +0100] "GET /src/assets/js/meta.js HTTP/1.1" 200 1228
+::1 - - [23/Feb/2017:14:27:22 +0100] "GET /src/bower_components/holderjs/holder.js HTTP/1.1" 200 89936
+::1 - - [23/Feb/2017:14:27:22 +0100] "GET /src/bower_components/keen-js/dist/keen.min.js HTTP/1.1" 200 98687
+::1 - - [23/Feb/2017:14:27:22 +0100] "GET /css/bootstrap.min.css.map HTTP/1.1" 404 223
+::1 - - [23/Feb/2017:14:27:44 +0100] "GET /css/bootstrap.min.css.map HTTP/1.1" 404 223
