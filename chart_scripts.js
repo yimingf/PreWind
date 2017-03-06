@@ -87,7 +87,7 @@ Plotly.newPlot('wind-direction-chart', data, layout);
 
 /* Monthly production data */
 /* Wind production chart */
-var dateArrayProd = ["January", "February", "March"];
+/*var dateArrayProd = ["January", "February", "March"];
 
 var productionArrayProd = [0.3, 0.35, 0.747];
 
@@ -107,4 +107,4 @@ var layoutProd = {
 };
 
 var dataProd = [trace1Prod];
-Plotly.newPlot('yearly-production-chart', dataProd, layoutProd);
+Plotly.newPlot('yearly-production-chart', dataProd, layoutProd);*/

@@ -11,13 +11,18 @@ dashboardApp.factory('Data', function ($resource, $http, $cookieStore) {
         "Content-Type": "application/json;charset=utf-8"
     };
 
+    this.getMonthNameByNumber = function (monthNumber) {
+        var monthNames = [ 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December' ];
+        return monthNames[monthNumber - 1];
+    };
+
     this.BenchmarkDataGroupedByMonth = $resource('https://windpowerdata-8069.restdb.io/rest/benchmark',
         {
             max: 20,
             q: {},
             skip: 0,
             groupby: ["year", "month"],
-            aggregate: "SUM:wp1"
+            aggregate: ["SUM:wp1", "SUM:wp2", "SUM:wp3"]
         },{
         get: {
             headers: requestHeaders
