@@ -5,6 +5,32 @@ dashboardApp.controller('DashboardCtrl', function ($scope, Data) {
     $scope.dataService = Data;
     $scope.nameOfWindfarms = ["wp1", "wp2", "wp3"];
 
+    $scope.buildKeyMetricsView = function (yearNumber, nameOfWindfarm) {
+        if(!$scope.validateWindfarmName(nameOfWindfarm)){
+            alert("Invalid wind farm name: "+nameOfWindfarm);
+            return;
+        }
+
+        $scope.yearsTotalProduction = "Loading...";
+        $scope.lastYearsTotalProduction = undefined;
+
+        $scope.dataService.BenchmarkDataGroupedByYear.get({},
+            function(data){
+                console.log("Retrieved: "+JSON.stringify(data));
+                $scope.yearsTotalProduction = data[yearNumber]["SUM "+nameOfWindfarm];
+                var lastYearsProduction = data[yearNumber - 1] !== undefined ? data[yearNumber - 1]["SUM "+nameOfWindfarm] : undefined;
+                if(lastYearsProduction !== undefined){
+                    $scope.lastYearsTotalProduction = lastYearsProduction;
+                }
+            },
+            function(data){
+                $scope.yearsTotalProduction = "Error :(";
+                $scope.lastYearsTotalProduction = undefined;
+                alert("Error: " + JSON.stringify(data));
+            }
+        );
+    };
+
     $scope.buildMonthlyProductionChart = function (yearNumber, nameOfWindfarm) {
 
         if(!$scope.validateWindfarmName(nameOfWindfarm)){
@@ -14,9 +40,9 @@ dashboardApp.controller('DashboardCtrl', function ($scope, Data) {
 
         $scope.dataService.BenchmarkDataGroupedByMonth.get({},
             function(data){
-                console.log("Retrieved: "+JSON.stringify(data));
+                //console.log("Retrieved: "+JSON.stringify(data));
                 var dataForTheYear = data[yearNumber];
-                console.log("One year: "+JSON.stringify(dataForTheYear));
+                //console.log("One year: "+JSON.stringify(dataForTheYear));
 
                 var dateArrayProd = [];
                 var productionArrayProd = [];
@@ -27,8 +53,6 @@ dashboardApp.controller('DashboardCtrl', function ($scope, Data) {
                         dateArrayProd.push($scope.dataService.getMonthNameByNumber(monthNumber));
                         productionArrayProd.push(dataForTheYear[monthNumber]["SUM "+nameOfWindfarm]);
                     }
-                    console.log("DATA: "+JSON.stringify(dateArrayProd));
-                    console.log("DATA2: "+JSON.stringify(productionArrayProd));
 
                     var trace1Prod = {
                         x: dateArrayProd,
@@ -37,16 +61,30 @@ dashboardApp.controller('DashboardCtrl', function ($scope, Data) {
                         name: 'windspeed data',
                         line: { // set the width of the line.
                             width: 3
-                        }
+                        },
+                        mode:'markers',
+                        marker:{size:16}
                     };
 
                     var layoutProd = {
                         title: '',
                         yaxis: {title: 'MW/h'},
+                        hovermode:'closest'
                     };
 
                     var dataProd = [trace1Prod];
+
+                    var myPlot = document.getElementById('yearly-production-chart');
                     Plotly.newPlot('yearly-production-chart', dataProd, layoutProd);
+
+                    myPlot.on('plotly_click', function(data){
+                        var pts = '';
+                        for(var i=0; i < data.points.length; i++){
+                            pts = 'x = '+data.points[i].x +'\ny = '+
+                                data.points[i].y.toPrecision(4) + '\n\n';
+                        }
+                        alert('Closest point clicked:\n\n'+pts);
+                    });
                 }
             },
             function(data){
@@ -62,6 +100,7 @@ dashboardApp.controller('DashboardCtrl', function ($scope, Data) {
         return true;
     };
 
-    $scope.buildMonthlyProductionChart(2011, "wp2");
+    $scope.buildMonthlyProductionChart(2012, "wp2");
+    $scope.buildKeyMetricsView(2012, "wp2");
 
 });

@@ -14,7 +14,9 @@
   <link href="lib/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="lib/assets/css/sb-admin.css" rel="stylesheet">
   <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="style.css" rel="stylesheet" type="text/css">
   <script src="lib/assets/js/plotly-latest.min.js"></script>
+
   <!-- Angular -->
   <script src="lib/bower_components/angular/angular.js"></script>
   <script src="lib/bower_components/angular-route/angular-route.js"></script>
@@ -106,11 +108,40 @@
         </div>
 
         <div class="row">
-          <div class="col-lg-12"><h1>Production per month</h1></div>
+          <div class="col-lg-12"><h1>Production dashboard data</h1></div>
+
           <div class="col-lg-6">
             <div class="panel panel-yellow">
               <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-long-arrow-right"></i> Realtime Wind Data</h3>
+                <h3 class="panel-title"><i class="fa fa-long-arrow-right"></i> Key metrics</h3>
+              </div>
+              <div class="panel-body">
+                <div class="flot-chart">
+                  <div class="row tile_count">
+                    <div class="col-md-4 col-sm-6 col-xs-12 tile_stats_count">
+                      <span class="count_top"><i class="fa fa-tachometer"></i> Total power (MW/h)</span>
+                      <div class="count">{{yearsTotalProduction}}</div>
+                      <span class="count_bottom"><i class="green">Last year (MW/h): {{lastYearsTotalProduction}}</span>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12 tile_stats_count">
+                      <span class="count_top"><i class="fa fa-clock-o"></i> Average Time</span>
+                      <div class="count">123.50</div>
+                      <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>3% </i> From last Week</span>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12 tile_stats_count">
+                      <span class="count_top"><i class="fa fa-user"></i> Total Males</span>
+                      <div class="count green">2,500</div>
+                      <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="panel panel-yellow">
+              <div class="panel-heading">
+                <h3 class="panel-title"><i class="fa fa-long-arrow-right"></i> Montly production for the year</h3>
               </div>
               <div class="panel-body">
                 <div class="flot-chart">

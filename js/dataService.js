@@ -29,6 +29,19 @@ dashboardApp.factory('Data', function ($resource, $http, $cookieStore) {
         }
     });
 
+    this.BenchmarkDataGroupedByYear = $resource('https://windpowerdata-8069.restdb.io/rest/benchmark',
+        {
+            max: 20,
+            q: {},
+            skip: 0,
+            groupby: ["year"],
+            aggregate: ["SUM:wp1", "SUM:wp2", "SUM:wp3"]
+        },{
+            get: {
+                headers: requestHeaders
+            }
+        });
+
 
 
     // Angular service needs to return an object that has all the
