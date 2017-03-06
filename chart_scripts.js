@@ -84,3 +84,27 @@ var layout = {
 };
 
 Plotly.newPlot('wind-direction-chart', data, layout);
+
+/* Monthly production data */
+/* Wind production chart */
+var dateArrayProd = ["January", "February", "March"];
+
+var productionArrayProd = [0.3, 0.35, 0.747];
+
+var trace1Prod = {
+    x: dateArrayProd,
+    y: productionArrayProd,
+    type: 'bar',
+    name: 'windspeed data',
+    line: { // set the width of the line.
+        width: 3
+    }
+};
+
+var layoutProd = {
+    title: '',
+    yaxis: {title: 'MW/h'},
+};
+
+var dataProd = [trace1Prod];
+Plotly.newPlot('yearly-production-chart', dataProd, layoutProd);
