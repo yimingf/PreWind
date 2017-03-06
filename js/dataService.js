@@ -16,6 +16,30 @@ dashboardApp.factory('Data', function ($resource, $http, $cookieStore) {
         return monthNames[monthNumber - 1];
     };
 
+    this.countNumberOfDaysSinceStartOfTheYear = function (year, month, date) {
+        var firstDate = new Date(year,01,1);
+        var secondDate = new Date(year,month,date);
+        return this.countNumberOfDaysBetweenDates(firstDate, secondDate);
+    };
+
+    this.countNumberOfDaysBetweenDates = function (firstDate, secondDate) {
+        var oneDay = 24*60*60*1000;
+        return Math.round(Math.abs((firstDate.getTime() - secondDate.getTime())/(oneDay)));
+    };
+
+    this.BenchmarkDataGroupedByDate = $resource('https://windpowerdata-8069.restdb.io/rest/benchmark',
+        {
+            max: 1000,
+            q: {},
+            skip: 0,
+            groupby: ["year", "month", "date"],
+            aggregate: ["SUM:wp1", "SUM:wp2", "SUM:wp3"]
+        },{
+            get: {
+                headers: requestHeaders
+            }
+        });
+
     this.BenchmarkDataGroupedByMonth = $resource('https://windpowerdata-8069.restdb.io/rest/benchmark',
         {
             max: 20,
