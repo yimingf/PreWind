@@ -90,8 +90,23 @@ d3.json("https://yimingf.github.io/PreWind/data/europe.json", function(error, to
     });
 });
 
-d3.json("https://yimingf.github.io/PreWind/data/europe.json", function(error, data) {
-  
+d3.json("https://yimingf.github.io/PreWind/data/farms.json", function(error, data) {
+  console.log(data);
+  svg.selectAll("image")
+    .data(data.objects).enter()
+    .append("image")
+    .attr("href", "./lib/assets/img/wind-turbine.png")
+    .attr("x", function(d) {
+      return projection(d.location)[0];
+    })
+    .attr("y", function(d) {
+      return projection(d.location)[1];
+    })
+    .attr("height", "50px")
+    .attr("width", "50px")
+    .on("mouseover", function() {
+      console.log("caonima");
+    });
 });
 </script>
     
