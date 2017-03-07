@@ -21,18 +21,23 @@ h1 {
     font-family: 'Courier New';
     font-size:80px;
     color: white;
+    padding: 50px;
 }
 
 h3 {
     color: white;
+    font-family: "Verdana", Geneva, serif;
     font-style: italic;
+    font-size: 20px;
     margin-top: -20px;
 }
 
-
-
 @media(min-width:767px) {
     .navbar {
+        background-color: white;
+        opacity: 0.6;
+        border-bottom: 1px dotted white;
+
         -webkit-transition: background .5s ease-in-out,padding .5s ease-in-out;
         -moz-transition: background .5s ease-in-out,padding .5s ease-in-out;
         transition: background .5s ease-in-out,padding .5s ease-in-out;
@@ -42,9 +47,6 @@ h3 {
         padding: 0;
     }
 }
-
-
-
 
 .intro-section {
     height: 100%;
@@ -56,21 +58,24 @@ h3 {
     height: 100%;
     padding-top: 150px;
     text-align: center;
-    background-color: white;
-    opacity: 0.7;
-
+    background: #eee;
 }
 
 .team-section {
     height: 100%;
     padding-top: 150px;
     text-align: center;
-    background: #fff;
+    background-color: white;
+    opacity: 0.7;
+   
+
 }
 
 .contact-section {
     height: 100%;
     padding-top: 150px;
     text-align: center;
+    background-color: white;
     background: #eee;
+    
 }
