@@ -1,0 +1,16 @@
+{
+  "type": "farms",
+  "objects": [{
+    "location": [18.0683, 59.0],
+    "name": "stockholm wind turbine",
+    "owner": "mario romeo",
+    "peak production": "170kWh"
+  },
+  {
+    "location": [18.0683, 49.0],
+    "name": "poland wind turbine",
+    "owner": "chopin",
+    "peak production": "600kWh"
+  },
+  ]
+}
