@@ -4,32 +4,72 @@
 <meta charset="utf-8">
 <title>wind map</title>
 
-<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-<script src="http://d3js.org/topojson.v1.min.js"></script>
+<script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<script src="https://d3js.org/topojson.v1.min.js"></script>
 
 <style type="text/css">
   .feature {
-    fill: none;
+    fill: lightblue;
     stroke: grey;
     stroke-width: 1px;
-      stroke-linejoin: round;
+    stroke-linejoin: round;
+  }
+  .feature:hover {
+    fill : #adccff;
   }
   .mesh {
     fill: none;
-      stroke: darkblue;
-      stroke-width: 2px;
-      stroke-linejoin: round;
+    stroke: lightpink;
+    stroke-width: 2px;
+    stroke-linejoin: round;
   }
   h1 {
-    font-family: sans-serif;
+    font-family: courier;
+  }
+  .hidden {
+    display: none;
+  }
+  div.tooltip {
+    color: #222;
+    background-color: #fff;
+    padding: .5em;
+    text-shadow: #f5f5f5 0 1px 0;
+    border-radius: 2px;
+    opacity: 0.9;
+    position: absolute;
   }
 </style>
 </head>
 <body>
   <h1>european wind map.</h1>
 
-
 <script type="text/javascript">
+
+function getPosition(el) {
+  var xPos = 0;
+  var yPos = 0;
+ 
+  while (el) {
+    if (el.tagName == "BODY") {
+      // deal with browser quirks with body/window/document and page scroll
+      var xScroll = el.scrollLeft || document.documentElement.scrollLeft;
+      var yScroll = el.scrollTop || document.documentElement.scrollTop;
+ 
+      xPos += (el.offsetLeft - xScroll + el.clientLeft);
+      yPos += (el.offsetTop - yScroll + el.clientTop);
+    } else {
+      // for all other non-BODY elements
+      xPos += (el.offsetLeft - el.scrollLeft + el.clientLeft);
+      yPos += (el.offsetTop - el.scrollTop + el.clientTop);
+    }
+ 
+    el = el.offsetParent;
+  }
+  return {
+    x: xPos,
+    y: yPos
+  };
+}
 
 var width = 1280,
   height = 800;
@@ -38,11 +78,15 @@ var path = d3.geo.path()
   .projection(projection);
 
 var svg = d3.select("body").append("svg")
+  .attr("id", "foo")
   .attr("width", width)
   .attr("height", height);
 
 d3.json("https://yimingf.github.io/PreWind/data/europe.json", function(error, topo) {
   console.log(topo);
+
+  var tooltip = d3.select('body').append('div')
+    .attr('class', 'hidden tooltip');
 
   countries = topojson.feature(topo, topo.objects.europe)
     .features;
@@ -51,14 +95,10 @@ d3.json("https://yimingf.github.io/PreWind/data/europe.json", function(error, to
     .scale(500)
     .center([16.09, 50.60]);
 
-  aa = [18.0683, 59.0];
-  bb = [18.00, 54.0];
-
   svg.selectAll("path")
     .data(countries).enter()
     .append("path")
     .attr("class", "feature")
-    .style("fill", "steelblue")
     .attr("d", path);
 
   var mesh = topojson.mesh(topo, topo.objects.europe, (a, b) => (a != b));
@@ -69,45 +109,43 @@ d3.json("https://yimingf.github.io/PreWind/data/europe.json", function(error, to
     .attr("fill", "red")
     .attr("d", path);
 
-  svg.selectAll("marker")
-    .data([aa, bb]).enter()
-    .append("marker")
+  d3.json("https://yimingf.github.io/PreWind/data/farms.json", function(error, data) {
+    var len = 20;
 
-  svg.selectAll("image")
-    .data([aa, bb]).enter()
-    .append("image")
-    .attr("href", "./lib/assets/img/wind-turbine.png")
-    .attr("x", function(d) {
-      return projection(d)[0];
-    })
-    .attr("y", function(d) {
-      return projection(d)[1];
-    })
-    .attr("height", "50px")
-    .attr("width", "50px")
-    .on("mouseover", function() {
-      console.log("caonima");
-    });
+    svg.selectAll("image")
+      .data(data.objects).enter()
+      .append("image")
+      .attr("href", "./lib/assets/img/wind-turbine.png")
+      .attr("x", function(d) {
+        return (projection(d.location)[0]-len/2);
+      })
+      .attr("y", function(d) {
+        return (projection(d.location)[1]-len);
+      })
+      // .attr("r", "8px")
+      .attr("height", len + "px")
+      .attr("width", len + "px")
+      .on("mousemove", function(d) {
+        var mouse = d3.mouse(svg.node()).map(function(d) {
+          return parseInt(d);
+        });
+        tooltip.classed('hidden', false)
+          .attr('style', 'left:' + (mouse[0] + 15) +
+            'px; top:' + (mouse[1] - 35) + 'px')
+          .html(function() {
+            return "name: " + d.name + "<br>location: (" + d.location[0] + ", " + d.location[1] + ")<br>owner: " + d.owner + "<br>peak performance: ";
+          });
+      })
+      .on("mouseout", function() {
+        tooltip.classed('hidden', true);
+      })
+      .on("click", function() {
+        console.log("caonima");
+      });
+  });
 });
 
-d3.json("https://yimingf.github.io/PreWind/data/farms.json", function(error, data) {
-  console.log(data);
-  svg.selectAll("image")
-    .data(data.objects).enter()
-    .append("image")
-    .attr("href", "./lib/assets/img/wind-turbine.png")
-    .attr("x", function(d) {
-      return projection(d.location)[0];
-    })
-    .attr("y", function(d) {
-      return projection(d.location)[1];
-    })
-    .attr("height", "50px")
-    .attr("width", "50px")
-    .on("mouseover", function() {
-      console.log("caonima");
-    });
-});
+
 </script>
     
 </body>
