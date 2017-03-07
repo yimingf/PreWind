@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>WindMind</title>
+	<link rel="icon" href="icon.ico" type="image/x-icon">
+	<style type="text/css">
+	.glyphicon {
+	    font-size: 28px;
+	    color: black;
+	}
+	#header {
+		width: 92%;
+		margin-left: 4%;
+		height: 50px;
+		border-bottom: 1px solid lightgray;
+		font-size: 28px;
+	}
+	#header a{
+		text-decoration: none;
+		padding:10px; 
+	}
+	#main {
+		width: 90%;
+		margin-left:5%;
+		margin-top: 20px;
+		height: 600px;
+	}
+/*	#farmMap ul{
+		list-style:none;
+	}
+	#farmMap ul li{
+		float: left;
+	}*/
+	#main button{
+		width: 100px;
+		height: 30px;
+		margin:0;
+	}
+	.viewContainer {
+		height: 500px;
+		border: 1px solid black;
+	}
+	</style>
+</head>
+<body>
+	<div id = "header">
+		<a class="glyphicon glyphicon-home" href="home.html"></a>
+		 Wind Farms
+	</div>
+
+	<div id="main">
+<!-- 		<ul>
+		<li><button>Map</button></li>
+		<li><button>List</button></li>
+		</ul> -->
+
+		<button id="map" onclick="changeView('mapView')" >Map</button>
+		<button id="list" onclick="changeView('listView')">List</button>
+
+		<div class="viewContainer">
+			<div id="mapView" class="view">
+				show the map
+			</div>
+
+			<div id="listView" class="view" style="display:none">
+				show the list
+			</div>
+		</div>
+	</div>
+
+</body>
+
+<script type="text/javascript">
+
+	function changeView(viewName) {
+    var i;
+    var x = document.getElementsByClassName("view");
+    for (i = 0; i < x.length; i++) {
+        x[i].style.display = "none"; 
+    }
+    document.getElementById(viewName).style.display = "block"; 
+	}
+
+</script>
+
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+</html>
