@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>wind map</title>
+
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<script src="http://d3js.org/topojson.v1.min.js"></script>
+
+<style type="text/css">
+  .feature {
+    fill: none;
+    stroke: grey;
+    stroke-width: 1px;
+      stroke-linejoin: round;
+  }
+  .mesh {
+    fill: none;
+      stroke: darkblue;
+      stroke-width: 2px;
+      stroke-linejoin: round;
+  }
+  h1 {
+    font-family: sans-serif;
+  }
+</style>
+</head>
+<body>
+  <h1>european wind map.</h1>
+
+
+<script type="text/javascript">
+
+var width = 1280,
+  height = 800;
+var projection = d3.geo.mercator();
+var path = d3.geo.path()
+  .projection(projection);
+
+var svg = d3.select("body").append("svg")
+  .attr("width", width)
+  .attr("height", height);
+
+d3.json("https://yimingf.github.io/PreWind/data/europe.json", function(error, topo) {
+  console.log(topo);
+
+  countries = topojson.feature(topo, topo.objects.europe)
+    .features;
+
+  projection
+    .scale(500)
+    .center([16.09, 50.60]);
+
+  aa = [18.0683, 59.0];
+  bb = [18.00, 54.0];
+
+  svg.selectAll("path")
+    .data(countries).enter()
+    .append("path")
+    .attr("class", "feature")
+    .style("fill", "steelblue")
+    .attr("d", path);
+
+  var mesh = topojson.mesh(topo, topo.objects.europe, (a, b) => (a != b));
+
+  svg.append("path")
+    .datum(mesh)
+    .attr("class", "mesh")
+    .attr("fill", "red")
+    .attr("d", path);
+
+  svg.selectAll("marker")
+    .data([aa, bb]).enter()
+    .append("marker")
+
+  svg.selectAll("image")
+    .data([aa, bb]).enter()
+    .append("image")
+    .attr("href", "./lib/assets/img/wind-turbine.png")
+    .attr("x", function(d) {
+      return projection(d)[0];
+    })
+    .attr("y", function(d) {
+      return projection(d)[1];
+    })
+    .attr("height", "50px")
+    .attr("width", "50px")
+    .on("mouseover", function() {
+      console.log("caonima");
+    });
+});
+
+d3.json("https://yimingf.github.io/PreWind/data/farms.json", function(error, data) {
+  console.log(data);
+  svg.selectAll("image")
+    .data(data.objects).enter()
+    .append("image")
+    .attr("href", "./lib/assets/img/wind-turbine.png")
+    .attr("x", function(d) {
+      return projection(d.location)[0];
+    })
+    .attr("y", function(d) {
+      return projection(d.location)[1];
+    })
+    .attr("height", "50px")
+    .attr("width", "50px")
+    .on("mouseover", function() {
+      console.log("caonima");
+    });
+});
+</script>
+    
+</body>
+</html>
