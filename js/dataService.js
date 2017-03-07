@@ -27,44 +27,63 @@ dashboardApp.factory('Data', function ($resource, $http, $cookieStore) {
         return Math.round(Math.abs((firstDate.getTime() - secondDate.getTime())/(oneDay)));
     };
 
-    this.BenchmarkDataGroupedByDate = $resource('https://windpowerdata-8069.restdb.io/rest/benchmark',
-        {
-            max: 1000,
-            q: {},
-            skip: 0,
-            groupby: ["year", "month", "date"],
-            aggregate: ["SUM:wp1", "SUM:wp2", "SUM:wp3"]
-        },{
-            get: {
+    this.getBenchmarkDataGroupedByDate = function(){
+        var url = 'https://windpowerdata-8069.restdb.io/rest/benchmark';
+        console.log("URL: "+url);
+        var promise = $http({
+                method: 'GET',
+                url: url,
+                params: {
+                    max: 1000,
+                    q: {},
+                    skip: 0,
+                    groupby: ["year", "month", "date"],
+                    aggregate: ["SUM:wp1", "SUM:wp2", "SUM:wp3"]
+                },
                 headers: requestHeaders
-            }
-        });
+            });
 
-    this.BenchmarkDataGroupedByMonth = $resource('https://windpowerdata-8069.restdb.io/rest/benchmark',
-        {
-            max: 20,
-            q: {},
-            skip: 0,
-            groupby: ["year", "month"],
-            aggregate: ["SUM:wp1", "SUM:wp2", "SUM:wp3"]
-        },{
-        get: {
+        return promise;
+    };
+
+    this.getBenchmarkDataGroupedByMonth = function(){
+        var url = 'https://windpowerdata-8069.restdb.io/rest/benchmark';
+        console.log("URL: "+url);
+        var promise = $http({
+            method: 'GET',
+            url: url,
+            params: {
+                max: 1000,
+                q: {},
+                skip: 0,
+                groupby: ["year", "month"],
+                aggregate: ["SUM:wp1", "SUM:wp2", "SUM:wp3"]
+            },
             headers: requestHeaders
-        }
-    });
-
-    this.BenchmarkDataGroupedByYear = $resource('https://windpowerdata-8069.restdb.io/rest/benchmark',
-        {
-            max: 20,
-            q: {},
-            skip: 0,
-            groupby: ["year"],
-            aggregate: ["SUM:wp1", "SUM:wp2", "SUM:wp3"]
-        },{
-            get: {
-                headers: requestHeaders
-            }
         });
+
+        return promise;
+    };
+
+    this.getBenchmarkDataGroupedByYear = function(){
+        var url = 'https://windpowerdata-8069.restdb.io/rest/benchmark';
+        console.log("URL: "+url);
+        var promise = $http({
+            method: 'GET',
+            url: url,
+            params: {
+                max: 1000,
+                q: {},
+                skip: 0,
+                groupby: ["year"],
+                aggregate: ["SUM:wp1", "SUM:wp2", "SUM:wp3"]
+            },
+            headers: requestHeaders
+        });
+
+        return promise;
+    };
+
 
 
 

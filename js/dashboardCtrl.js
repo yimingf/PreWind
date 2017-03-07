@@ -25,56 +25,56 @@ dashboardApp.controller('DashboardCtrl', function ($scope, Data) {
         $scope.apiCallStatus = "Loading...";
         $scope.resultCounter = 0;
 
-        $scope.dataService.BenchmarkDataGroupedByDate.get({},
-            function(data){
+        var promiseDailyData = $scope.dataService.getBenchmarkDataGroupedByDate();
+        promiseDailyData.then(
+            function (response) {
                 $scope.resultCounter++;
-
-                //$scope.apiCallStatus = undefined;
-                console.log("Retrieved daily: "+JSON.stringify(data));
-                $scope.dailyProduction = data;
+                console.log("Retrieved daily: "+JSON.stringify(response.data));
+                $scope.dailyProduction = response.data;
                 if($scope.resultCounter == 3){
                     $scope.buildDataFromResults();
                 }
             },
-            function(data){
+            function (response) {
                 $scope.dailyProduction = undefined;
                 $scope.apiCallStatus = "Error :(";
-                alert("Error: " + JSON.stringify(data));
+                alert("Error: " + JSON.stringify(response));
             }
         );
 
-        $scope.dataService.BenchmarkDataGroupedByMonth.get({},
-            function(data){
+        var promiseMonthlyData = $scope.dataService.getBenchmarkDataGroupedByMonth();
+        promiseMonthlyData.then(
+            function (response) {
                 $scope.resultCounter++;
 
-                console.log("Retrieved montly: "+JSON.stringify(data));
-                $scope.monthlyProduction = data;
+                console.log("Retrieved montly: "+JSON.stringify(response.data));
+                $scope.monthlyProduction = response.data;
                 if($scope.resultCounter == 3){
                     $scope.buildDataFromResults();
                 }
             },
-            function(data){
+            function (response) {
                 $scope.monthlyProduction = undefined;
                 $scope.apiCallStatus = "Error :(";
-                alert("Error: " + JSON.stringify(data));
+                alert("Error: " + JSON.stringify(response));
             }
         );
 
-        $scope.dataService.BenchmarkDataGroupedByYear.get({},
-            function(data){
+        var promiseYearlyData = $scope.dataService.getBenchmarkDataGroupedByYear();
+        promiseYearlyData.then(
+            function (response) {
                 $scope.resultCounter++;
 
-                console.log("Retrieved yearly: "+JSON.stringify(data));
-                $scope.yearlyProduction = data;
-
+                console.log("Retrieved yearly: "+JSON.stringify(response.data));
+                $scope.yearlyProduction = response.data;
                 if($scope.resultCounter == 3){
                     $scope.buildDataFromResults();
                 }
             },
-            function(data){
+            function (response) {
                 $scope.yearlyProduction = undefined;
                 $scope.apiCallStatus = "Error :(";
-                alert("Error: " + JSON.stringify(data));
+                alert("Error: " + JSON.stringify(response));
             }
         );
     };
@@ -90,6 +90,32 @@ dashboardApp.controller('DashboardCtrl', function ($scope, Data) {
         console.log("Should build data from results...");
 
         //Build stuff from daily data
+        //Loop through every day
+        $scope.cumulativeYearlyProductionMap = {};
+        var obj = {name: 'misko', gender: 'male'};
+        var log = [];
+        angular.forEach($scope.dailyProduction, function(monthlyData, year) {
+            var yearDailyCumulativeProductionDateArray = [];
+            var yearDailyCumulativeProductionArray = [];
+            var yearsCululativeValue = 0;
+
+            //Loop through all months
+            angular.forEach(monthlyData, function(dailyValues, month) {
+                //Loop through all days
+                angular.forEach(dailyValues, function(dailyValue, date) {
+                    yearsCululativeValue += dailyValue["SUM "+$scope.nameOfWindfarm];
+                    yearDailyCumulativeProductionArray.push(yearsCululativeValue);
+                    //yearDailyCumulativeProductionDateArray.push(year + "-" + month + "-" + date);
+                    yearDailyCumulativeProductionDateArray.push(date + " " + $scope.dataService.getMonthNameByNumber(month));
+                });
+            });
+
+            $scope.cumulativeYearlyProductionMap[year] = {
+                dates: yearDailyCumulativeProductionDateArray,
+                values: yearDailyCumulativeProductionArray
+            };
+            //console.log("Cumulative values: "+JSON.stringify($scope.cumulativeYearlyProductionMap));
+        });
 
         //Build stuff from monthly data
         $scope.yearsMontlyProductionMonthNamesArray = [];
@@ -124,9 +150,45 @@ dashboardApp.controller('DashboardCtrl', function ($scope, Data) {
 
     $scope.buildAllGraphs = function(){
         $scope.buildMonthlyProductionChart();
+        $scope.buildCumulativeProductionChart();
     };
 
+    $scope.buildCumulativeProductionChart = function () {
+        var dateArray = $scope.cumulativeYearlyProductionMap[$scope.currentYear].dates;
+        var cumulativeProductionArray = $scope.cumulativeYearlyProductionMap[$scope.currentYear].values;
+        var dateArray2 = $scope.cumulativeYearlyProductionMap[$scope.currentYear - 1].dates;
+        var cumulativeProductionArray2 = $scope.cumulativeYearlyProductionMap[$scope.currentYear - 1].values;
 
+        var trace1 = {
+            x: dateArray,
+            y: cumulativeProductionArray,
+            type: 'scatter',
+            name: $scope.currentYear,
+            line: { // set the width of the line.
+                width: 3
+            }
+        };
+
+        var trace2 = {
+            x: dateArray2,
+            y: cumulativeProductionArray2,
+            type: 'scatter',
+            name: $scope.currentYear - 1,
+            line: { // set the width of the line.
+                width: 3
+            }
+        };
+
+        var layoutProd2 = {
+            title: '',
+            yaxis: {title: 'MW/h'},
+            hovermode:'closest'
+        };
+
+        var data = [trace1, trace2];
+
+        Plotly.newPlot('cumulative-production-chart', data, layoutProd2);
+    };
 
     $scope.buildMonthlyProductionChart = function () {
 
