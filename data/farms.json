@@ -1,16 +1,16 @@
 {
   "type": "farms",
   "objects": [{
-    "location": [18.0683, 59.3],
-    "name": "stockholm wind turbine",
+    "location": [18.07, 59.3],
+    "name": "stockholm turbine",
     "owner": "mario romeo",
-    "peak production": "170kWh"
+    "peak_production": "170kWh"
   },
   {
-    "location": [18.0683, 49.3],
-    "name": "poland wind turbine",
+    "location": [18.19, 52.255],
+    "name": "poland turbine",
     "owner": "chopin",
-    "peak production": "600kWh"
+    "peak_production": "600kWh"
   }
   ]
 }

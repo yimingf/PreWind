@@ -9,19 +9,34 @@
 
 <style type="text/css">
   .feature {
-    fill: none;
+    fill: lightblue;
     stroke: grey;
     stroke-width: 1px;
-      stroke-linejoin: round;
+    stroke-linejoin: round;
+  }
+  .feature:hover {
+    fill : #adccff;
   }
   .mesh {
     fill: none;
-      stroke: darkblue;
-      stroke-width: 2px;
-      stroke-linejoin: round;
+    stroke: lightpink;
+    stroke-width: 2px;
+    stroke-linejoin: round;
   }
   h1 {
-    font-family: sans-serif;
+    font-family: courier;
+  }
+  .hidden {
+    display: none;
+  }
+  div.tooltip {
+    color: #222;
+    background-color: #fff;
+    padding: .5em;
+    text-shadow: #f5f5f5 0 1px 0;
+    border-radius: 2px;
+    opacity: 0.9;
+    position: absolute;
   }
 </style>
 </head>
@@ -70,6 +85,9 @@ var svg = d3.select("body").append("svg")
 d3.json("https://yimingf.github.io/PreWind/data/europe.json", function(error, topo) {
   console.log(topo);
 
+  var tooltip = d3.select('body').append('div')
+    .attr('class', 'hidden tooltip');
+
   countries = topojson.feature(topo, topo.objects.europe)
     .features;
 
@@ -81,7 +99,6 @@ d3.json("https://yimingf.github.io/PreWind/data/europe.json", function(error, to
     .data(countries).enter()
     .append("path")
     .attr("class", "feature")
-    .style("fill", "steelblue")
     .attr("d", path);
 
   var mesh = topojson.mesh(topo, topo.objects.europe, (a, b) => (a != b));
@@ -93,23 +110,34 @@ d3.json("https://yimingf.github.io/PreWind/data/europe.json", function(error, to
     .attr("d", path);
 
   d3.json("https://yimingf.github.io/PreWind/data/farms.json", function(error, data) {
-    console.log(data);
-    console.log(getPosition(document.getElementById("foo")));
-    svg.selectAll("circle")
+    var len = 20;
+
+    svg.selectAll("image")
       .data(data.objects).enter()
-      .append("circle")
-      //.attr("href", "./lib/assets/img/wind-turbine.png")
-      .attr("cx", function(d) {
-        return (d3.select("svg").attr("x") + projection(d.location)[0]);
+      .append("image")
+      .attr("href", "./lib/assets/img/wind-turbine.png")
+      .attr("x", function(d) {
+        return (projection(d.location)[0]-len/2);
       })
-      .attr("cy", function(d) {
-        return (d3.select("svg").attr("y") + projection(d.location)[1]);
+      .attr("y", function(d) {
+        return (projection(d.location)[1]-len);
       })
-      .attr("r", "8px")
-      // .attr("height", "25px")
-      // .attr("width", "25px")
-      .on("mouseover", function() {
-        console.log("caonima");
+      // .attr("r", "8px")
+      .attr("height", len + "px")
+      .attr("width", len + "px")
+      .on("mousemove", function(d) {
+        var mouse = d3.mouse(svg.node()).map(function(d) {
+          return parseInt(d);
+        });
+        tooltip.classed('hidden', false)
+          .attr('style', 'left:' + (mouse[0] + 15) +
+            'px; top:' + (mouse[1] - 35) + 'px')
+          .html(function() {
+            return "name: " + d.name + "<br>location: (" + d.location[0] + ", " + d.location[1] + ")<br>owner: " + d.owner + "<br>peak performance: ";
+          });
+      })
+      .on("mouseout", function() {
+        tooltip.classed('hidden', true);
       });
   });
 });
