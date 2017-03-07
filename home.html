@@ -2,98 +2,58 @@
 <html>
 <head>
 	<title>PreWind</title>
-	<style type="text/css">
-		#topNav{
-			width:100%;
-			height: 44px;
-			position:fixed;
-			top:0;
-			z-index:10;
-			/*background-color: #d9dee8;*/
-			background-color: #d7dff2;
-			opacity: 0.7;
-			border-bottom: 1px dotted white;
-		}
-		.navList{
-			/*margin-top: 10px;*/
-			margin:0;
-			height: 20px;
-			width: 300px;
-			/*margin: auto;*/
-			list-style:none;
-			background:;
-			/*border: 1px solid red;*/
-		}
-		.navList li{
-			float:left;
-			width: 70px;
-			/*margin-left: 15px;*/
-		}
-		.navList li a{
-			text-decoration:none;
-			font-size: 15px;
-			color:#243c58;
-			letter-spacing: 1px;
-		}
-		.navList li a:hover{
-			color:#CC4B6F;
-		}
-		body {
-		    background-image: url("./lib/assets/img/bg2.jpg");
-		    background-size: 100%;
-		    background-repeat: no-repeat;
-		    background-color: #cccccc;
-		    background-attachment:fixed;
-		}
-		#header{
-			margin:auto;
-			width:100%;
-			height: 750px;
-			text-align:center;
-			padding-top: 230px;
-			/*background-image: url("bg1.jpg");*/
-		}
-		.logo{
-			font-family: 'Courier New';
-			font-size:80px;
-			color: white;
-		}
-		.header_text{
-			color: white;
-			font-style: italic;
-			margin-top: -20px;
-		}
-		#startBtn{
-			margin-top: 20px;
-			border: none;
-			border-radius: 4px;
-			text-decoration: none;
-			background-color: rgba(139, 159, 181, 0);
-			width: 150px;
-			height: 35px;
-			color: white;
-			font-size: 20px;
-			border: 1px solid white;
-		}
-		#startBtn:hover{
-			/*background-color: rgba(139, 159, 181, 0.8);*/
-			/*border: 2px solid white;*/
-		}
-		#view1{
-			width: 100%;
-			height: 900px;
-			background-color: white;
-			opacity: 0.7;
-		}
-		#view2{
-			width: 100%;
-			height: 900px;
-			opacity: 0.7;
-		}
-	</style>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="">
+    <meta name="author" content="">
+
+ 	<!-- Bootstrap Core CSS -->
+ 	<link href="css_homepage/bootstrap.min.css" rel="stylesheet">
+ 	<!-- Custom CSS -->
+    <link href="css_homepage/scrolling-nav.css" rel="stylesheet">
+
 </head>
 
-<body style="margin: 0;">
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand page-scroll" href="#page-top">Wind Mind</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav">
+                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                    <li class="hidden">
+                        <a class="page-scroll" href="#page-top"></a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#about">About</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#team">Team</a>
+                    </li>
+					<li>
+                        <a class="page-scroll" href="#contact">Contact</a>
+                    </li>
+
+                </ul>
+            </div>
+           
+        </div>
+        
+    </nav>
+
+<!-- OLD CODE
+<body  id ="page-top" data-spy="scroll" data-target=".navbar-fixed-top" style="margin: 0;">
 	<div id="topNav">
 		<div class="navList">
 			<ul style="list-style:none;">
@@ -102,23 +62,83 @@
 				<li><a href="#view2">Team</a></li>
 			</ul>
 		</div>
-	</div>
+	</div> 
+	-->
 
+	<!--
 	<div id="header">
 
-		<div class="logo">PREWIND</div>
+		<div class="logo">WIND MIND</div>
 		<div class="header_text">- A Wind Prediction Website to forecast wind production -</div>
-		<a href="index.html"><button id="startBtn">Get Started</button></a>
+		<a href="index.html"><button id="startBtn">Get Started</button></a> 
+	-->
 
-	</div>
-	<div id="view1">
-		
-	</div>
-	<div id="view2">
-		
-	</div>
+
+		<!-- Intro Section -->
+    <section id="intro" class="intro-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1>WIND MIND</h1>
+                    <h3>A Wind Prediction Website to forecast wind production </h3>
+                    <a href="index.html"><button id="startBtn">Get Started</button></a> 
+                </div>
+            </div>
+        </div>
+    </section>
+
+	    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2>About</h1>
+                    <p>
+                    	Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="team-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2>Team</h1>
+                    <p>
+                    	Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2>Contact</h1>
+                    <p>
+                    	Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- jQuery -->
+    <script src="js_homepage/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js_homepage/bootstrap.min.js"></script>
+
+    <!-- Scrolling Nav JavaScript -->
+    <script src="js_homepage/jquery.easing.min.js"></script>
+    <script src="js_homepage/scrolling-nav.js"></script>
 
 </body>
 
-<link rel="stylesheet" type="text/css" href="./lib/bower_components/bootstrap/dist/css/bootstrap.min.css" />
 </html>
