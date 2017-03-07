@@ -27,6 +27,23 @@ dashboardApp.factory('Data', function ($resource, $http, $cookieStore) {
         return Math.round(Math.abs((firstDate.getTime() - secondDate.getTime())/(oneDay)));
     };
 
+    this.getDailyWindspeedData = function(windfarmName){
+        var url = "https://windpowerdata-8069.restdb.io/rest/windforecasts-wf-" + windfarmName + "";
+        console.log("URL: "+url);
+        var promise = $http({
+            method: 'GET',
+            url: url,
+            params: {
+                max: 2000,
+                q: {},
+                skip: 0
+            },
+            headers: requestHeaders
+        });
+
+        return promise;
+    };
+
     this.getBenchmarkDataGroupedByDate = function(){
         var url = 'https://windpowerdata-8069.restdb.io/rest/benchmark';
         console.log("URL: "+url);
