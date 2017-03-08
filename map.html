@@ -131,10 +131,10 @@ d3.json('https://yimingf.github.io/PreWind/data/europe.json', function(error, to
 
   d3.json('https://yimingf.github.io/PreWind/data/wind-surface-level-toy.json', function(error, data) {
     console.log(data);
-    // var c = data[0].data.map(function (e, i) {
-    //   return [e, data[1].data[i]];
-    // });
-    // console.log(c);
+    var c = data[0].data.map(function (e, i) {
+      return [e, data[1].data[i]];
+    });
+    console.log(c);
 
     svg.selectAll('line')
       .data(c).enter()
