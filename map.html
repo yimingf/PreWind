@@ -45,54 +45,6 @@
 
 <script type='text/javascript'>
 
-var wind_data = [{"header":{"discipline":0,"disciplineName":"Meteorological products","gribEdition":2,"gribLength":131858,"center":7,"centerName":"US National Weather Service - NCEP(WMC)","subcenter":0,"refTime":"2014-01-31T00:00:00.000Z","significanceOfRT":1,"significanceOfRTName":"Start of forecast","productStatus":0,"productStatusName":"Operational products","productType":1,"productTypeName":"Forecast products","productDefinitionTemplate":0,"productDefinitionTemplateName":"Analysis/forecast at horizontal level/layer at a point in time","parameterCategory":2,"parameterCategoryName":"Momentum","parameterNumber":2,"parameterNumberName":"U-component_of_wind","parameterUnit":"m.s-1","genProcessType":2,"genProcessTypeName":"Forecast","forecastTime":3,"surface1Type":103,"surface1TypeName":"Specified height level above ground","surface1Value":10,"surface2Type":255,"surface2TypeName":"Missing","surface2Value":0,"gridDefinitionTemplate":0,"gridDefinitionTemplateName":"Latitude_Longitude","numberPoints":65160,"shape":6,"shapeName":"Earth spherical with radius of 6,371,229.0 m","gridUnits":"degrees","resolution":48,"winds":"true","scanMode":0,"nx":360,"ny":181,"basicAngle":0,"subDivisions":0,"lo1":0,"la1":90,"lo2":359,"la2":-90,"dx":1,"dy":1},"data":[-4.76,-4.75,-4.73],"meta":{"date":"2014-01-31T03:00:00.000Z"}},{"header":{"discipline":0,"disciplineName":"Meteorological products","gribEdition":2,"gribLength":131858,"center":7,"centerName":"US National Weather Service - NCEP(WMC)","subcenter":0,"refTime":"2014-01-31T00:00:00.000Z","significanceOfRT":1,"significanceOfRTName":"Start of forecast","productStatus":0,"productStatusName":"Operational products","productType":1,"productTypeName":"Forecast products","productDefinitionTemplate":0,"productDefinitionTemplateName":"Analysis/forecast at horizontal level/layer at a point in time","parameterCategory":2,"parameterCategoryName":"Momentum","parameterNumber":3,"parameterNumberName":"V-component_of_wind","parameterUnit":"m.s-1","genProcessType":2,"genProcessTypeName":"Forecast","forecastTime":3,"surface1Type":103,"surface1TypeName":"Specified height level above ground","surface1Value":10,"surface2Type":255,"surface2TypeName":"Missing","surface2Value":0,"gridDefinitionTemplate":0,"gridDefinitionTemplateName":"Latitude_Longitude","numberPoints":65160,"shape":6,"shapeName":"Earth spherical with radius of 6,371,229.0 m","gridUnits":"degrees","resolution":48,"winds":"true","scanMode":0,"nx":360,"ny":181,"basicAngle":0,"subDivisions":0,"lo1":0,"la1":90,"lo2":359,"la2":-90,"dx":1,"dy":1},"data":[0.75,0.83,0.91],"meta":{"date":"2014-01-31T03:00:00.000Z"}}]
-
-function getPosition(el) {
-  var xPos = 0;
-  var yPos = 0;
- 
-  while (el) {
-    if (el.tagName == 'BODY') {
-      // deal with browser quirks with body/window/document and page scroll
-      var xScroll = el.scrollLeft || document.documentElement.scrollLeft;
-      var yScroll = el.scrollTop || document.documentElement.scrollTop;
- 
-      xPos += (el.offsetLeft - xScroll + el.clientLeft);
-      yPos += (el.offsetTop - yScroll + el.clientTop);
-    } else {
-      // for all other non-BODY elements
-      xPos += (el.offsetLeft - el.scrollLeft + el.clientLeft);
-      yPos += (el.offsetTop - el.scrollTop + el.clientTop);
-    }
- 
-    el = el.offsetParent;
-  }
-  return {
-    x: xPos,
-    y: yPos
-  };
-}
-
-function animation(selection) {
-  selection
-  .attr({x1: 200, x2: 200})
-  .attr('y1', d => d)
-  .attr('y2', d => d)
-  .style('opacity', 0.5)
-  .style('stroke', 'red')
-  .transition()
-    .ease('linear')
-    .duration(1000)
-    .delay(d => d*10)
-    .attr('x2', 500)
-  .transition()
-    .duration(1000)
-    .style('opacity', 0)
-  .each('end', function(){
-    d3.select(this).call(animation);
-  });
-}
-
 var width = 1280,
   height = 800;
 var projection = d3.geo.mercator();
@@ -104,7 +56,52 @@ var svg = d3.select('body').append('svg')
   .attr('width', width)
   .attr('height', height);
 
-d3.json('https://yimingf.github.io/PreWind/data/europe.json', function(error, topo) {
+function animation(selection) {
+  let real_pixels = (_, i) => projection([
+    i-Math.floor((i+9360)/360),
+    90-Math.floor((i+9360)/360)
+  ]);
+  let real_moved_pixels = function(d, i) {
+    let pixels = real_pixels(d, i);
+    return [
+      d[0]+pixels[0],
+      d[1]+pixels[1]
+  ]};
+
+  selection
+    .attr('x1', function(_, i) {
+      return real_pixels(_, i)[0];
+    })
+    .attr('x2', function(_, i) {
+      return real_pixels(_, i)[0];
+    })
+    .attr('y1', function(_, i) {
+      return real_pixels(_, i)[1];
+    })
+    .attr('y2', function(_, i) {
+      return real_pixels(_, i)[1];
+    })
+  .style('opacity', 0.5)
+  .style('stroke', 'red')
+  .transition()
+    .ease('linear')
+    .duration(1000)
+    .delay(10)
+    .attr('x2', function(_, i) {
+      return real_moved_pixels(_, i)[0];
+    })
+    .attr('y2', function(_, i) {
+      return real_moved_pixels(_, i)[1];
+    })
+  .transition()
+    .duration(1000)
+    .style('opacity', 0)
+  .each('end', function (){
+    d3.selectAll('line').call(animation);
+  });
+}
+
+d3.json('https://yimingf.github.io/PreWind/data/europe.json', function (error, topo) {
   var tooltip = d3.select('body').append('div')
     .attr('class', 'hidden tooltip');
 
@@ -129,12 +126,10 @@ d3.json('https://yimingf.github.io/PreWind/data/europe.json', function(error, to
     .attr('fill', 'red')
     .attr('d', path);
 
-  d3.json('https://yimingf.github.io/PreWind/data/wind-surface-level-toy.json', function(error, data) {
-    console.log(data);
-    var c = data[0].data.map(function (e, i) {
-      return [e, data[1].data[i]];
+  d3.json('https://yimingf.github.io/PreWind/data/wind-surface-level-toy.json', function (error, data) {
+    var c = data.objects[0].data.map(function (e, i) {
+      return [e, data.objects[1].data[i]];
     });
-    console.log(c);
 
     svg.selectAll('line')
       .data(c).enter()
@@ -142,37 +137,37 @@ d3.json('https://yimingf.github.io/PreWind/data/europe.json', function(error, to
       .call(animation);
   });
 
-  d3.json('https://yimingf.github.io/PreWind/data/farms.json', function(error, data) {
+  d3.json('https://yimingf.github.io/PreWind/data/farms.json', function (error, data) {
     var len = 20;
 
     svg.selectAll('image')
       .data(data.objects).enter()
       .append('image')
       .attr('href', './lib/assets/img/wind-turbine.png')
-      .attr('x', function(d) {
+      .attr('x', function (d) {
         return (projection(d.location)[0]-len/2);
       })
-      .attr('y', function(d) {
+      .attr('y', function (d) {
         return (projection(d.location)[1]-len);
       })
       // .attr('r', '8px')
       .attr('height', len + 'px')
       .attr('width', len + 'px')
-      .on('mousemove', function(d) {
-        var mouse = d3.mouse(svg.node()).map(function(d) {
+      .on('mousemove', function (d) {
+        var mouse = d3.mouse(svg.node()).map(function (d) {
           return parseInt(d);
         });
         tooltip.classed('hidden', false)
           .attr('style', 'left:' + (mouse[0] + 15) +
             'px; top:' + (mouse[1] - 35) + 'px')
-          .html(function() {
+          .html(function () {
             return 'name: ' + d.name + '<br>location: (' + d.location[0] + ', ' + d.location[1] + ')<br>owner: ' + d.owner + '<br>peak performance: ' + d.peak_production;
           });
       })
-      .on('mouseout', function() {
+      .on('mouseout', function () {
         tooltip.classed('hidden', true);
       })
-      .on('click', function() {
+      .on('click', function () {
         console.log('caonima');
       });
   });
