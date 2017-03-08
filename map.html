@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
+<meta charset='utf-8'>
 <title>wind map</title>
 
-<script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-<script src="https://d3js.org/topojson.v1.min.js"></script>
+<script src='https://d3js.org/d3.v3.min.js' charset='utf-8'></script>
+<script src='https://d3js.org/topojson.v1.min.js'></script>
 
-<style type="text/css">
+<style type='text/css'>
   .feature {
     fill: lightblue;
     stroke: grey;
@@ -43,14 +43,14 @@
 <body>
   <h1>european wind map.</h1>
 
-<script type="text/javascript">
+<script type='text/javascript'>
 
 function getPosition(el) {
   var xPos = 0;
   var yPos = 0;
  
   while (el) {
-    if (el.tagName == "BODY") {
+    if (el.tagName == 'BODY') {
       // deal with browser quirks with body/window/document and page scroll
       var xScroll = el.scrollLeft || document.documentElement.scrollLeft;
       var yScroll = el.scrollTop || document.documentElement.scrollTop;
@@ -71,18 +71,38 @@ function getPosition(el) {
   };
 }
 
+function animation(selection) {
+  selection
+  .attr({x1: 200, x2: 200})
+  .attr('y1', d => d)
+  .attr('y2', d => d)
+  .style('opacity', 0.5)
+  .style('stroke', 'red')
+  .transition()
+    .ease('linear')
+    .duration(1000)
+    .delay(d => d*10)
+    .attr('x2', 500)
+  .transition()
+    .duration(1000)
+    .style('opacity', 0)
+  .each('end', function(){
+    d3.select(this).call(animation);
+  });
+}
+
 var width = 1280,
   height = 800;
 var projection = d3.geo.mercator();
 var path = d3.geo.path()
   .projection(projection);
 
-var svg = d3.select("body").append("svg")
-  .attr("id", "foo")
-  .attr("width", width)
-  .attr("height", height);
+var svg = d3.select('body').append('svg')
+  .attr('id', 'foo')
+  .attr('width', width)
+  .attr('height', height);
 
-d3.json("https://yimingf.github.io/PreWind/data/europe.json", function(error, topo) {
+d3.json('https://yimingf.github.io/PreWind/data/europe.json', function(error, topo) {
   console.log(topo);
 
   var tooltip = d3.select('body').append('div')
@@ -95,37 +115,42 @@ d3.json("https://yimingf.github.io/PreWind/data/europe.json", function(error, to
     .scale(500)
     .center([16.09, 50.60]);
 
-  svg.selectAll("path")
+  svg.selectAll('path')
     .data(countries).enter()
-    .append("path")
-    .attr("class", "feature")
-    .attr("d", path);
+    .append('path')
+    .attr('class', 'feature')
+    .attr('d', path);
 
   var mesh = topojson.mesh(topo, topo.objects.europe, (a, b) => (a != b));
 
-  svg.append("path")
+  svg.append('path')
     .datum(mesh)
-    .attr("class", "mesh")
-    .attr("fill", "red")
-    .attr("d", path);
+    .attr('class', 'mesh')
+    .attr('fill', 'red')
+    .attr('d', path);
 
-  d3.json("https://yimingf.github.io/PreWind/data/farms.json", function(error, data) {
+  svg.selectAll('line')
+    .data([0, 5, 10, 15, 20]).enter()
+    .append('line')
+    .call(animation);
+
+  d3.json('https://yimingf.github.io/PreWind/data/farms.json', function(error, data) {
     var len = 20;
 
-    svg.selectAll("image")
+    svg.selectAll('image')
       .data(data.objects).enter()
-      .append("image")
-      .attr("href", "./lib/assets/img/wind-turbine.png")
-      .attr("x", function(d) {
+      .append('image')
+      .attr('href', './lib/assets/img/wind-turbine.png')
+      .attr('x', function(d) {
         return (projection(d.location)[0]-len/2);
       })
-      .attr("y", function(d) {
+      .attr('y', function(d) {
         return (projection(d.location)[1]-len);
       })
-      // .attr("r", "8px")
-      .attr("height", len + "px")
-      .attr("width", len + "px")
-      .on("mousemove", function(d) {
+      // .attr('r', '8px')
+      .attr('height', len + 'px')
+      .attr('width', len + 'px')
+      .on('mousemove', function(d) {
         var mouse = d3.mouse(svg.node()).map(function(d) {
           return parseInt(d);
         });
@@ -133,18 +158,19 @@ d3.json("https://yimingf.github.io/PreWind/data/europe.json", function(error, to
           .attr('style', 'left:' + (mouse[0] + 15) +
             'px; top:' + (mouse[1] - 35) + 'px')
           .html(function() {
-            return "name: " + d.name + "<br>location: (" + d.location[0] + ", " + d.location[1] + ")<br>owner: " + d.owner + "<br>peak performance: ";
+            return 'name: ' + d.name + '<br>location: (' + d.location[0] + ', ' + d.location[1] + ')<br>owner: ' + d.owner + '<br>peak performance: ' + d.peak_production;
           });
       })
-      .on("mouseout", function() {
+      .on('mouseout', function() {
         tooltip.classed('hidden', true);
       })
-      .on("click", function() {
-        console.log("caonima");
+      .on('click', function() {
+        console.log('caonima');
       });
   });
-});
 
+  
+});
 
 </script>
     
