@@ -129,10 +129,12 @@ d3.json('https://yimingf.github.io/PreWind/data/europe.json', function(error, to
     .attr('fill', 'red')
     .attr('d', path);
 
-  svg.selectAll('line')
-    .data([0, 5, 10, 15, 20]).enter()
-    .append('line')
-    .call(animation);
+  d3.json('https://yimingf.github.io/PreWind/data/wind-surface-level-toy.json', function(error, data) {
+    svg.selectAll('line')
+      .data([0, 5, 10, 15, 20]).enter()
+      .append('line')
+      .call(animation);
+  });
 
   d3.json('https://yimingf.github.io/PreWind/data/farms.json', function(error, data) {
     var len = 20;
