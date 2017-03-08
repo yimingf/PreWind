@@ -56,50 +56,11 @@ var svg = d3.select('body').append('svg')
   .attr('width', width)
   .attr('height', height);
 
-function animation(selection) {
-  let real_pixels = (_, i) => projection([
-    i-Math.floor((i+9360)/360),
-    90-Math.floor((i+9360)/360)
-  ]);
-  let real_moved_pixels = function(d, i) {
-    let pixels = real_pixels(d, i);
-    return [
-      d[0]+pixels[0],
-      d[1]+pixels[1]
-  ]};
-
-  selection
-    .attr('x1', function(_, i) {
-      return real_pixels(_, i)[0];
-    })
-    .attr('x2', function(_, i) {
-      return real_pixels(_, i)[0];
-    })
-    .attr('y1', function(_, i) {
-      return real_pixels(_, i)[1];
-    })
-    .attr('y2', function(_, i) {
-      return real_pixels(_, i)[1];
-    })
-  .style('opacity', 0.5)
-  .style('stroke', 'red')
-  .transition()
-    .ease('linear')
-    .duration(1000)
-    .delay(10)
-    .attr('x2', function(_, i) {
-      return real_moved_pixels(_, i)[0];
-    })
-    .attr('y2', function(_, i) {
-      return real_moved_pixels(_, i)[1];
-    })
-  .transition()
-    .duration(1000)
-    .style('opacity', 0)
-  .each('end', function (){
-    d3.selectAll('line').call(animation);
-  });
-}
+// function animation(selection) {
+//   selection
+    
+//   });
+// }
 
 d3.json('https://yimingf.github.io/PreWind/data/europe.json', function (error, topo) {
   var tooltip = d3.select('body').append('div')
@@ -131,10 +92,50 @@ d3.json('https://yimingf.github.io/PreWind/data/europe.json', function (error, t
       return [e, data.objects[1].data[i]];
     });
 
-    svg.selectAll('line')
+    var real_pixels = c.map(function (_, i) {
+      return projection([
+        (i+9360)%360,
+        90-Math.floor((i+9360)/360)
+      ]);
+    });
+    var real_moved_pixels = c.map(function (d, i) {
+      return [
+        d[0]+real_pixels[i][0],
+        d[1]+real_pixels[i][1]
+    ]});
+    console.log(real_pixels);
+
+    var lines = svg.selectAll('line')
       .data(c).enter()
       .append('line')
-      .call(animation);
+        .attr('x1', (_, i) => real_pixels[i][0])
+        .attr('x2', (_, i) => real_pixels[i][0])
+        .attr('y1', (_, i) => real_pixels[i][1])
+        .attr('y2', (_, i) => real_pixels[i][1])
+      .style('opacity', 0.5)
+      .style('stroke', 'red')
+      .transition()
+        .ease('linear')
+        .duration(1000)
+        .delay(10)
+        .attr('x2', (_, i) => real_moved_pixels[i][0])
+        .attr('y2', (_, i) => real_moved_pixels[i][1])
+      .transition()
+        .duration(1000)
+        .style('opacity', 0);
+
+    // var loop = function() {
+    //   lines
+        
+    //     .transition()
+    //       .ease('linear')
+    //       .duration(1000)
+    //       .attr('x2', (_, i) => real_pixels[i][0])
+    //       .attr('y2', (_, i) => real_pixels[i][1])
+    //       .style('opacity', 0.5)
+    //     .each('end', loop);
+    //   };
+    //   loop();
   });
 
   d3.json('https://yimingf.github.io/PreWind/data/farms.json', function (error, data) {
