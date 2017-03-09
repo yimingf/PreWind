@@ -13,25 +13,25 @@
     "peak_production": "600kWh"
   },
   {
-    "location": [55.31, 12.47],
+    "location": [12.47, 55.31],
     "name": "Lillgrund",
     "owner": "Vattenfall",
     "peak_production": "170kWh"
   },
   {
-    "location": [56.58, 17.01],
+    "location": [17.01, 56.58],
     "name": "Karehamn",
     "owner": "E.ON",
     "peak_production": "170kWh"
   },
   {
-    "location": [56.20, 16.16],
+    "location": [16.16, 56.20],
     "name": "Utugruden",
     "owner": "Vattenfall",
     "peak_production": "170kWh"
   },
   {
-    "location": [57.20, 18.90],
+    "location": [18.90, 57.20],
     "name": "Bockstigen",
     "owner": "Vattenfall",
     "peak_production": "170kWh"
