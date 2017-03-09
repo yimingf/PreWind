@@ -2,38 +2,53 @@
   "type": "farms",
   "objects": [{
     "location": [18.07, 59.3],
-    "name": "stockholm turbine",
-    "owner": "mario romeo",
-    "peak_production": "170kWh"
+    "name": "Långå wind park",
+    "owner": "Agrivind AB",
+    "Nsmeplate capacity" : "10MW",
+    "Number f turbin" : "5",
+    "Turbine capacity" : "2MW",
+    "Status" : "Operational",
+    "Country" : "Sweden"
   },
-  {
-    "location": [18.19, 52.255],
-    "name": "poland turbine",
-    "owner": "chopin",
-    "peak_production": "600kWh"
-  },
+
   {
     "location": [12.47, 55.31],
     "name": "Lillgrund",
     "owner": "Vattenfall",
-    "peak_production": "170kWh"
+    "Nsmeplate capacity" : "110MW",
+    "Number f turbine" : "48",
+    "Turbine capacity" : "2.2MW",
+    "Status" : "Operational",
+    "Country" : "Sweden"
   },
   {
     "location": [17.01, 56.58],
     "name": "Karehamn",
     "owner": "E.ON",
-    "peak_production": "170kWh"
+    "Number f turbine" : "16",
+    "Turbine capacity" : "3MW",
+    "Nsmeplate capacity" : "48MW",
+    "Status" : "Operational",
+    "Country" : "Sweden"
   },
   {
     "location": [16.16, 56.20],
     "name": "Utugruden",
     "owner": "Vattenfall",
-    "peak_production": "170kWh"
+    "Nsmeplate capacity" : "10.5MW",
+    "Number f turbin" : "7",
+    "Turbine capacity" : "1.5MW",
+    "Status" : "Operational",
+    "Country" : "Sweden"
   },
   {
     "location": [18.90, 57.20],
     "name": "Bockstigen",
-    "owner": "Vattenfall",
-    "peak_production": "170kWh"
+    "owner": "Momentum group",
+    "Nsmeplate capacity" : "2.75MW",
+    "Number f turbin" : "5",
+    "Turbine capacity" : "0.55MW",
+    "Status" : "Operational",
+    "Country" : "Sweden"
   }]
 }
