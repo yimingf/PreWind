@@ -61,10 +61,32 @@
 	#listView li{
 		list-style:none;
 	}
-	#listView div{
+	#listView h5{
+		font-size: 16px;
+	}
+	.farmList{
 		width: 90%;
 		height: 150px;
+		border-radius: 4px;
 		background-color: lightyellow;
+	}
+	.farmImg img{
+		max-height: 85%;
+		margin-top: 4%;
+		margin-left: 20px;
+		border-radius: 8px;
+	}
+	.farmImg {
+		height: 100%;
+		width: 23%;
+		float: left;
+	}
+	.farmInfo {
+		height: 100%;
+		width: 30%;
+		float: left;
+		padding-top: 20px;
+		font-size: 15px;
 	}
 	</style>
 </head>
@@ -91,18 +113,27 @@
 
 			<div id="listView" class="view" style="display:none">
 			<ul>
-				<li>Havsnäs Wind Farm
-					<div>
+				<li><h5>farm1</h5>
+					<div class="farmList">
+						<div class="farmImg">
+							<img src="wf1.png">
+						</div>
+						<div class="farmInfo">
+							<p>Owner: xxx</p>
+							<p>Location: xxx</p>
+						</div>
+						<div class="farmInfo">
+							<p>data</p>
+						</div>
+					</div>
+				</li>
+				<li><h5>farm2</h5>
+					<div class="farmList">
 						
 					</div>
 				</li>
-				<li>Lillgrund Wind Farm
-					<div>
-						
-					</div>
-				</li>
-				<li>Storrun Wind Farm
-					<div>
+				<li><h5>farm3</h5>
+					<div class="farmList">
 						
 					</div>
 				</li>
