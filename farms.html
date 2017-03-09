@@ -4,9 +4,13 @@
 	<title>WindMind</title>
 	<link rel="icon" href="icon.ico" type="image/x-icon">
 	<style type="text/css">
+	body {
+/*		background-image: url("./lib/assets/img/bg3.jpg");
+		background-size: 100%;
+*/	}
 	.glyphicon {
 	    font-size: 28px;
-	    color: black;
+	    color: #00394C;
 	}
 	#header {
 		width: 92%;
@@ -14,6 +18,7 @@
 		height: 50px;
 		border-bottom: 1px solid lightgray;
 		font-size: 28px;
+		color: #00394C;
 	}
 	#header a{
 		text-decoration: none;
@@ -37,8 +42,29 @@
 		margin:0;
 	}
 	.viewContainer {
-		height: 500px;
-		border: 1px solid black;
+		height: 550px;
+		border: 2px solid #006F94;
+		background-color: white;
+		overflow-y:scroll;
+	}
+	.tabs button{
+/*	    border: 1px solid black;
+	    border-bottom: none;
+*/	    
+		border: none;
+		color: white;
+	    text-align: center;
+	    text-decoration: none;
+	    display: inline-block;
+	    font-size: 16px;
+	}
+	#listView li{
+		list-style:none;
+	}
+	#listView div{
+		width: 90%;
+		height: 150px;
+		background-color: lightyellow;
 	}
 	</style>
 </head>
@@ -53,9 +79,10 @@
 		<li><button>Map</button></li>
 		<li><button>List</button></li>
 		</ul> -->
-
-		<button id="map" onclick="changeView('mapView')" >Map</button>
-		<button id="list" onclick="changeView('listView')">List</button>
+		<div class="tabs">
+		<button id="map" onclick="changeView('mapView', 'map')" style="background-color:#006F94;">Map</button>
+		<button id="list" onclick="changeView('listView', 'list')" style="background-color:#8AC1DB;">List</button>
+		</div>
 
 		<div class="viewContainer">
 			<div id="mapView" class="view">
@@ -63,7 +90,23 @@
 			</div>
 
 			<div id="listView" class="view" style="display:none">
-				show the list
+			<ul>
+				<li>Havsnäs Wind Farm
+					<div>
+						
+					</div>
+				</li>
+				<li>Lillgrund Wind Farm
+					<div>
+						
+					</div>
+				</li>
+				<li>Storrun Wind Farm
+					<div>
+						
+					</div>
+				</li>
+			</ul>
 			</div>
 		</div>
 	</div>
@@ -72,16 +115,20 @@
 
 <script type="text/javascript">
 
-	function changeView(viewName) {
-    var i;
-    var x = document.getElementsByClassName("view");
-    for (i = 0; i < x.length; i++) {
-        x[i].style.display = "none"; 
-    }
-    document.getElementById(viewName).style.display = "block"; 
+	function changeView(viewName, buttonId) {
+	    var i;
+	    var x = document.getElementsByClassName("view");
+	    for (i = 0; i < x.length; i++) {
+	        x[i].style.display = "none"; 
+	    }
+	    document.getElementById("map").style.background = "#8AC1DB";
+	    document.getElementById("list").style.background = "#8AC1DB";
+	    document.getElementById(viewName).style.display = "block"; 
+	    document.getElementById(buttonId).style.background = "#006F94";
 	}
 
 </script>
+
 
 
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
