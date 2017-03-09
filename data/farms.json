@@ -11,5 +11,29 @@
     "name": "poland turbine",
     "owner": "chopin",
     "peak_production": "600kWh"
+  },
+  {
+    "location": [55.31, 12.47],
+    "name": "Lillgrund",
+    "owner": "Vattenfall",
+    "peak_production": "170kWh"
+  },
+  {
+    "location": [56.58, 17.01],
+    "name": "Karehamn",
+    "owner": "E.ON",
+    "peak_production": "170kWh"
+  },
+  {
+    "location": [56.20, 16.16],
+    "name": "Utugruden",
+    "owner": "Vattenfall",
+    "peak_production": "170kWh"
+  },
+  {
+    "location": [57.20, 18.90],
+    "name": "Bockstigen",
+    "owner": "Vattenfall",
+    "peak_production": "170kWh"
   }]
 }
