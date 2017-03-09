@@ -1,6 +1,6 @@
 // Dinner controller that we use whenever we have view that needs to
 // display or modify the dinner menu
-dashboardApp.controller('DashboardCtrl', function ($scope, Data) {
+dashboardApp.controller('DashboardCtrl', function ($scope, Data, $filter) {
 
     $scope.dataService = Data;
 
@@ -24,9 +24,22 @@ dashboardApp.controller('DashboardCtrl', function ($scope, Data) {
 
     $scope.requestsToWaitFor = 4;
 
+    $scope.setCurrentYear = function (year) {
+        $scope.currentYear = year;
+        if(year == 2012){
+            $scope.currentMonth = 6;
+            $scope.currentDate = 26;
+        }
+        else{
+            $scope.currentMonth = 12;
+            $scope.currentDate = 31;
+        }
+        $scope.buildDataFromApi($scope.currentYear, $scope.nameOfWindfarm);
+    };
+
     //Make all calls to api to retrieve data
     $scope.buildDataFromApi = function () {
-        $scope.apiCallStatus = "Loading...";
+        $scope.apiCallStatus = "Retrieving data from API...";
         $scope.resultCounter = 0;
 
         var promiseDailyData = $scope.dataService.getBenchmarkDataGroupedByDate();
@@ -86,13 +99,16 @@ dashboardApp.controller('DashboardCtrl', function ($scope, Data) {
         promiseDailyWindData.then(
             function (response) {
                 $scope.resultCounter++;
-                console.log("Retrieved daily wind data: "+JSON.stringify(response.data));
+                //console.log("Retrieved daily wind data: "+JSON.stringify(response.data));
                 $scope.dailyWindForecastData = {};
-                $scope.dailyWindForecastData[$scope.currentYear] = {};
-                $scope.dailyWindForecastData[$scope.currentYear - 1] = {};
+                $scope.dailyWindForecastData[2012] = {};
+                $scope.dailyWindForecastData[2011] = {};
 
                 angular.forEach(response.data, function(value, key) {
-                    if(value.year == $scope.currentYear || value.year == $scope.currentYear - 1) {
+                    if(value.year >= $scope.currentYear - 1) {
+                        if($scope.dailyWindForecastData[value.year] === undefined){
+                            $scope.dailyWindForecastData[value.year] = {};
+                        }
                         if($scope.dailyWindForecastData[value.year][value.month] === undefined){
                             $scope.dailyWindForecastData[value.year][value.month] = {};
                         }
@@ -104,7 +120,7 @@ dashboardApp.controller('DashboardCtrl', function ($scope, Data) {
                     }
                 });
 
-                console.log("Wind array: "+JSON.stringify($scope.dailyWindForecastData));
+                //console.log("Wind array: "+JSON.stringify($scope.dailyWindForecastData));
 
                 if($scope.resultCounter == $scope.requestsToWaitFor){
                     $scope.buildDataFromResults();
@@ -146,7 +162,7 @@ dashboardApp.controller('DashboardCtrl', function ($scope, Data) {
             angular.forEach(monthlyData, function(dailyValues, month) {
                 //Loop through all days
                 angular.forEach(dailyValues, function(dailyValue, date) {
-                    console.log("DailyValue: "+JSON.stringify(dailyValue));
+                    //console.log("DailyValue: "+year+"-"+month+"-"+date+" - "+JSON.stringify(dailyValue));
                     yearsCululativeValue += dailyValue["SUM "+$scope.nameOfWindfarm];
                     yearDailyCumulativeProductionArray.push(yearsCululativeValue);
                     //yearDailyCumulativeProductionDateArray.push(year + "-" + month + "-" + date);
@@ -165,7 +181,7 @@ dashboardApp.controller('DashboardCtrl', function ($scope, Data) {
                 valuesDailyProduction: yearDailyProductionArray,
                 valuesDailyWindSpeed: yearDailyWindArray
             };
-            console.log("dailyProductionDataMap: "+JSON.stringify($scope.dailyProductionDataMap));
+            //console.log("dailyProductionDataMap: "+JSON.stringify($scope.dailyProductionDataMap));
         });
 
         //Build stuff from monthly data
@@ -199,6 +215,39 @@ dashboardApp.controller('DashboardCtrl', function ($scope, Data) {
         $scope.buildAllGraphs();
     };
 
+    $scope.isNumberIncrease = function(firstNumber, secondNumber){
+        if(firstNumber === undefined || secondNumber === undefined ||
+                firstNumber < secondNumber)
+            return false;
+        return true;
+    };
+    $scope.getYearsTotalProduction = function () {
+        return $scope.yearsTotalProduction;
+    };
+    $scope.getLastYearsTotalProduction = function () {
+        if(angular.isDefined($scope.lastYearsTotalProduction))
+            return $scope.lastYearsTotalProduction;
+        return "N/A";
+    };
+    $scope.getYearsAverageProduction = function () {
+        if($scope.yearsMontlyProductionMonthNamesArray === undefined)
+            return "N/A";
+        return ($scope.yearsTotalProduction / $scope.yearsMontlyProductionMonthNamesArray.length);
+    };
+    $scope.getLastYearsAverageProduction = function () {
+        if(angular.isDefined($scope.lastYearsTotalProduction))
+            return $scope.lastYearsTotalProduction / 12;
+        return "N/A";
+    };
+    $scope.getYearsPercentOfFullCapacity = function(){
+        return $scope.yearsPercentOfFullCapacity;
+    };
+    $scope.getLastYearsPercentOfFullCapacity = function(){
+        if(angular.isDefined($scope.lastYearsPercentOfFullCapacity))
+            return $scope.lastYearsPercentOfFullCapacity;
+        return "N/A";
+    };
+
     $scope.buildAllGraphs = function(){
         $scope.buildMonthlyProductionChart();
         $scope.buildCumulativeProductionChart();
@@ -206,14 +255,34 @@ dashboardApp.controller('DashboardCtrl', function ($scope, Data) {
         $scope.buildWindProductionChart();
     };
 
-    $scope.buildWindProductionChart = function () {
-        var dateArray = $scope.dailyProductionDataMap[$scope.currentYear].datesDailyProduction;
-        var dailyPowerArray = $scope.dailyProductionDataMap[$scope.currentYear].valuesDailyProduction;
-        var dailyWindSpeedArray = $scope.dailyProductionDataMap[$scope.currentYear].valuesDailyWindSpeed;
+    $scope.buildWindProductionChart = function (monthName) {
 
-        console.log(JSON.stringify(dateArray));
+        if(angular.isUndefined(monthName)){
+            var dateArray = $scope.dailyProductionDataMap[$scope.currentYear].datesDailyProduction;
+            var dailyPowerArray = $scope.dailyProductionDataMap[$scope.currentYear].valuesDailyProduction;
+            var dailyWindSpeedArray = $scope.dailyProductionDataMap[$scope.currentYear].valuesDailyWindSpeed;
+        }
+        else{
+            var dateArray = [];
+            var dailyPowerArray = [];
+            var dailyWindSpeedArray = [];
+
+            var monthValue = $scope.currentYear + "-" + $scope.dataService.getMonthNumberByName(monthName);
+
+            for(var i=0;i<$scope.dailyProductionDataMap[$scope.currentYear].datesDailyProduction.length; i++){
+                if($scope.dailyProductionDataMap[$scope.currentYear].datesDailyProduction[i].indexOf(monthValue) != -1){
+                    dateArray.push($scope.dailyProductionDataMap[$scope.currentYear].datesDailyProduction[i]);
+                    dailyPowerArray.push($scope.dailyProductionDataMap[$scope.currentYear].valuesDailyProduction[i]);
+                    dailyWindSpeedArray.push($scope.dailyProductionDataMap[$scope.currentYear].valuesDailyWindSpeed[i])
+                }
+            }
+        }
+
+
+
+        /*console.log(JSON.stringify(dateArray));
         console.log(JSON.stringify(dailyPowerArray));
-        console.log(JSON.stringify(dailyWindSpeedArray));
+        console.log(JSON.stringify(dailyWindSpeedArray));*/
 
         var trace1 = {
             x: dateArray,
@@ -311,8 +380,6 @@ dashboardApp.controller('DashboardCtrl', function ($scope, Data) {
     $scope.buildCumulativeProductionChart = function () {
         var dateArray = $scope.dailyProductionDataMap[$scope.currentYear].datesCumulative;
         var cumulativeProductionArray = $scope.dailyProductionDataMap[$scope.currentYear].valuesCumulative;
-        var dateArray2 = $scope.dailyProductionDataMap[$scope.currentYear - 1].datesCumulative;
-        var cumulativeProductionArray2 = $scope.dailyProductionDataMap[$scope.currentYear - 1].valuesCumulative;
 
         var trace1 = {
             x: dateArray,
@@ -324,15 +391,24 @@ dashboardApp.controller('DashboardCtrl', function ($scope, Data) {
             }
         };
 
-        var trace2 = {
-            x: dateArray2,
-            y: cumulativeProductionArray2,
-            type: 'scatter',
-            name: $scope.currentYear - 1,
-            line: { // set the width of the line.
-                width: 3
-            }
-        };
+        if($scope.dailyProductionDataMap[$scope.currentYear - 1] !== undefined){
+            var dateArray2 = $scope.dailyProductionDataMap[$scope.currentYear - 1].datesCumulative;
+            var cumulativeProductionArray2 = $scope.dailyProductionDataMap[$scope.currentYear - 1].valuesCumulative;
+
+            var trace2 = {
+                x: dateArray2,
+                y: cumulativeProductionArray2,
+                type: 'scatter',
+                name: $scope.currentYear - 1,
+                line: { // set the width of the line.
+                    width: 3
+                }
+            };
+            var data = [trace1, trace2];
+        }
+        else{
+            var data = [trace1];
+        }
 
         var layoutProd2 = {
             title: '',
@@ -340,7 +416,6 @@ dashboardApp.controller('DashboardCtrl', function ($scope, Data) {
             hovermode:'closest'
         };
 
-        var data = [trace1, trace2];
 
         Plotly.newPlot('cumulative-production-chart', data, layoutProd2);
     };
@@ -372,11 +447,14 @@ dashboardApp.controller('DashboardCtrl', function ($scope, Data) {
 
         myPlot.on('plotly_click', function(data){
             var pts = '';
+            var clickedMonth = '';
             for(var i=0; i < data.points.length; i++){
                 pts = 'x = '+data.points[i].x +'\ny = '+
                     data.points[i].y.toPrecision(4) + '\n\n';
+                clickedMonth = data.points[i].x;
             }
-            alert('Closest point clicked:\n\n'+pts);
+            //alert('Closest point clicked:\n\n'+pts);
+            $scope.buildWindProductionChart(clickedMonth);
         });
     };
 
@@ -387,7 +465,7 @@ dashboardApp.controller('DashboardCtrl', function ($scope, Data) {
         return true;
     };
 
-    $scope.buildDataFromApi(2012, "wp2");
+    $scope.buildDataFromApi($scope.currentYear, $scope.nameOfWindfarm);
     /*$scope.buildMonthlyProductionChart(2012, "wp2");
     $scope.buildKeyMetricsView(2012, "wp2");*/
 
