@@ -60,6 +60,7 @@
             <h1 class="pull-left m-t-10">
               Production dashboard, today 2012-06-26
             </h1>
+            <!-- Year -->
             <div class="dropdown pull-left m-t-15 m-l-30">
                 <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                   {{currentYear == 2012 ? 'This year (2012)' : 'Year 2011'}}
@@ -68,6 +69,18 @@
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                   <li><a ng-click="setCurrentYear(2012)" href="#">2012 (current)</a></li>
                   <li><a ng-click="setCurrentYear(2011)" href="#">2011</a></li>
+                </ul>
+              </div>
+              <!-- Windfarm -->
+              <div class="dropdown pull-left m-t-15 m-l-30">
+                <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                  Windfarm: {{nameOfWindfarm}}
+                  <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                  <li><a ng-click="setCurrentWindfarmId('wp1')" href="#">wp1</a></li>
+                  <li><a ng-click="setCurrentWindfarmId('wp2')" href="#">wp2</a></li>
+                  <li><a ng-click="setCurrentWindfarmId('wp3')" href="#">wp3</a></li>
                 </ul>
               </div>
               <h1 ng-if="apiCallStatus !== undefined" ng-bind="apiCallStatus" class="pull-left m-l-30 m-t-10"></h1>

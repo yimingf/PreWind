@@ -1,10 +1,16 @@
 // Dinner controller that we use whenever we have view that needs to
 // display or modify the dinner menu
-dashboardApp.controller('DashboardCtrl', function ($scope, Data, $filter) {
+dashboardApp.controller('DashboardCtrl', function ($location, $scope, Data, $filter) {
 
     $scope.dataService = Data;
 
-    $scope.nameOfWindfarm = "wp1";
+    if($location.search().wf === undefined){
+        $scope.nameOfWindfarm = $scope.nameOfWindfarms[0];
+    }
+    else{
+        $scope.nameOfWindfarm = $location.search().wf;
+    }
+
     $scope.currentYear = 2012;
     $scope.currentMonth = 6;
     $scope.currentDate = 26;
@@ -37,9 +43,17 @@ dashboardApp.controller('DashboardCtrl', function ($scope, Data, $filter) {
         $scope.buildDataFromApi($scope.currentYear, $scope.nameOfWindfarm);
     };
 
+    $scope.setCurrentWindfarmId = function (windfarmId) {
+        if($scope.nameOfWindfarms.indexOf(windfarmId) != -1){
+            $scope.nameOfWindfarm = windfarmId;
+            $location.search().wf = windfarmId;
+        }
+        $scope.buildDataFromApi($scope.currentYear, $scope.nameOfWindfarm);
+    };
+
     //Make all calls to api to retrieve data
     $scope.buildDataFromApi = function () {
-        $scope.apiCallStatus = "Retrieving data from API...";
+        $scope.apiCallStatus = "Getting data from API...";
         $scope.resultCounter = 0;
 
         var promiseDailyData = $scope.dataService.getBenchmarkDataGroupedByDate();
