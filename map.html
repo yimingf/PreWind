@@ -89,7 +89,7 @@ d3.json('https://yimingf.github.io/windmind-2017/data/europe.json', function (er
     svg.selectAll('image')
       .data(data.objects).enter()
       .append('image')
-      .attr('href', './lib/assets/img/wind-turbine.png')
+      .attr('x', './lib/assets/img/wind-windy.gif')
       .attr('x', function (d) {
         return (projection(d.location)[0]-len/2);
       })
