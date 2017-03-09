@@ -4,18 +4,12 @@ dashboardApp.controller('DashboardCtrl', function ($location, $scope, Data, $fil
 
     $scope.dataService = Data;
 
-    if($location.search().wf === undefined){
-        $scope.nameOfWindfarm = $scope.nameOfWindfarms[0];
-    }
-    else{
-        $scope.nameOfWindfarm = $location.search().wf;
-    }
+    $scope.nameOfWindfarms = ["wp1", "wp2", "wp3"];
 
     $scope.currentYear = 2012;
     $scope.currentMonth = 6;
     $scope.currentDate = 26;
 
-    $scope.nameOfWindfarms = ["wp1", "wp2", "wp3"];
     $scope.farmsFullCapacity = {"wp1": 110, "wp2": 48, "wp3": 11};
     $scope.yearsMontlyProductionArray = undefined;
     $scope.yearsMontlyProductionMonthNamesArray = undefined;
@@ -29,6 +23,13 @@ dashboardApp.controller('DashboardCtrl', function ($location, $scope, Data, $fil
     $scope.dailyProductionDataMap = {};
 
     $scope.requestsToWaitFor = 4;
+
+    if($location.search().wf === undefined){
+        $scope.nameOfWindfarm = $scope.nameOfWindfarms[0];
+    }
+    else{
+        $scope.nameOfWindfarm = $location.search().wf;
+    }
 
     $scope.setCurrentYear = function (year) {
         $scope.currentYear = year;
