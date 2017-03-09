@@ -5,7 +5,7 @@
     "name": "Långå wind park",
     "owner": "Agrivind AB",
     "Nsmeplate capacity" : "10MW",
-    "Number f turbin" : "5",
+    "Number of turbines" : "5",
     "Turbine capacity" : "2MW",
     "Status" : "Operational",
     "Country" : "Sweden"
@@ -16,7 +16,7 @@
     "name": "Lillgrund",
     "owner": "Vattenfall",
     "Nsmeplate capacity" : "110MW",
-    "Number f turbine" : "48",
+    "Number of turbines" : "48",
     "Turbine capacity" : "2.2MW",
     "Status" : "Operational",
     "Country" : "Sweden"
@@ -25,7 +25,7 @@
     "location": [17.01, 56.58],
     "name": "Karehamn",
     "owner": "E.ON",
-    "Number f turbine" : "16",
+    "Number of turbines" : "16",
     "Turbine capacity" : "3MW",
     "Nsmeplate capacity" : "48MW",
     "Status" : "Operational",
@@ -36,7 +36,7 @@
     "name": "Utugruden",
     "owner": "Vattenfall",
     "Nsmeplate capacity" : "10.5MW",
-    "Number f turbin" : "7",
+    "Number of turbines" : "7",
     "Turbine capacity" : "1.5MW",
     "Status" : "Operational",
     "Country" : "Sweden"
@@ -46,9 +46,61 @@
     "name": "Bockstigen",
     "owner": "Momentum group",
     "Nsmeplate capacity" : "2.75MW",
-    "Number f turbin" : "5",
+    "Number of turbines" : "5",
     "Turbine capacity" : "0.55MW",
     "Status" : "Operational",
     "Country" : "Sweden"
-  }]
+  },
+  {
+  "location": [11.12, 56.36],
+    "name": "Anholt",
+    "owner": "DONG",
+    "Nsmeplate capacity" : "400MW",
+    "Number of turbines" : "111",
+    "Turbine capacity" : "3.6MW",
+    "Status" : "Operational",
+    "Country" : "Denmark"
+  },
+  {
+  "location": [7.58, 55.60],
+    "name": "Horns Rev II",
+    "owner": "DONG",
+    "Nsmeplate capacity" : "209.3MW",
+    "Number of turbines" : "91",
+    "Turbine capacity" : "2.3MW",
+    "Status" : "Operational",
+    "Country" : "Denmark"
+  },
+  {
+  "location": [11.55, 54.56],
+    "name": "Rødsand II",
+    "owner": "E.ON",
+    "Nsmeplate capacity" : "207MW",
+    "Number of turbines" : "90",
+    "Turbine capacity" : "2.3MW",
+    "Status" : "Operational",
+    "Country" : "Denmark"
+  },
+  {
+  "location": [5.03, 59.140],
+    "name": "Hywind",
+    "owner": "Statoil ASA",
+    "Nsmeplate capacity" : "2.3MW",
+    "Number of turbines" : "1",
+    "Turbine capacity" : "2.3MW",
+    "Status" : "Operational",
+    "Country" : "Norway"
+  },
+  {
+  "location": [24.54, 65.65],
+    "name": "Kemin Ajoksen I",
+    "owner": "OX2",
+    "Nsmeplate capacity" : "15MW",
+    "Number of turbines" : "5",
+    "Turbine capacity" : "3MW",
+    "Status" : "Operational",
+    "Country" : "Finland"
+  }
+
+]
 }
