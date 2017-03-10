@@ -142,7 +142,7 @@ d3.json('https://yimingf.github.io/windmind-2017/data/europe.json', function (er
           .attr('style', 'left:' + (mouse[0] + 15) +
             'px; top:' + (mouse[1] - 35) + 'px')
           .html(function () {
-            return 'name: ' + d.name + '<br>location: (' + d.location[0] + ', ' + d.location[1] + ')<br>owner: ' + d.owner + '<br>peak performance: ' + d.peak_production;
+            return 'name: ' + d.name +'<br>owner: ' + d.owner + '<br>Numberplate capacity: ' + d.capacity + '<br>Number of turbines: ' + d.turbines + '<br>Turbine capacity: ' + d.turbineCapacity + '<br>Status: ' + d.status;
           });
       })
       .on('mouseout', function () {
