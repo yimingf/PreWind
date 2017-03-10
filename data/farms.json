@@ -4,102 +4,102 @@
     "location": [18.07, 59.3],
     "name": "Långå wind park",
     "owner": "Agrivind AB",
-    "Nsmeplate capacity" : "10MW",
-    "Number of turbines" : "5",
-    "Turbine capacity" : "2MW",
-    "Status" : "Operational",
-    "Country" : "Sweden"
+    "capacity" : "10MW",
+    "turbines" : "5",
+    "turbineCapacity" : "2MW",
+    "status" : "Operational",
+    "country" : "Sweden"
   },
 
   {
     "location": [12.47, 55.31],
     "name": "Lillgrund",
     "owner": "Vattenfall",
-    "Nsmeplate capacity" : "110MW",
-    "Number of turbines" : "48",
-    "Turbine capacity" : "2.2MW",
-    "Status" : "Operational",
-    "Country" : "Sweden"
+    "capacity" : "110MW",
+    "turbines" : "48",
+    "turbineCapacity" : "2.2MW",
+    "status" : "Operational",
+    "country" : "Sweden"
   },
   {
     "location": [17.01, 56.58],
     "name": "Karehamn",
     "owner": "E.ON",
-    "Number of turbines" : "16",
-    "Turbine capacity" : "3MW",
-    "Nsmeplate capacity" : "48MW",
-    "Status" : "Operational",
-    "Country" : "Sweden"
+    "capacity" : "48MW",
+    "turbines" : "16",
+    "turbineCapacity" : "3MW",
+    "status" : "Operational",
+    "country" : "Sweden"
   },
   {
     "location": [16.16, 56.20],
     "name": "Utugruden",
     "owner": "Vattenfall",
-    "Nsmeplate capacity" : "10.5MW",
-    "Number of turbines" : "7",
-    "Turbine capacity" : "1.5MW",
-    "Status" : "Operational",
-    "Country" : "Sweden"
+    "capacity" : "10.5MW",
+    "turbines" : "7",
+    "turbineCapacity" : "1.5MW",
+    "status" : "Operational",
+    "country" : "Sweden"
   },
   {
     "location": [18.90, 57.20],
     "name": "Bockstigen",
     "owner": "Momentum group",
-    "Nsmeplate capacity" : "2.75MW",
-    "Number of turbines" : "5",
-    "Turbine capacity" : "0.55MW",
-    "Status" : "Operational",
-    "Country" : "Sweden"
+    "capacity" : "2.75MW",
+    "turbines" : "5",
+    "turbineCapacity" : "0.55MW",
+    "status" : "Operational",
+    "country" : "Sweden"
   },
   {
   "location": [11.12, 56.36],
-    "name": "Anholt",
-    "owner": "DONG",
-    "Nsmeplate capacity" : "400MW",
-    "Number of turbines" : "111",
-    "Turbine capacity" : "3.6MW",
-    "Status" : "Operational",
-    "Country" : "Denmark"
+  "name": "Anholt",
+  "owner": "DONG",
+  "capacity" : "400MW",
+  "turbines" : "111",
+  "turbineCapacity" : "3.6MW",
+  "status" : "Operational",
+  "country" : "Denmark"
   },
   {
   "location": [7.58, 55.60],
-    "name": "Horns Rev II",
-    "owner": "DONG",
-    "Nsmeplate capacity" : "209.3MW",
-    "Number of turbines" : "91",
-    "Turbine capacity" : "2.3MW",
-    "Status" : "Operational",
-    "Country" : "Denmark"
+  "name": "Horns Rev II",
+  "owner": "DONG",
+  "capacity" : "209.3MW",
+  "turbines" : "91",
+  "turbineCapacity" : "2.3MW",
+  "status" : "Operational",
+  "country" : "Denmark"
   },
   {
   "location": [11.55, 54.56],
-    "name": "Rødsand II",
-    "owner": "E.ON",
-    "Nsmeplate capacity" : "207MW",
-    "Number of turbines" : "90",
-    "Turbine capacity" : "2.3MW",
-    "Status" : "Operational",
-    "Country" : "Denmark"
+  "name": "Rødsand II",
+  "owner": "E.ON",
+  "capacity" : "207MW",
+  "turbines" : "90",
+  "turbineCapacity" : "2.3MW",
+  "status" : "Operational",
+  "country" : "Denmark"
   },
   {
   "location": [5.03, 59.140],
-    "name": "Hywind",
-    "owner": "Statoil ASA",
-    "Nsmeplate capacity" : "2.3MW",
-    "Number of turbines" : "1",
-    "Turbine capacity" : "2.3MW",
-    "Status" : "Operational",
-    "Country" : "Norway"
+  "name": "Hywind",
+  "owner": "Statoil ASA",
+  "capacity" : "2.3MW",
+  "turbines" : "1",
+  "turbineCapacity" : "2.3MW",
+  "status" : "Operational",
+  "country" : "Norway"
   },
   {
   "location": [24.54, 65.65],
-    "name": "Kemin Ajoksen I",
-    "owner": "OX2",
-    "Nsmeplate capacity" : "15MW",
-    "Number of turbines" : "5",
-    "Turbine capacity" : "3MW",
-    "Status" : "Operational",
-    "Country" : "Finland"
+  "name": "Kemin Ajoksen I",
+  "owner": "OX2",
+  "capacity" : "15MW",
+  "turbines" : "5",
+  "turbineCapacity" : "3MW",
+  "status" : "Operational",
+  "country" : "Finland"
   }
 
 ]
