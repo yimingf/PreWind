@@ -158,7 +158,9 @@ ul.alert-dropdown {
 
 .flot-chart {
     display: block;
-    height: 430px;
+    /*Updated by Stefan*/
+    height: 350px;
+    /*height: 430px;*/
 }
 
 .flot-chart-content {

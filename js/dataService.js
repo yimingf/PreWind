@@ -11,9 +11,17 @@ dashboardApp.factory('Data', function ($resource, $http, $cookieStore) {
         "Content-Type": "application/json;charset=utf-8"
     };
 
+    var monthNames = [ 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December' ];
+
     this.getMonthNameByNumber = function (monthNumber) {
-        var monthNames = [ 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December' ];
         return monthNames[monthNumber - 1];
+    };
+
+    this.getMonthNumberByName = function (name) {
+        var index = monthNames.indexOf(name);
+        if(index == -1)
+            return undefined;
+        return index + 1;
     };
 
     this.countNumberOfDaysSinceStartOfTheYear = function (year, month, date) {
