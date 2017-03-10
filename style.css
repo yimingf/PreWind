@@ -69,8 +69,8 @@
 
 /* Style the accordion panel. Note: hidden by default */
 .view {
-    width: 95%;
-    margin-left: 2%;
+    width: 100%;
+    padding: 20px;
     background-color: white;
     display: none;
 }
