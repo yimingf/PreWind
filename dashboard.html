@@ -27,7 +27,7 @@
   <script src="js/dataService.js"></script>
   <script src="js/dashboardCtrl.js"></script>
   <script src="js/custom_filters.js"></script>
-
+  <link rel="icon" href="icon.ico" type="image/x-icon">
 </head>
 
 <body class="dashboard-page" ng-controller="DashboardCtrl" style="background-color:white;">
@@ -35,7 +35,7 @@
   <div id="wrapper">
 
       <!-- Navigation -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <nav class="navbar navbar-light navbar-fixed-top" style="background-color: #d9edf7;" role="navigation">
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
@@ -62,7 +62,7 @@
             </h1>
             <!-- Year -->
             <div class="dropdown pull-left m-t-15 m-l-30">
-              <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+              <button class="btn btn-info dropdown-toggle" style="border:none; background-color:#93b8db" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                 {{currentYear == 2012 ? 'This year (2012)' : 'Year 2011'}}
                 <span class="caret"></span>
               </button>
@@ -73,7 +73,7 @@
             </div>
             <!-- Windfarm -->
             <div class="dropdown pull-left m-t-15 m-l-30">
-              <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+              <button class="btn btn-info dropdown-toggle" style="border:none; background-color:#93b8db" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                 Windfarm: {{nameOfWindfarm}}
                 <span class="caret"></span>
               </button>
