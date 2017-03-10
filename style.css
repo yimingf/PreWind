@@ -1,6 +1,6 @@
 .tile_count {
     margin-bottom: 20px;
-    /*margin-top: 20px*/
+    margin-top: 20px
 }
 .tile_count .tile_stats_count {
     border-bottom: 1px solid #D9DEE4;
@@ -16,33 +16,6 @@
 
 }
 
-.dashboard-page .page-header{
-    margin-top:20px;
-}
-
-.m-t-15{
-    margin-top:15px;
-}
-.m-t-10{
-    margin-top:10px;
-}
-.m-t-0{
-    margin-top:0px !important;
-}
-.m-l-30{
-    margin-left:30px!important;
-}
-
-.green-icon{
-    color: #5cb85c!important;
-}
-.red-icon{
-    color: #D95350!important;
-}
-
-.hidden-object{
-    display:none;
-}
 
 @media (min-width: 992px) {
     .tile_count .tile_stats_count {
@@ -52,7 +25,12 @@
     }
 }
 .tile_count .tile_stats_count:before {
-    border-left: 0
+    content: "";
+    position: absolute;
+    left: 0;
+    height: 65px;
+    border-left: 2px solid #ADB2B5;
+    margin-top: 10px
 }
 @media (min-width: 992px) {
     .tile_count .tile_stats_count:first-child:before {
@@ -75,13 +53,13 @@
     }
 }
 .tile_count .tile_stats_count span {
-    font-size: 15px
+    font-size: 12px
 }
 @media (min-width: 768px) {
     .tile_count .tile_stats_count span {
-        font-size: 15px
+        font-size: 13px
     }
 }
 .tile_count .tile_stats_count .count_bottom i {
-    width: 14px
+    width: 12px
 }
