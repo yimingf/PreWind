@@ -103,8 +103,8 @@ d3.json('https://yimingf.github.io/windmind-2017/data/europe.json', function (er
   countries = topojson.feature(topo, topo.objects.europe)
     .features;
   projection
-    .scale(500)
-    .center([16.09, 50.60]);
+    .scale(900)
+    .center([0.00, 65.20]);
   g.append('g')
       .attr('id', 'countries')
   .selectAll('path')
@@ -125,7 +125,7 @@ d3.json('https://yimingf.github.io/windmind-2017/data/europe.json', function (er
     g.selectAll('image')
       .data(data.objects).enter()
       .append('image')
-      .attr('xlink:href', './lib/assets/img/wind-turbine-windy.gif')
+      .attr('xlink:href', './lib/assets/img/wind-windy.gif')
       .attr('x', function (d) {
         return (projection(d.location)[0]-len/2);
       })
