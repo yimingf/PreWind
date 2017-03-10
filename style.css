@@ -47,11 +47,13 @@
     border: none;
     outline: none;
     transition: 0.4s;
+    border-radius: 15px;
 }
 
 /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
 .accordion.active,  .accordion:hover {
     background-color: #93B8DB;
+    border-radius: 15px 15px 0 0;
 }
 
 .accordion:after {
@@ -72,7 +74,8 @@
     width: 100%;
     padding: 20px;
     background-color: white;
-    display: none;
+    border: 1px solid #93B8DB;
+    border-radius: 0 0 15px 15px;
 }
 
 
