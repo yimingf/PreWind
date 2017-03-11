@@ -23,6 +23,7 @@ dashboardApp.controller('DashboardCtrl', function ($location, $scope, Data, $fil
     $scope.dailyProductionDataMap = {};
 
     $scope.requestsToWaitFor = 4;
+    console.log($location.absUrl());
 
     if($location.search().wf === undefined){
         $scope.nameOfWindfarm = $scope.nameOfWindfarms[0];
