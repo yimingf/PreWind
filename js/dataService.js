@@ -52,6 +52,40 @@ dashboardApp.factory('Data', function ($resource, $http, $cookieStore) {
         return promise;
     };
 
+
+    this.getDailyWindspeedDataForPredictions = function(windfarmName){
+        var url = "https://windpowerdata-8069.restdb.io/rest/windforecasts-wf-" + windfarmName + "-2011-2012";
+        console.log("URL: "+url);
+        var promise = $http({
+            method: 'GET',
+            url: url,
+            params: {
+                //max: 96,
+                q: {"year":2012,"month":3},
+                skip: 0
+            },
+            headers: requestHeaders
+        });
+
+        return promise;
+    };
+
+    this.BenchmarkDataForPrediction = function(){
+        var url = 'https://windpowerdata-8069.restdb.io/rest/benchmark';
+        var promise = $http({
+            method: 'GET',
+            url: url,
+            params: {
+                //max: 100,
+                q: {"year":2012,"month":3},
+                skip: 0
+            },
+            headers: requestHeaders
+        });
+
+        return promise;
+    };
+
     this.getBenchmarkDataGroupedByDate = function(){
         var url = 'https://windpowerdata-8069.restdb.io/rest/benchmark';
         console.log("URL: "+url);

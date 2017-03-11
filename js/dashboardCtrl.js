@@ -26,9 +26,11 @@ dashboardApp.controller('DashboardCtrl', function ($location, $scope, Data, $fil
 
     if($location.search().wf === undefined){
         $scope.nameOfWindfarm = $scope.nameOfWindfarms[0];
+
     }
     else{
         $scope.nameOfWindfarm = $location.search().wf;
+
     }
 
     $scope.setCurrentYear = function (year) {
@@ -49,7 +51,11 @@ dashboardApp.controller('DashboardCtrl', function ($location, $scope, Data, $fil
             $scope.nameOfWindfarm = windfarmId;
             $location.search().wf = windfarmId;
         }
+
         $scope.buildDataFromApi($scope.currentYear, $scope.nameOfWindfarm);
+        //Broadcasting the change event to prediction controller (which is a child controller in this case)
+        $scope.$broadcast('farmUpdated');
+
     };
 
     //Make all calls to api to retrieve data
