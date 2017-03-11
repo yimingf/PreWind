@@ -13,21 +13,11 @@ dashboardApp.controller('DashboardCtrlForPredictions', function ($location, $sco
     var wp1 = 1;
     $scope.nameOfWindfarms = ["wp1", "wp2", "wp3"];
 
-    /* if($location.search().wf === undefined){
-     $scope.nameOfWindfarm = $scope.nameOfWindfarms[0];
-     }
-     else{
-     $scope.nameOfWindfarm = $location.search().wf;
-     }*/
+    $scope.$on('farmUpdated',function () {
+        var farm =$scope.nameOfWindfarm.replace( /^\D+/g, '');
+        $scope.buildGraph(farm);
+    });
 
-    $scope.setCurrentWindfarmId= function (windfarmId) {
-        windfarm = $scope.nameOfWindfarms.indexOf(windfarmId)+1;
-        console.log(windfarm);
-    };
-
-
-    //Get all data from API
-   // $scope.buildDataFromApi = function () {
         $scope.apiCallStatus = "Loading...";
         $scope.resultCounter = 0;
         $scope.dailyProduction = undefined;
@@ -38,9 +28,7 @@ dashboardApp.controller('DashboardCtrlForPredictions', function ($location, $sco
         promiseDailyData.then(
             function (response) {
                 $scope.dailyProduction = response.data;
-                console.log($scope.dailyProduction);
                 $scope.buildDataFromResults();
-                $scope.buildAllGraphs();
 
             },
             function (response) {
@@ -72,7 +60,7 @@ dashboardApp.controller('DashboardCtrlForPredictions', function ($location, $sco
         promiseDailySpeedData.then(
             function (response) {
                 $scope.dailySpeedData = response.data;
-                console.log(wp);
+               // console.log(wp);
                 if (wp==1){
                     $scope.drawgraph_wp1();
                 }
@@ -100,7 +88,7 @@ dashboardApp.controller('DashboardCtrlForPredictions', function ($location, $sco
 
     //build graph for windfarm WP1
     $scope.drawgraph_wp1 = function(){
-        $scope.dailySpeedData = getDailyWindspeedDataForWindFarm(1);
+       // $scope.dailySpeedData = getDailyWindspeedDataForWindFarm(1);
         var uncertainty_ProductionUpperLimit = [];
         var uncertainty_ProductionLowerLimit = [];
         var uncertainty_ProductionDate = [];
@@ -141,7 +129,7 @@ dashboardApp.controller('DashboardCtrlForPredictions', function ($location, $sco
                 }
             }
         });
-        console.log(wp1_SpeedData);
+
 
 
         var trace1 = {
@@ -185,7 +173,7 @@ dashboardApp.controller('DashboardCtrlForPredictions', function ($location, $sco
             mode: 'lines',
             name: 'Split',
             line: {
-                dash: 'dot',
+                dash: 'solid',
                 width: 2
             }
         };
@@ -316,7 +304,7 @@ dashboardApp.controller('DashboardCtrlForPredictions', function ($location, $sco
             mode: 'lines',
             name: 'Split',
             line: {
-                dash: 'dot',
+                dash: 'solid',
                 width: 2
             }
         };
@@ -449,7 +437,7 @@ dashboardApp.controller('DashboardCtrlForPredictions', function ($location, $sco
             mode: 'lines',
             name: 'Split',
             line: {
-                dash: 'dot',
+                dash: 'solid',
                 width: 2
             }
         };
@@ -498,7 +486,8 @@ dashboardApp.controller('DashboardCtrlForPredictions', function ($location, $sco
 
     };
 
-    $scope.buildGraph(2);
+    //Default case: First time load prediction graph of first wind farm
+    $scope.buildGraph($scope.nameOfWindfarm.replace( /^\D+/g, ''));
 
 
 
