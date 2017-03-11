@@ -16,6 +16,8 @@
   <link href="./lib/assets/css/sb-admin.css" rel="stylesheet">
   <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 
+
+
   <style type="text/css">
     body {
       background-image: url("./lib/assets/img/bg3.jpg");
@@ -91,6 +93,45 @@
       padding-top: 20px;
       font-size: 15px;
     }
+
+    .feature {
+      fill: rgb(181,205,244);
+      stroke: white;
+      stroke-width: 1px;
+      stroke-linejoin: round;
+    }
+    .feature:hover {
+      fill : #adccff;
+    }
+    .active {
+      fill: orange;
+    }
+    .mesh {
+      fill: none;
+      stroke: white;
+      stroke-width: 1.5px;
+      stroke-linejoin: round;
+    }
+    h1 {
+      font-family: courier;
+    }
+    .hidden {
+      display: none;
+    }
+    div.tooltip {
+      color: #222;
+      background-color: #fff;
+      padding: .5em;
+      text-shadow: #f5f5f5 0 1px 0;
+      border-radius: 2px;
+      opacity: 0.9;
+      position: absolute;
+    }
+
+
+    line {
+      stroke: blue;
+    }
   </style>
   <!-- font-awesome css -->
   <link href="./lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -99,6 +140,8 @@
 </head>
 
 <body>
+  <script src='https://d3js.org/d3.v4.min.js'></script>
+  <script src='https://d3js.org/topojson.v1.min.js'></script>
   <script type="text/javascript" src="./lib/bower_components/jquery/dist/jquery.min.js"></script>
   <script type="text/javascript" src="./lib/bower_components/tether/dist/js/tether.min.js"></script>
   <script type="text/javascript" src="./lib/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -133,7 +176,7 @@
 
         <div class="viewContainer">
           <div id="mapView" class="view">
-            show the map
+            <h2 id='map-text'>show the map</h2>
           </div>
 
           <div id="listView" class="view" style="display:none">
@@ -292,7 +335,7 @@
 </script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-
+  <script src='./lib/assets/js/map-render.js'></script>
 
 
 </html>
