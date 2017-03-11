@@ -27,6 +27,7 @@
   <script src="js/dataService.js"></script>
   <script src="js/dashboardCtrl.js"></script>
   <script src="js/custom_filters.js"></script>
+  <script src="js_predictions/dashboardCtrl_predictions.js"></script>
   <link rel="icon" href="icon.ico" type="image/x-icon">
 </head>
 
@@ -89,10 +90,12 @@
         </div>
         <!-- /.row -->
 
-        <div class="accordion-box" ng-controller="DashboardCtrl_Prediction">
+        <div class="accordion-box" ng-controller="DashboardCtrlForPredictions">
           <button class="accordion active">Prediction</button>
           <div class="view">
-            <p>Put prediction charts here</p>
+
+            <div class="flot-chart-content" id="wind-prediction-chart"></div>
+
           </div>
         </div>
 

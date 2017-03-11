@@ -1,8 +1,8 @@
 // Dinner controller that we use whenever we have view that needs to
 // display or modify the dinner menu
-dashboardApp.controller('DashboardCtrl_Prediction', function ($scope, DataPredictions) {
+dashboardApp.controller('DashboardCtrlForPredictions', function ($location, $scope, Data, $filter) {
 
-    $scope.dataService = DataPredictions;
+    $scope.dataService = Data;
 
     var promiseDailyData= undefined;
     var promiseDailySpeedData = undefined;
@@ -52,7 +52,7 @@ dashboardApp.controller('DashboardCtrl_Prediction', function ($scope, DataPredic
             });
 
         //getting speed data from API
-        var promiseDailySpeedData = $scope.dataService.getDailyWindspeedData(wp1);
+        var promiseDailySpeedData = $scope.dataService.getDailyWindspeedDataForPredictions(wp1);
         promiseDailySpeedData.then(
             function (response) {
                 $scope.dailySpeedData = response.data;
@@ -230,7 +230,7 @@ dashboardApp.controller('DashboardCtrl_Prediction', function ($scope, DataPredic
             }
         };
 
-        Plotly.newPlot('wind-production-chart', data, layout);
+        Plotly.newPlot('wind-prediction-chart', data, layout);
 
     };
 
