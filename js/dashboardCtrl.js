@@ -21,18 +21,17 @@ dashboardApp.controller('DashboardCtrl', function ($location, $scope, Data, $fil
 	$scope.dailyProductionDataMap = {};
 
 	$scope.requestsToWaitFor = 4;
-	console.log($location.absUrl());
 
-	if($location.search().wf === undefined){
+	if ($location.search().wf === undefined 
 		$scope.nameOfWindfarm = $scope.nameOfWindfarms[0];
 	}
-	else{
+	else {
 		$scope.nameOfWindfarm = $location.search().wf;
 	}
 
 	$scope.setCurrentYear = function (year) {
 		$scope.currentYear = year;
-		if(year == 2012){
+		if (year == 2012) {
 			$scope.currentMonth = 6;
 			$scope.currentDate = 26;
 		}
