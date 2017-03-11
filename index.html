@@ -15,14 +15,86 @@
 
   <link href="./lib/assets/css/sb-admin.css" rel="stylesheet">
   <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
-  <style>
-    #map {
-      height: 800px;
+
+  <style type="text/css">
+    body {
+      background-image: url("./lib/assets/img/bg3.jpg");
+      background-size: 100%;
+    }
+    #main {
+      width: 94%;
+      margin-left:3%;
+      margin-top: 65px;
+      height: 600px;
+    }
+  /*  #farmMap ul{
+      list-style:none;
+    }
+    #farmMap ul li{
+      float: left;
+    }*/
+    .viewContainer {
+      height: 550px;
+
+      background-color: rgba(245,245,245,0.6);
+      /*opacity: 0.9;*/
+      overflow-y:scroll;
+    }
+    .tabs button{
+  /*      border: 1px solid black;
+        border-bottom: none;
+  */      
+      width: 120px;
+      height: 33px;
+      margin:0;
+      border: none;
+      color: white;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 15px;
+    }
+    #listView li{
+      list-style:none;
+      margin-left: 3%;
+    }
+    #listView h5{
+      font-size: 16px;
+    }
+    .farmList{
+      width: 90%;
+      height: 130px;
+
+      /*border: 1px solid #8AC1DB;*/
+      background-color:rgba(128,174,207,0.9);
+      margin-bottom: 3px;
+    }
+    #listView a{
+      text-decoration: none;
+      color: black;
+    }
+    .farmImg img{
+      max-height: 85%;
+      margin-top: 8px;
+      margin-left: 20px;
+      border-radius: 12px;
+    }
+    .farmImg {
+      height: 100%;
+      width: 23%;
+      float: left;
+    }
+    .farmInfo {
+      height: 100%;
+      width: 30%;
+      float: left;
+      padding-top: 20px;
+      font-size: 15px;
     }
   </style>
-
   <!-- font-awesome css -->
   <link href="./lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="icon" href="icon.ico" type="image/x-icon">
 
 </head>
 
@@ -31,87 +103,168 @@
   <script type="text/javascript" src="./lib/bower_components/tether/dist/js/tether.min.js"></script>
   <script type="text/javascript" src="./lib/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="./lib/bower_components/holderjs/holder.js"></script>
-  <script>
-    Holder.addTheme("white", {
-      background: "#fff"
-      foreground: "#a7a7a7",
-      size: 10
-    });
-  </script>
   <!-- google map api and functions -->
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-LVq9MAey1FGGb8h4qFNhuutAOkQshSk"></script>
 
   <div id="wrapper">
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <nav class="navbar navbar-light navbar-fixed-top" style="background-color: #d9edf7; opacity: 0.7;" role="navigation">
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+        <!-- <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
           <span class="sr-only">Toggle navigation</span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="./home.html">PreWind</a>
+        </button> -->
+        <a class="navbar-brand" href="./home.html">Wind Mind</a>
         <ul class="nav navbar-nav">
-          <li class="active"><a href="#">World Map</a></li>
-          <li><a href="./dashboard.html">Dashboards</a></li>
+          <li class="active"><a href="#">Wind Farms</a></li>
         </ul>
       </div>
       <!-- Top Menu Items -->
     </nav>
 
-      <div id="page-wrapper">
-
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-lg-12">
-            <h1 class="page-header">
-              World Map
-              <small>Select one wind farm on the map.</small>
-            </h1>
-          </div>
+    <div id="page-wrapper" style="background:none;">
+      <div id="main">
+        <div class="tabs">
+        <button id="map" onclick="changeView('mapView', 'map')" style="background-color:#006F94;">World Map</button>
+        <button id="list" onclick="changeView('listView', 'list')" style="background-color:#8AC1DB;">Farm List</button>
         </div>
 
-        <div class="row">
-          <div class="col-lg-12" id="map">
-            <script>
-              var turbine = './lib/assets/img/wind-turbine.png';
-              var positions = [
-                {lat: 59.3509652, lng: 18.0655007},
-                {lat: 60.1639305, lng: 24.9001875},
-                {lat: 59.4249402, lng: 24.6682025},
-                {lat: 59.8937806, lng: 10.6450364},
-                {lat: 55.6712474, lng: 12.4907997},
-                {lat: 56.9713962, lng: 23.9901754},
-                {lat: 54.7000902, lng: 25.1128513},
-                {lat: 59.9171483, lng: 30.0448892}
-              ];
-              var map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 6,
-                center: positions[0]
-              });
+        <div class="viewContainer">
+          <div id="mapView" class="view">
+            show the map
+          </div>
 
-              positions.forEach(function(p) {
-                var marker = new google.maps.Marker({
-                  position: p,
-                  map: map,
-                  icon: turbine
-                });
-                marker.addListener('click', function(){
-                  window.location = './dashboard.html';
-                });
-              });
-              // marker.addListener('mouseover', function(){
-              //   //console.log('it works');
-              // });
-            </script>
+          <div id="listView" class="view" style="display:none">
+          <ul>
+          <!-- Farms clickable -->
+            <li>
+              <h5>Långå wind park</h5>
+              <a style="" href="./dashboard.html?wf=wp1">
+              <div class="farmList">
+                <div class="farmImg">
+                  <img src="./lib/assets/img/wf1.png">
+                </div>
+                <div class="farmInfo">
+                  <p>Owner: Agrivind AB</p>
+                  <p>Country: Sweden</p>
+                </div>
+                <div class="farmInfo">
+                  <p>Capacity: 10MW</p>
+                  <p>Turbines: 5</p>
+                  <p>TurbineCapacity: 2MW</p>
+                </div>
+              </div>          
+              </a>
+            </li>
+            <li><h5>Lillgrund</h5>
+              <a style="" href="./dashboard.html?wf=wp2">
+              <div class="farmList">
+                <div class="farmImg">
+                  <img src="./lib/assets/img/wf2.png">
+                </div>
+                <div class="farmInfo">
+                  <p>Owner: Vattenfall</p>
+                  <p>Country: Sweden</p>
+                </div>
+                <div class="farmInfo">
+                  <p>Capacity: 110MW</p>
+                  <p>Turbines: 48</p>
+                  <p>TurbineCapacity: 2.2MW</p>
+                </div>            
+              </div>
+              </a>
+            </li>
+            <li><h5>Karehamn</h5>
+              <a style="" href="./dashboard.html?wf=wp3">
+              <div class="farmList">
+                <div class="farmImg">
+                  <img src="./lib/assets/img/wf3.png">
+                </div>
+                <div class="farmInfo">
+                  <p>Owner: E.ON</p>
+                  <p>Country: Sweden</p>
+                </div>
+                <div class="farmInfo">
+                  <p>Capacity: 48MW</p>
+                  <p>Turbines: 16</p>
+                  <p>TurbineCapacity: 3MW</p>
+                </div>            
+              </div>
+              </a>
+            </li>
+            <!-- Farms cannot be clicked -->
+            <li><h5>Utugruden</h5>
+              <div class="farmList">
+                <div class="farmImg">
+                  <img src="./lib/assets/img/wf4.png">
+                </div>
+                <div class="farmInfo">
+                  <p>Owner: Vattenfall</p>
+                  <p>Country: Sweden</p>
+                </div>
+                <div class="farmInfo">
+                  <p>Capacity: 10.5MW</p>
+                  <p>Turbines: 7</p>
+                  <p>TurbineCapacity: 1.5MW</p>
+                </div>            
+              </div>
+            </li>
+            <li><h5>Bockstigen</h5>
+              <div class="farmList">
+                <div class="farmImg">
+                  <img src="./lib/assets/img/wf5.png">
+                </div>
+                <div class="farmInfo">
+                  <p>Owner: Momentum group</p>
+                  <p>Country: Sweden</p>
+                </div>
+                <div class="farmInfo">
+                  <p>Capacity: 2.75MW</p>
+                  <p>Turbines: 5</p>
+                  <p>TurbineCapacity: 0.55MW</p>
+                </div>            
+              </div>
+            </li>
+            <li><h5>Anholt</h5>
+              <div class="farmList">
+                <div class="farmImg">
+                  <img src="./lib/assets/img/wf6.png">
+                </div>
+                <div class="farmInfo">
+                  <p>Owner: DONG</p>
+                  <p>Country: Denmark</p>
+                </div>
+                <div class="farmInfo">
+                  <p>Capacity: 400MW</p>
+                  <p>Turbines: 111</p>
+                  <p>TurbineCapacity: 3.6MW</p>
+                </div>            
+              </div>
+            </li>
+            <li><h5>Horns Rev II</h5>
+              <div class="farmList">
+                <div class="farmImg">
+                  <img src="./lib/assets/img/wf7.png">
+                </div>
+                <div class="farmInfo">
+                  <p>Owner: E.ON</p>
+                  <p>Country: Denmark</p>
+                </div>
+                <div class="farmInfo">
+                  <p>Capacity: 207MW</p>
+                  <p>Turbines: 90</p>
+                  <p>TurbineCapacity: 2.3MW</p>
+                </div>            
+              </div>
+            </li>
+
+          </ul>
           </div>
         </div>
-
-        <hr>
-        <p class="small text-muted">kth dh2321 ivis17 project</a></p>
       </div>
-        <!-- /.container-fluid -->
+      
 
     </div>
     <!-- /#page-wrapper -->
@@ -120,5 +273,26 @@
   <!-- /#wrapper -->
 
 </body>
+
+
+<script type="text/javascript">
+
+  function changeView(viewName, buttonId) {
+      var i;
+      var x = document.getElementsByClassName("view");
+      for (i = 0; i < x.length; i++) {
+          x[i].style.display = "none"; 
+      }
+      document.getElementById("map").style.background = "#8AC1DB";
+      document.getElementById("list").style.background = "#8AC1DB";
+      document.getElementById(viewName).style.display = "block"; 
+      document.getElementById(buttonId).style.background = "#006F94";
+  }
+
+</script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+
 
 </html>

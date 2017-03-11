@@ -27,15 +27,15 @@
   <script src="js/dataService.js"></script>
   <script src="js/dashboardCtrl.js"></script>
   <script src="js/custom_filters.js"></script>
-
+  <link rel="icon" href="icon.ico" type="image/x-icon">
 </head>
 
-<body class="dashboard-page" ng-controller="DashboardCtrl">
+<body class="dashboard-page" ng-controller="DashboardCtrl" style="background-color:white;">
 
   <div id="wrapper">
 
       <!-- Navigation -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <nav class="navbar navbar-light navbar-fixed-top" style="background-color: #d9edf7;" role="navigation">
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
@@ -62,144 +62,185 @@
             </h1>
             <!-- Year -->
             <div class="dropdown pull-left m-t-15 m-l-30">
-                <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                  {{currentYear == 2012 ? 'This year (2012)' : 'Year 2011'}}
-                  <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                  <li><a ng-click="setCurrentYear(2012)" href="#">2012 (current)</a></li>
-                  <li><a ng-click="setCurrentYear(2011)" href="#">2011</a></li>
-                </ul>
-              </div>
-              <!-- Windfarm -->
-              <div class="dropdown pull-left m-t-15 m-l-30">
-                <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                  Windfarm: {{nameOfWindfarm}}
-                  <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                  <li><a ng-click="setCurrentWindfarmId('wp1')" href="#">wp1</a></li>
-                  <li><a ng-click="setCurrentWindfarmId('wp2')" href="#">wp2</a></li>
-                  <li><a ng-click="setCurrentWindfarmId('wp3')" href="#">wp3</a></li>
-                </ul>
-              </div>
-              <h1 ng-if="apiCallStatus !== undefined" ng-bind="apiCallStatus" class="pull-left m-l-30 m-t-10"></h1>
+              <button class="btn btn-info dropdown-toggle" style="border:none; background-color:#93b8db" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                {{currentYear == 2012 ? 'This year (2012)' : 'Year 2011'}}
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                <li><a ng-click="setCurrentYear(2012)" href="#">2012 (current)</a></li>
+                <li><a ng-click="setCurrentYear(2011)" href="#">2011</a></li>
+              </ul>
+            </div>
+            <!-- Windfarm -->
+            <div class="dropdown pull-left m-t-15 m-l-30">
+              <button class="btn btn-info dropdown-toggle" style="border:none; background-color:#93b8db" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                Windfarm: {{nameOfWindfarm}}
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                <li><a ng-click="setCurrentWindfarmId('wp1')" href="#">wp1</a></li>
+                <li><a ng-click="setCurrentWindfarmId('wp2')" href="#">wp2</a></li>
+                <li><a ng-click="setCurrentWindfarmId('wp3')" href="#">wp3</a></li>
+              </ul>
+            </div>
+            <h1 ng-if="apiCallStatus !== undefined" ng-bind="apiCallStatus" class="pull-left m-l-30 m-t-10"></h1>
 
           </div>
         </div>
         <!-- /.row -->
 
+        <div class="accordion-box">
+          <button class="accordion active">Prediction</button>
+          <div class="view">
+            <p>Put prediction charts here</p>
+          </div>
+        </div>
 
+        <div class="accordion-box">
+          <button class="accordion active">Production</button>
+          <div class="view">
+            <div class="row">
 
-
-
-        <div class="row">
-
-          <div class="col-lg-4">
-            <div class="panel panel-yellow">
-              <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-long-arrow-right"></i> Key metrics</h3>
+              <div class="col-lg-4">
+                <div class="panel panel-yellow">
+                  <div class="panel-heading">
+                    <h3 class="panel-title"><i class="fa fa-long-arrow-right"></i> Key metrics</h3>
+                  </div>
+                  <div class="panel-body">
+                    <div class="flot-chart">
+                      <div ng-class="apiCallStatus !== undefined ? 'hidden-object' : ''" class="row tile_count">
+                        <div class="col-md-6 col-sm-6 col-xs-12 tile_stats_count">
+                          <span class="count_top"><i class="fa fa-tachometer"></i> Total power (MW/h)</span>
+                          <div class="count">{{getYearsTotalProduction() | truncateDecimals | numberWithCommas}}</div>
+                          <span class="count_bottom">Last year (MW/h): {{getLastYearsTotalProduction() | truncateDecimals | numberWithCommas}}</span>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-12 tile_stats_count">
+                          <span class="count_top"><i class="fa fa-tachometer"></i> Average Monthly Production (MW/h)</span>
+                          <div class="count">{{getYearsAverageProduction() | truncateDecimals | numberWithCommas}}
+                            <i ng-if="getLastYearsAverageProduction() != undefined" ng-class="isNumberIncrease(getYearsAverageProduction(), getLastYearsAverageProduction()) ? 'fa-arrow-up green-icon' : 'fa-arrow-down red-icon'"
+                               class="fa fa-1" aria-hidden="true"></i></div>
+                          <span class="count_bottom">Last year (MW/h): {{getLastYearsAverageProduction() != undefined ? getLastYearsAverageProduction() : "N/A" | truncateDecimals | numberWithCommas}}</span>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-12 m-t-15 tile_stats_count">
+                          <span class="count_top"><i class="fa fa-tachometer"></i> Procent of full capacity</span>
+                          <div class="count green">{{getYearsPercentOfFullCapacity() | truncateDecimals}}%
+                            <i ng-if="getLastYearsPercentOfFullCapacity() != undefined" ng-class="isNumberIncrease(getYearsPercentOfFullCapacity(), getLastYearsPercentOfFullCapacity()) ? 'fa-arrow-up green-icon' : 'fa-arrow-down red-icon'"
+                               class="fa" aria-hidden="true"></i></div>
+                          <span class="count_bottom">Last year: {{getLastYearsPercentOfFullCapacity() | truncateDecimals}}%</span>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-12 m-t-15 tile_stats_count">
+                          <span class="count_top"><i class="fa fa-tachometer"></i> Procent of full capacity</span>
+                          <div class="count green">{{yearsPercentOfFullCapacity | truncateDecimals}}%</div>
+                          <span class="count_bottom">Last year: {{lastYearsPercentOfFullCapacity | truncateDecimals}}%</span>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-12 m-t-15 tile_stats_count">
+                          <span class="count_top"><i class="fa fa-tachometer"></i> Procent of full capacity</span>
+                          <div class="count green">{{yearsPercentOfFullCapacity | truncateDecimals}}%</div>
+                          <span class="count_bottom">Last year: {{lastYearsPercentOfFullCapacity | truncateDecimals}}%</span>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-12 m-t-15 tile_stats_count">
+                          <span class="count_top"><i class="fa fa-tachometer"></i> Procent of full capacity</span>
+                          <div class="count green">{{yearsPercentOfFullCapacity | truncateDecimals}}%</div>
+                          <span class="count_bottom">Last year: {{lastYearsPercentOfFullCapacity | truncateDecimals}}%</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div class="panel-body">
-                <div class="flot-chart">
-                  <div ng-class="apiCallStatus !== undefined ? 'hidden-object' : ''" class="row tile_count">
-                    <div class="col-md-6 col-sm-6 col-xs-12 tile_stats_count">
-                      <span class="count_top"><i class="fa fa-tachometer"></i> Total power (MW/h)</span>
-                      <div class="count">{{getYearsTotalProduction() | truncateDecimals | numberWithCommas}}</div>
-                      <span class="count_bottom">Last year (MW/h): {{getLastYearsTotalProduction() | truncateDecimals | numberWithCommas}}</span>
+              <!-- Montly production -->
+              <div class="col-lg-4">
+                <div class="panel panel-yellow">
+                  <div class="panel-heading">
+                    <h3 class="panel-title"><i class="fa fa-long-arrow-right"></i> Montly production for the year</h3>
+                  </div>
+                  <div class="panel-body">
+                    <div class="flot-chart">
+                      <div class="flot-chart-content" id="yearly-production-chart"></div>
                     </div>
-                    <div class="col-md-6 col-sm-6 col-xs-12 tile_stats_count">
-                      <span class="count_top"><i class="fa fa-tachometer"></i> Average Monthly Production (MW/h)</span>
-                      <div class="count">{{getYearsAverageProduction() | truncateDecimals | numberWithCommas}}
-                        <i ng-if="getLastYearsAverageProduction() != undefined" ng-class="isNumberIncrease(getYearsAverageProduction(), getLastYearsAverageProduction()) ? 'fa-arrow-up green-icon' : 'fa-arrow-down red-icon'"
-                           class="fa fa-1" aria-hidden="true"></i></div>
-                      <span class="count_bottom">Last year (MW/h): {{getLastYearsAverageProduction() != undefined ? getLastYearsAverageProduction() : "N/A" | truncateDecimals | numberWithCommas}}</span>
-                    </div>
-                    <div class="col-md-6 col-sm-6 col-xs-12 m-t-15 tile_stats_count">
-                      <span class="count_top"><i class="fa fa-tachometer"></i> Procent of full capacity</span>
-                      <div class="count green">{{getYearsPercentOfFullCapacity() | truncateDecimals}}%
-                        <i ng-if="getLastYearsPercentOfFullCapacity() != undefined" ng-class="isNumberIncrease(getYearsPercentOfFullCapacity(), getLastYearsPercentOfFullCapacity()) ? 'fa-arrow-up green-icon' : 'fa-arrow-down red-icon'"
-                           class="fa" aria-hidden="true"></i></div>
-                      <span class="count_bottom">Last year: {{getLastYearsPercentOfFullCapacity() | truncateDecimals}}%</span>
-                    </div>
-                    <div class="col-md-6 col-sm-6 col-xs-12 m-t-15 tile_stats_count">
-                      <span class="count_top"><i class="fa fa-tachometer"></i> Procent of full capacity</span>
-                      <div class="count green">{{yearsPercentOfFullCapacity | truncateDecimals}}%</div>
-                      <span class="count_bottom">Last year: {{lastYearsPercentOfFullCapacity | truncateDecimals}}%</span>
-                    </div>
-                    <div class="col-md-6 col-sm-6 col-xs-12 m-t-15 tile_stats_count">
-                      <span class="count_top"><i class="fa fa-tachometer"></i> Procent of full capacity</span>
-                      <div class="count green">{{yearsPercentOfFullCapacity | truncateDecimals}}%</div>
-                      <span class="count_bottom">Last year: {{lastYearsPercentOfFullCapacity | truncateDecimals}}%</span>
-                    </div>
-                    <div class="col-md-6 col-sm-6 col-xs-12 m-t-15 tile_stats_count">
-                      <span class="count_top"><i class="fa fa-tachometer"></i> Procent of full capacity</span>
-                      <div class="count green">{{yearsPercentOfFullCapacity | truncateDecimals}}%</div>
-                      <span class="count_bottom">Last year: {{lastYearsPercentOfFullCapacity | truncateDecimals}}%</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Cumulative production -->
+              <div class="col-lg-4">
+                <div class="panel panel-yellow">
+                  <div class="panel-heading">
+                    <h3 class="panel-title"><i class="fa fa-long-arrow-right"></i> Cumulative production for the year</h3>
+                  </div>
+                  <div class="panel-body">
+                    <div class="flot-chart">
+                      <div class="flot-chart-content" id="cumulative-production-chart"></div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-          <!-- Montly production -->
-          <div class="col-lg-4">
-            <div class="panel panel-yellow">
-              <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-long-arrow-right"></i> Montly production for the year</h3>
-              </div>
-              <div class="panel-body">
-                <div class="flot-chart">
-                  <div class="flot-chart-content" id="yearly-production-chart"></div>
-                </div>
-              </div>
-            </div>
-          </div>
 
-          <!-- Cumulative production -->
-          <div class="col-lg-4">
-            <div class="panel panel-yellow">
-              <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-long-arrow-right"></i> Cumulative production for the year</h3>
+
+            <div class="row">
+              <!-- Power Curve -->
+              <div class="col-lg-8">
+                <div class="panel panel-yellow">
+                  <div class="panel-heading">
+                    <h3 class="panel-title"><i class="fa fa-long-arrow-right"></i> Wind Power vs. Power Capacity</h3>
+                  </div>
+                  <div class="panel-body">
+                    <div class="flot-chart">
+                      <div class="flot-chart-content" id="wind-production-chart"></div>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div class="panel-body">
-                <div class="flot-chart">
-                  <div class="flot-chart-content" id="cumulative-production-chart"></div>
+              <!-- Power Curve -->
+              <div class="col-lg-4">
+                <div class="panel panel-yellow">
+                  <div class="panel-heading">
+                    <h3 class="panel-title"><i class="fa fa-long-arrow-right"></i> Power curve of turbines</h3>
+                  </div>
+                  <div class="panel-body">
+                    <div class="flot-chart">
+                      <div class="flot-chart-content" id="power-curve-chart"></div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-        <div class="row">
-          <!-- Power Curve -->
-          <div class="col-lg-8">
-            <div class="panel panel-yellow">
-              <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-long-arrow-right"></i> Wind Power vs. Power Capacity</h3>
+
+            <div class="row">
+              <!-- Weather data -->
+              <div class="col-lg-8">
+                <div class="panel panel-yellow">
+                  <div class="panel-heading">
+                    <h3 class="panel-title"><i class="fa fa-long-arrow-right"></i> Some weather panel 1</h3>
+                  </div>
+                  <div class="panel-body">
+                    <div class="flot-chart">
+                      <div class="flot-chart-content" id="weatcher-chart-1"></div>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div class="panel-body">
-                <div class="flot-chart">
-                  <div class="flot-chart-content" id="wind-production-chart"></div>
+              <div class="col-lg-4">
+                <div class="panel panel-yellow">
+                  <div class="panel-heading">
+                    <h3 class="panel-title"><i class="fa fa-long-arrow-right"></i> Some weather panel 2</h3>
+                  </div>
+                  <div class="panel-body">
+                    <div class="flot-chart">
+                      <div class="flot-chart-content" id="weatcher-chart-2"></div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <!-- Power Curve -->
-          <div class="col-lg-4">
-            <div class="panel panel-yellow">
-              <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-long-arrow-right"></i> Power curve of turbines</h3>
-              </div>
-              <div class="panel-body">
-                <div class="flot-chart">
-                  <div class="flot-chart-content" id="power-curve-chart"></div>
-                </div>
-              </div>
-            </div>
+
+
           </div>
         </div>
       </div>
     </div>
+
         <!-- /.row -->
 
         <!-- /.row -->
@@ -216,6 +257,25 @@
 
   <script src="./lib/bower_components/jquery/dist/jquery.js"></script>
   <script src="./lib/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+
+  $(".accordion").click(function(e){
+      e.preventDefault();
+
+      if($(this).hasClass("active")){
+          $(this).parent().find(".view").hide();
+          $(this).removeClass("active");
+      }
+      else{
+          $(this).parent().find(".view").show();
+          $(this).addClass("active");
+      }
+  });
+
+
+</script>
+
 </body>
 
 </html>
