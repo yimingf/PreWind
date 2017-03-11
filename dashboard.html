@@ -30,7 +30,7 @@
   <link rel="icon" href="icon.ico" type="image/x-icon">
 </head>
 
-<body class="dashboard-page" ng-controller="DashboardCtrl" style="background-color:white;">
+<body class="dashboard-page"  style="background-color:white;">
 
   <div id="wrapper">
 
@@ -89,14 +89,14 @@
         </div>
         <!-- /.row -->
 
-        <div class="accordion-box">
+        <div class="accordion-box" ng-controller="DashboardCtrl_Prediction">
           <button class="accordion active">Prediction</button>
           <div class="view">
             <p>Put prediction charts here</p>
           </div>
         </div>
 
-        <div class="accordion-box">
+        <div class="accordion-box" ng-controller="DashboardCtrl">
           <button class="accordion active">Production</button>
           <div class="view">
             <div class="row">

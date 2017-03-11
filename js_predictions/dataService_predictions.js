@@ -3,6 +3,11 @@
 // dependency on any service you need. Angular will insure that the
 // service is created first time it is needed and then just reuse it
 // the next time.
+// Here we create an Angular service that we will use for our
+// model. In your controllers (or other services) you can include the
+// dependency on any service you need. Angular will insure that the
+// service is created first time it is needed and then just reuse it
+// the next time.
 dashboardApp.factory('DataPredictions', function ($resource, $http, $cookieStore) {
 
     var requestHeaders = {
@@ -11,25 +16,38 @@ dashboardApp.factory('DataPredictions', function ($resource, $http, $cookieStore
         "Content-Type": "application/json;charset=utf-8"
     };
 
-    this.getMonthNameByNumber = function (monthNumber) {
-        var monthNames = [ 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December' ];
-        return monthNames[monthNumber - 1];
+    this.BenchmarkDataForPrediction = function(){
+        var url = 'https://windpowerdata-8069.restdb.io/rest/benchmark';
+        var promise = $http({
+            method: 'GET',
+            url: url,
+            params: {
+                //max: 100,
+                q: {"year":2012,"month":3},
+                skip: 0
+            },
+            headers: requestHeaders
+        });
+
+        return promise;
     };
 
-    this.BenchmarkDataGroupedByMonth = $resource('https://windpowerdata-8069.restdb.io/rest/benchmark',
-        {
-            max: 20,
-            q: {},
-            skip: 0,
-            groupby: ["year", "month"],
-            aggregate: ["SUM:wp1", "SUM:wp2", "SUM:wp3"]
-        },{
-        get: {
+    this.getDailyWindspeedData = function(windfarmName){
+        var url = "https://windpowerdata-8069.restdb.io/rest/windforecasts-wf-" + windfarmName + "-2011-2012";
+        console.log("URL: "+url);
+        var promise = $http({
+            method: 'GET',
+            url: url,
+            params: {
+                //max: 96,
+                q: {"year":2012,"month":3},
+                skip: 0
+            },
             headers: requestHeaders
-        }
-    });
+        });
 
-
+        return promise;
+    };
 
     // Angular service needs to return an object that has all the
     // methods created in it. You can consider that this is instead
