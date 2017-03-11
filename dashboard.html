@@ -2,7 +2,6 @@
 <html lang="en"  ng-app="dashboard">
 
 <head>
-  <base href='./'>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,7 +11,6 @@
   <title>WindMind - kth dh2321 ivis17 project (demo)</title>
 
   <link href="lib/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="lib/assets/css/sb-admin.css" rel="stylesheet">
   <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
   <link href="style.css" rel="stylesheet" type="text/css">
   <script src="lib/assets/js/plotly-latest.min.js"></script>
@@ -113,6 +111,7 @@
                     <div class="flot-chart">
                       <div ng-class="apiCallStatus !== undefined ? 'hidden-object' : ''" class="row tile_count">
                         <div class="col-md-6 col-sm-6 col-xs-12 tile_stats_count">
+                          <a href="index.html">World Map</a>
                           <span class="count_top"><i class="fa fa-tachometer"></i> Total power (MW/h)</span>
                           <div class="count">{{getYearsTotalProduction() | truncateDecimals | numberWithCommas}}</div>
                           <span class="count_bottom">Last year (MW/h): {{getLastYearsTotalProduction() | truncateDecimals | numberWithCommas}}</span>
