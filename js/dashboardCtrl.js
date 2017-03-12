@@ -269,6 +269,7 @@ dashboardApp.controller('DashboardCtrl', function ($location, $scope, Data, $fil
 		$scope.buildPowerCurveChart();
 		$scope.buildWindProductionChart();
 		$scope.buildTempPressureChart();
+		$scope.buildWindRoseChart();
 	};
 
 	$scope.buildWindProductionChart = function (monthName) {
@@ -477,7 +478,7 @@ dashboardApp.controller('DashboardCtrl', function ($location, $scope, Data, $fil
 		url=$location.absUrl();
 		urlLen=url.length;
 		WFname=url.substring(urlLen-3,urlLen);
-		console.log(WFname);
+		//console.log(WFname);
         var dateArray = $scope.dailyProductionDataMap[$scope.currentYear].datesDailyProduction;
         var dailyPowerArray = $scope.dailyProductionDataMap[$scope.currentYear].valuesDailyProduction;
         var dailyWindSpeedArray = $scope.dailyProductionDataMap[$scope.currentYear].valuesDailyWindSpeed;
@@ -537,6 +538,62 @@ dashboardApp.controller('DashboardCtrl', function ($location, $scope, Data, $fil
         Plotly.newPlot('temp-pressure-chart', plotData, layout, {modeBarButtonsToRemove: ['sendDataToCloud']});
         });
     };
+
+	$scope.buildWindRoseChart = function() {
+		yearlyData=$scope.dailyWindForecastData[$scope.currentYear];
+		dailyData=[];
+		for (month in yearlyData){
+			for (day in yearlyData[month]){
+				if (yearlyData[month][day].ws>0){
+					dailyData.push(yearlyData[month][day]);
+				}
+			}
+		}
+		num=dailyData.length;
+		console.log(dailyData,num);
+		directionFrequency=[0,0,0,0,0,0,0,0];
+		ntick=3;
+		maxSpeed=9.0;
+		speedFrequency=new Array(ntick);
+		for (i=0;i<ntick;i++) {
+			speedFrequency[i]=new Array(8);
+			for(j=0;j<8;j++) { speedFrequency[i][j]=0;}
+		}
+		for (d in dailyData){
+			index=Math.floor((dailyData[d].wd+22.5)/45)%8;
+			directionFrequency[index]+=1;
+			for (i=Math.floor(dailyData[d].ws/(maxSpeed/ntick));i<ntick ;i++){
+				speedFrequency[i][index]+=1;
+			}
+		}
+		console.log(directionFrequency);
+		console.log(speedFrequency);
+
+		var trace1={
+			r: speedFrequency[0],
+			t: ['N',"NE","E",'SE','S','SW','W','NW'],
+			name: '0-3m/s',
+			type: 'area'
+		};
+		var trace2={
+			r: speedFrequency[1],
+			t: ['N',"NE","E",'SE','S','SW','W','NW'],
+			name: '3-6m/s',
+			type: 'area'
+		};
+		var trace3={
+			r: speedFrequency[2],
+			t: ['N',"NE","E",'SE','S','SW','W','NW'],
+			name: '6-9m/s',
+			type: 'area'
+		};		
+		var plotdata=[trace3,trace2,trace1];
+		var layout={
+			radialaxis: {ticksuffix: '%'},
+			orientation: 0,
+		}
+		Plotly.newPlot("windrose-chart",plotdata,layout);
+	}
 
 	$scope.validateWindfarmName = function (nameOfWindfarm) {
 		if($scope.nameOfWindfarms.indexOf(nameOfWindfarm) === -1){
