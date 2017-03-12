@@ -320,13 +320,14 @@ dashboardApp.controller('DashboardCtrl', function ($location, $scope, Data, $fil
 
 		var layout = {
 			title: '',
-			yaxis: {title: 'MW/h'},
+			yaxis: {title: 'MW/h',range:[0,10]},
 			yaxis2: {
 				title: 'm/s',
 				titlefont: {color: 'rgb(148, 103, 189)'},
 				tickfont: {color: 'rgb(148, 103, 189)'},
 				overlaying: 'y',
-				side: 'right'
+				side: 'right',
+				range: [0,2200]
 			}
 		};
 
