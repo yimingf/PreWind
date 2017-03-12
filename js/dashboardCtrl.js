@@ -268,6 +268,7 @@ dashboardApp.controller('DashboardCtrl', function ($location, $scope, Data, $fil
 		$scope.buildCumulativeProductionChart();
 		$scope.buildPowerCurveChart();
 		$scope.buildWindProductionChart();
+		$scope.buildTempPressureChart();
 	};
 
 	$scope.buildWindProductionChart = function (monthName) {
@@ -472,6 +473,68 @@ dashboardApp.controller('DashboardCtrl', function ($location, $scope, Data, $fil
 			$scope.buildWindProductionChart(clickedMonth);
 		});
 	};
+
+    $scope.buildTempPressureChart = function () {
+		url=$location.absUrl();
+		urlLen=url.length;
+		WFname=url.substring(urlLen-3,urlLen);
+		console.log(WFname);
+        var dateArray = $scope.dailyProductionDataMap[$scope.currentYear].datesDailyProduction;
+        var dailyPowerArray = $scope.dailyProductionDataMap[$scope.currentYear].valuesDailyProduction;
+        var dailyWindSpeedArray = $scope.dailyProductionDataMap[$scope.currentYear].valuesDailyWindSpeed;
+
+        Plotly.d3.csv("/data/weather/PT_"+WFname+".csv", function(data){ 
+            var dailyTemperatureArray=[];
+            var dailyPressureArray=[];
+            for (i in data){
+                dailyTemperatureArray.push((parseFloat(data[i].T6)+parseFloat(data[i].T12)+parseFloat(data[i].T18))/3);
+                dailyPressureArray.push((parseFloat(data[i].P6)+parseFloat(data[i].P12)+parseFloat(data[i].P18))/3);
+            }
+        var trace1 = {
+            x: dateArray,
+            y: dailyPressureArray,
+            type: 'scatter',
+            name: 'Pressure',
+            line: {width: 2},
+            yaxis: 'y',
+        };
+        var trace2 = {
+            x: dateArray,
+            y: dailyTemperatureArray,
+            type: 'scatter',
+            name: 'Temperature',
+            line: {width: 2},
+            yaxis: 'y2',
+        };
+        var trace3 = {
+            x: dateArray,
+            y: dailyWindSpeedArray,
+            type: 'scatter',
+            name: 'Wind Speed',
+            line: {width: 2},
+            yaxis: 'y3',
+        };        
+        var layout = {
+            title: '',
+            yaxis: {title: 'P'},
+            yaxis2: {
+                title: 'Celcius',
+                overlaying: 'y',
+                side: 'right'
+            },
+            yaxis3: {
+                //title: 'm/s',
+                overlaying: 'y',
+				zeroline: false,
+                range:[-10,10],
+                //side: 'right'
+            }
+        };
+
+        var plotData = [trace1, trace2, trace3];
+        Plotly.newPlot('temp-pressure-chart', plotData, layout);
+        });
+    };
 
 	$scope.validateWindfarmName = function (nameOfWindfarm) {
 		if($scope.nameOfWindfarms.indexOf(nameOfWindfarm) === -1){
