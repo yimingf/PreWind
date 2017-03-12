@@ -527,6 +527,7 @@ dashboardApp.controller('DashboardCtrl', function ($location, $scope, Data, $fil
                 overlaying: 'y',
 				zeroline: false,
                 range:[-10,10],
+				showticklabels: false,
                 //side: 'right'
             }
         };
