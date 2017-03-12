@@ -483,7 +483,7 @@ dashboardApp.controller('DashboardCtrl', function ($location, $scope, Data, $fil
         var dailyPowerArray = $scope.dailyProductionDataMap[$scope.currentYear].valuesDailyProduction;
         var dailyWindSpeedArray = $scope.dailyProductionDataMap[$scope.currentYear].valuesDailyWindSpeed;
 
-        Plotly.d3.csv("/data/weather/PT_"+WFname+".csv", function(data){ 
+        Plotly.d3.csv("windmind-2017/data/weather/PT_"+WFname+".csv", function(data){ 
             var dailyTemperatureArray=[];
             var dailyPressureArray=[];
             for (i in data){
