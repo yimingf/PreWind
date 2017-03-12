@@ -218,7 +218,7 @@ dashboardApp.controller('DashboardCtrlForPredictions', function ($location, $sco
             }
         };
 
-        Plotly.newPlot('wind-prediction-chart', data, layout);
+        Plotly.newPlot('wind-prediction-chart', data, layout, {modeBarButtonsToRemove: ['sendDataToCloud']});
 
     };
 
@@ -349,7 +349,7 @@ dashboardApp.controller('DashboardCtrlForPredictions', function ($location, $sco
             }
         };
 
-        Plotly.newPlot('wind-prediction-chart', data, layout);
+        Plotly.newPlot('wind-prediction-chart', data, layout, {modeBarButtonsToRemove: ['sendDataToCloud']});
 
     };
 
@@ -482,7 +482,7 @@ dashboardApp.controller('DashboardCtrlForPredictions', function ($location, $sco
             }
         };
 
-        Plotly.newPlot('wind-prediction-chart', data, layout);
+        Plotly.newPlot('wind-prediction-chart', data, layout, {modeBarButtonsToRemove: ['sendDataToCloud']});
 
     };
 
