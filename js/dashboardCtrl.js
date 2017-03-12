@@ -321,7 +321,7 @@ dashboardApp.controller('DashboardCtrl', function ($location, $scope, Data, $fil
 
 		var layout = {
 			title: '',
-			yaxis: {title: 'MW/h',range:[0,2200]},
+			yaxis: {title: 'MW/h',range:[0,2500]},
 			yaxis2: {
 				title: 'm/s',
 				titlefont: {color: 'rgb(148, 103, 189)'},
@@ -333,7 +333,7 @@ dashboardApp.controller('DashboardCtrl', function ($location, $scope, Data, $fil
 		};
 
 		var data = [trace1, trace2];
-		Plotly.newPlot('wind-production-chart', data, layout, {modeBarButtonsToRemove: ['sendDataToCloud','hoverCompareCartesian']});
+		Plotly.newPlot('wind-production-chart', data, layout, {modeBarButtonsToRemove: ['sendDataToCloud']});
 	};
 
 	$scope.buildPowerCurveChart = function () {
