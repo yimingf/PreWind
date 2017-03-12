@@ -13,6 +13,7 @@ dashboardApp.controller('DashboardCtrl', function ($location, $scope, Data, $fil
 	$scope.yearsMontlyProductionMonthNamesArray = undefined;
 	$scope.averageMonthlyProduction = undefined;
 	$scope.yearsPercentOfFullCapacity = undefined;
+    $scope.yearsEmptyDays = {2011: 0, 2012: 0};
 	$scope.apiCallStatus = undefined;
 	$scope.dailyProduction = undefined;
 	$scope.monthlyProduction = undefined;
@@ -185,6 +186,9 @@ dashboardApp.controller('DashboardCtrl', function ($location, $scope, Data, $fil
 					yearDailyProductionDateArray.push(year+"-"+month+"-"+date);
 					yearDailyProductionArray.push(dailyValue["SUM "+$scope.nameOfWindfarm]);
 					yearDailyWindArray.push($scope.dailyWindForecastData[year][month][date]["ws"])
+					if(dailyValue["SUM "+$scope.nameOfWindfarm] == 0){
+                        $scope.yearsEmptyDays[year] = $scope.yearsEmptyDays[year] + 1;
+					}
 
 				});
 			});
@@ -262,6 +266,16 @@ dashboardApp.controller('DashboardCtrl', function ($location, $scope, Data, $fil
 			return $scope.lastYearsPercentOfFullCapacity;
 		return "N/A";
 	};
+	$scope.getYearsEmptyDays = function () {
+        return $scope.yearsEmptyDays[$scope.currentYear];
+    };
+    $scope.getLastYearsEmptyDays = function () {
+        if(angular.isDefined($scope.yearsEmptyDays[$scope.currentYear - 1]))
+            return $scope.yearsEmptyDays[$scope.currentYear - 1];
+        return "N/A";
+    };
+
+
 
 	$scope.buildAllGraphs = function(){
 		$scope.buildMonthlyProductionChart();

@@ -131,19 +131,9 @@
                           <span class="count_bottom">Last year: {{getLastYearsPercentOfFullCapacity() | truncateDecimals}}%</span>
                         </div>
                         <div class="col-md-6 col-sm-6 col-xs-12 m-t-15 tile_stats_count">
-                          <span class="count_top"><i class="fa fa-tachometer"></i> Procent of full capacity</span>
-                          <div class="count green">{{yearsPercentOfFullCapacity | truncateDecimals}}%</div>
-                          <span class="count_bottom">Last year: {{lastYearsPercentOfFullCapacity | truncateDecimals}}%</span>
-                        </div>
-                        <div class="col-md-6 col-sm-6 col-xs-12 m-t-15 tile_stats_count">
-                          <span class="count_top"><i class="fa fa-tachometer"></i> Procent of full capacity</span>
-                          <div class="count green">{{yearsPercentOfFullCapacity | truncateDecimals}}%</div>
-                          <span class="count_bottom">Last year: {{lastYearsPercentOfFullCapacity | truncateDecimals}}%</span>
-                        </div>
-                        <div class="col-md-6 col-sm-6 col-xs-12 m-t-15 tile_stats_count">
-                          <span class="count_top"><i class="fa fa-tachometer"></i> Procent of full capacity</span>
-                          <div class="count green">{{yearsPercentOfFullCapacity | truncateDecimals}}%</div>
-                          <span class="count_bottom">Last year: {{lastYearsPercentOfFullCapacity | truncateDecimals}}%</span>
+                          <span class="count_top"><i class="fa fa-tachometer"></i> Offline days</span>
+                          <div class="count green">{{getYearsEmptyDays()}} days</div>
+                          <span class="count_bottom">Last year: {{getLastYearsEmptyDays()}} days</span>
                         </div>
                       </div>
                     </div>
