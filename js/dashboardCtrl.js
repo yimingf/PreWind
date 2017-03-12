@@ -331,7 +331,7 @@ dashboardApp.controller('DashboardCtrl', function ($location, $scope, Data, $fil
 		};
 
 		var data = [trace1, trace2];
-		Plotly.newPlot('wind-production-chart', data, layout);
+		Plotly.newPlot('wind-production-chart', data, layout, {modeBarButtonsToRemove: ['sendDataToCloud','hoverCompareCartesian']});
 	};
 
 	$scope.buildPowerCurveChart = function () {
@@ -387,10 +387,8 @@ dashboardApp.controller('DashboardCtrl', function ($location, $scope, Data, $fil
 				type: 'linear'
 			}
 		};
-		Plotly.plot('power-curve-chart', {
-			data: data,
-			layout: layout
-		});
+		Plotly.newPlot('power-curve-chart', data, layout, {modeBarButtonsToRemove: ['sendDataToCloud']}
+		);
 	};
 
 	$scope.buildCumulativeProductionChart = function () {
@@ -433,7 +431,7 @@ dashboardApp.controller('DashboardCtrl', function ($location, $scope, Data, $fil
 		};
 
 
-		Plotly.newPlot('cumulative-production-chart', data, layoutProd2);
+		Plotly.newPlot('cumulative-production-chart', data, layoutProd2, {modeBarButtonsToRemove: ['sendDataToCloud']});
 	};
 
 	$scope.buildMonthlyProductionChart = function () {
@@ -459,7 +457,7 @@ dashboardApp.controller('DashboardCtrl', function ($location, $scope, Data, $fil
 		var dataProd = [trace1Prod];
 
 		var myPlot = document.getElementById('yearly-production-chart');
-		Plotly.newPlot('yearly-production-chart', dataProd, layoutProd);
+		Plotly.newPlot('yearly-production-chart', dataProd, layoutProd, {modeBarButtonsToRemove: ['sendDataToCloud']});
 
 		myPlot.on('plotly_click', function(data){
 			var pts = '';
@@ -535,7 +533,7 @@ dashboardApp.controller('DashboardCtrl', function ($location, $scope, Data, $fil
         };
 
         var plotData = [trace1, trace2, trace3];
-        Plotly.newPlot('temp-pressure-chart', plotData, layout);
+        Plotly.newPlot('temp-pressure-chart', plotData, layout, {modeBarButtonsToRemove: ['sendDataToCloud']});
         });
     };
 
