@@ -516,6 +516,7 @@ dashboardApp.controller('DashboardCtrl', function ($location, $scope, Data, $fil
         };        
         var layout = {
             title: '',
+			legend: {x: 1.1},
             yaxis: {title: 'Pa'},
             yaxis2: {
                 title: 'Celcius',
