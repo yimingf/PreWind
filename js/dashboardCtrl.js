@@ -22,7 +22,7 @@ dashboardApp.controller('DashboardCtrl', function ($location, $scope, Data, $fil
 
 	$scope.requestsToWaitFor = 4;
 
-	if ($location.search().wf === undefined 
+	if ($location.search().wf === undefined ) {
 		$scope.nameOfWindfarm = $scope.nameOfWindfarms[0];
 	}
 	else {
