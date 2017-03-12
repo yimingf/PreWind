@@ -8,7 +8,9 @@
     "turbines" : "5",
     "turbineCapacity" : "2MW",
     "status" : "Operational",
-    "country" : "Sweden"
+    "country" : "Sweden",
+    "countryImage" : "Sweden.png"
+  
   },
 
   {
@@ -19,7 +21,8 @@
     "turbines" : "48",
     "turbineCapacity" : "2.2MW",
     "status" : "Operational",
-    "country" : "Sweden"
+    "country" : "Sweden",
+    "countryImage" : "../lib/assets/img/Sweden.png"
   },
   {
     "location": [17.01, 56.58],
@@ -29,7 +32,8 @@
     "turbines" : "16",
     "turbineCapacity" : "3MW",
     "status" : "Operational",
-    "country" : "Sweden"
+    "country" : "Sweden",
+    "countryImage" : "./lib/assets/img/Sweden.png"
   },
   {
     "location": [16.16, 56.20],
@@ -39,7 +43,8 @@
     "turbines" : "7",
     "turbineCapacity" : "1.5MW",
     "status" : "Operational",
-    "country" : "Sweden"
+    "country" : "Sweden",
+    "countryImage" : "./lib/assets/img/Sweden.png"
   },
   {
     "location": [18.90, 57.20],
@@ -49,7 +54,8 @@
     "turbines" : "5",
     "turbineCapacity" : "0.55MW",
     "status" : "Operational",
-    "country" : "Sweden"
+    "country" : "Sweden",
+    "countryImage" : "./lib/assets/img/Sweden.png"
   },
   {
   "location": [11.12, 56.36],
@@ -59,7 +65,8 @@
   "turbines" : "111",
   "turbineCapacity" : "3.6MW",
   "status" : "Operational",
-  "country" : "Denmark"
+  "country" : "Denmark",
+  "countryImage" : "./lib/assets/img/Denmark.png"
   },
   {
   "location": [7.58, 55.60],
@@ -69,7 +76,8 @@
   "turbines" : "91",
   "turbineCapacity" : "2.3MW",
   "status" : "Operational",
-  "country" : "Denmark"
+  "country" : "Denmark",
+  "countryImage" : "./lib/assets/img/Denmark.png"
   },
   {
   "location": [11.55, 54.56],
@@ -79,7 +87,8 @@
   "turbines" : "90",
   "turbineCapacity" : "2.3MW",
   "status" : "Operational",
-  "country" : "Denmark"
+  "country" : "Denmark",
+  "countryImage" : "./lib/assets/img/Denmark.png"
   },
   {
   "location": [5.03, 59.140],
@@ -89,7 +98,8 @@
   "turbines" : "1",
   "turbineCapacity" : "2.3MW",
   "status" : "Operational",
-  "country" : "Norway"
+  "country" : "Norway",
+  "countryImage" : "./lib/assets/img/Norway.png"
   },
   {
   "location": [24.54, 65.65],
@@ -99,7 +109,8 @@
   "turbines" : "5",
   "turbineCapacity" : "3MW",
   "status" : "Operational",
-  "country" : "Finland"
+  "country" : "Finland",
+  "countryImage" : "./lib/assets/img/Finland.png"
   }
 
 ]
