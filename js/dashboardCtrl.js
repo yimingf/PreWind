@@ -590,7 +590,7 @@ dashboardApp.controller('DashboardCtrl', function ($location, $scope, Data, $fil
 		var plotdata=[trace3,trace2,trace1];
 		var layout={
 			radialaxis: {ticksuffix: '%'},
-			orientation: 0,
+			orientation: 270,
 		}
 		Plotly.newPlot("windrose-chart",plotdata,layout);
 	}
