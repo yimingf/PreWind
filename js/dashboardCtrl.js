@@ -516,10 +516,11 @@ dashboardApp.controller('DashboardCtrl', function ($location, $scope, Data, $fil
         };        
         var layout = {
             title: '',
-            yaxis: {title: 'P'},
+            yaxis: {title: 'Pa'},
             yaxis2: {
                 title: 'Celcius',
                 overlaying: 'y',
+				zeroline: false,
                 side: 'right'
             },
             yaxis3: {
