@@ -47,46 +47,35 @@
         <ul class="nav navbar-nav">
           <li><a href="index.html">World Map</a></li>
           <li class="active"><a href="#">Production</a></li>
+          <div class="dropdown pull-left m-t-10 m-l-30">
+            <button class="btn btn-info dropdown-toggle" style="border:none; background-color:#93b8db" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+              {{currentYear == 2012 ? 'This year (2012)' : 'Year 2011'}}
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+              <li><a ng-click="setCurrentYear(2012)" href="#">2012 (current)</a></li>
+              <li><a ng-click="setCurrentYear(2011)" href="#">2011</a></li>
+            </ul>
+          </div>
+          <!-- Windfarm -->
+          <div class="dropdown pull-left m-t-10 m-l-30">
+            <button class="btn btn-info dropdown-toggle" style="border:none; background-color:#93b8db" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+              Windfarm: {{nameOfWindfarm}}
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+              <li><a ng-click="setCurrentWindfarmId('wp1')" href="#">wp1</a></li>
+              <li><a ng-click="setCurrentWindfarmId('wp2')" href="#">wp2</a></li>
+              <li><a ng-click="setCurrentWindfarmId('wp3')" href="#">wp3</a></li>
+            </ul>
+          </div>
+          <p ng-if="apiCallStatus !== undefined" ng-bind="apiCallStatus" class="pull-left m-l-30 m-t-15"></p>
         </ul>
       </div>
     </nav>
 
     <div id="page-wrapper">
       <div class="container-fluid">
-        <!-- Page Heading -->
-        <div class="row">
-          <div class="col-lg-12 page-header m-t-0">
-            <h1 class="pull-left m-t-10">
-              Production dashboard, today 2012-06-26
-            </h1>
-            <!-- Year -->
-            <div class="dropdown pull-left m-t-15 m-l-30">
-              <button class="btn btn-info dropdown-toggle" style="border:none; background-color:#93b8db" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                {{currentYear == 2012 ? 'This year (2012)' : 'Year 2011'}}
-                <span class="caret"></span>
-              </button>
-              <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                <li><a ng-click="setCurrentYear(2012)" href="#">2012 (current)</a></li>
-                <li><a ng-click="setCurrentYear(2011)" href="#">2011</a></li>
-              </ul>
-            </div>
-            <!-- Windfarm -->
-            <div class="dropdown pull-left m-t-15 m-l-30">
-              <button class="btn btn-info dropdown-toggle" style="border:none; background-color:#93b8db" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                Windfarm: {{nameOfWindfarm}}
-                <span class="caret"></span>
-              </button>
-              <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                <li><a ng-click="setCurrentWindfarmId('wp1')" href="#">wp1</a></li>
-                <li><a ng-click="setCurrentWindfarmId('wp2')" href="#">wp2</a></li>
-                <li><a ng-click="setCurrentWindfarmId('wp3')" href="#">wp3</a></li>
-              </ul>
-            </div>
-            <h1 ng-if="apiCallStatus !== undefined" ng-bind="apiCallStatus" class="pull-left m-l-30 m-t-10"></h1>
-
-          </div>
-        </div>
-        <!-- /.row -->
 
         <div class="accordion-box" ng-controller="DashboardCtrlForPredictions">
           <button class="accordion active">Prediction</button>
