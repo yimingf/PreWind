@@ -9,7 +9,7 @@
     "turbineCapacity" : "2MW",
     "status" : "Operational",
     "country" : "Sweden",
-    "countryImage" : "Sweden.png"
+    "countryImage" : "./lib/assets/img/sweden.png"
   
   },
 
