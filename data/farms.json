@@ -1,117 +1,145 @@
 {
   "type": "farms",
-  "objects": [{
-    "location": [18.07, 59.3],
-    "name": "Långå wind park",
-    "owner": "Agrivind AB",
-    "capacity" : "10MW",
-    "turbines" : "5",
-    "turbineCapacity" : "2MW",
-    "status" : "Operational",
-    "country" : "Sweden",
-    "countryImage" : "./lib/assets/img/sweden.png"
-  
-  },
-
-  {
-    "location": [12.47, 55.31],
-    "name": "Lillgrund",
-    "owner": "Vattenfall",
-    "capacity" : "110MW",
-    "turbines" : "48",
-    "turbineCapacity" : "2.2MW",
-    "status" : "Operational",
-    "country" : "Sweden",
-    "countryImage" : "./lib/assets/img/sweden.png"
-  },
-  {
-    "location": [17.01, 56.58],
-    "name": "Karehamn",
-    "owner": "E.ON",
-    "capacity" : "48MW",
-    "turbines" : "16",
-    "turbineCapacity" : "3MW",
-    "status" : "Operational",
-    "country" : "Sweden",
-    "countryImage" : "./lib/assets/img/sweden.png"
-  },
-  {
-    "location": [16.16, 56.20],
-    "name": "Utugruden",
-    "owner": "Vattenfall",
-    "capacity" : "10.5MW",
-    "turbines" : "7",
-    "turbineCapacity" : "1.5MW",
-    "status" : "Operational",
-    "country" : "Sweden",
-    "countryImage" : "./lib/assets/img/sweden.png"
-  },
-  {
-    "location": [18.90, 57.20],
-    "name": "Bockstigen",
-    "owner": "Momentum group",
-    "capacity" : "2.75MW",
-    "turbines" : "5",
-    "turbineCapacity" : "0.55MW",
-    "status" : "Operational",
-    "country" : "Sweden",
-    "countryImage" : "./lib/assets/img/sweden.png"
-  },
-  {
-  "location": [11.12, 56.36],
-  "name": "Anholt",
-  "owner": "DONG",
-  "capacity" : "400MW",
-  "turbines" : "111",
-  "turbineCapacity" : "3.6MW",
-  "status" : "Operational",
-  "country" : "Denmark",
-  "countryImage" : "./lib/assets/img/denmark.png"
-  },
-  {
-  "location": [7.58, 55.60],
-  "name": "Horns Rev II",
-  "owner": "DONG",
-  "capacity" : "209.3MW",
-  "turbines" : "91",
-  "turbineCapacity" : "2.3MW",
-  "status" : "Operational",
-  "country" : "Denmark",
-  "countryImage" : "./lib/assets/img/denmark.png"
-  },
-  {
-  "location": [11.55, 54.56],
-  "name": "Rødsand II",
-  "owner": "E.ON",
-  "capacity" : "207MW",
-  "turbines" : "90",
-  "turbineCapacity" : "2.3MW",
-  "status" : "Operational",
-  "country" : "Denmark",
-  "countryImage" : "./lib/assets/img/denmark.png"
-  },
-  {
-  "location": [5.03, 59.140],
-  "name": "Hywind",
-  "owner": "Statoil ASA",
-  "capacity" : "2.3MW",
-  "turbines" : "1",
-  "turbineCapacity" : "2.3MW",
-  "status" : "Operational",
-  "country" : "Norway",
-  "countryImage" : "./lib/assets/img/norway.png"
-  },
-  {
-  "location": [24.54, 65.65],
-  "name": "Kemin Ajoksen I",
-  "owner": "OX2",
-  "capacity" : "15MW",
-  "turbines" : "5",
-  "turbineCapacity" : "3MW",
-  "status" : "Operational",
-  "country" : "Finland",
-  "countryImage" : "./lib/assets/img/finland.png"
-  }
-
-]
+  "objects": [
+    {
+      "location": [
+        18.07,
+        59.3
+      ],
+      "name": "Långå wind park",
+      "owner": "Agrivind AB",
+      "capacity": "10MW",
+      "turbines": "5",
+      "turbineCapacity": "2MW",
+      "status": "Operational",
+      "country": "Sweden",
+      "countryImage": "./lib/assets/img/sweden.png"
+    },
+    {
+      "location": [
+        12.47,
+        55.31
+      ],
+      "name": "Lillgrund",
+      "owner": "Vattenfall",
+      "capacity": "110MW",
+      "turbines": "48",
+      "turbineCapacity": "2.2MW",
+      "status": "Operational",
+      "country": "Sweden",
+      "countryImage": "./lib/assets/img/sweden.png"
+    },
+    {
+      "location": [
+        17.01,
+        56.58
+      ],
+      "name": "Karehamn",
+      "owner": "E.ON",
+      "capacity": "48MW",
+      "turbines": "16",
+      "turbineCapacity": "3MW",
+      "status": "Operational",
+      "country": "Sweden",
+      "countryImage": "./lib/assets/img/sweden.png"
+    },
+    {
+      "location": [
+        16.16,
+        56.2
+      ],
+      "name": "Utugruden",
+      "owner": "Vattenfall",
+      "capacity": "10.5MW",
+      "turbines": "7",
+      "turbineCapacity": "1.5MW",
+      "status": "Operational",
+      "country": "Sweden",
+      "countryImage": "./lib/assets/img/sweden.png"
+    },
+    {
+      "location": [
+        18.9,
+        57.2
+      ],
+      "name": "Bockstigen",
+      "owner": "Momentum group",
+      "capacity": "2.75MW",
+      "turbines": "5",
+      "turbineCapacity": "0.55MW",
+      "status": "Operational",
+      "country": "Sweden",
+      "countryImage": "./lib/assets/img/sweden.png"
+    },
+    {
+      "location": [
+        11.12,
+        56.36
+      ],
+      "name": "Anholt",
+      "owner": "DONG",
+      "capacity": "400MW",
+      "turbines": "111",
+      "turbineCapacity": "3.6MW",
+      "status": "Operational",
+      "country": "Denmark",
+      "countryImage": "./lib/assets/img/denmark.png"
+    },
+    {
+      "location": [
+        7.58,
+        55.6
+      ],
+      "name": "Horns Rev II",
+      "owner": "DONG",
+      "capacity": "209.3MW",
+      "turbines": "91",
+      "turbineCapacity": "2.3MW",
+      "status": "Operational",
+      "country": "Denmark",
+      "countryImage": "./lib/assets/img/denmark.png"
+    },
+    {
+      "location": [
+        11.55,
+        54.56
+      ],
+      "name": "Rødsand II",
+      "owner": "E.ON",
+      "capacity": "207MW",
+      "turbines": "90",
+      "turbineCapacity": "2.3MW",
+      "status": "Operational",
+      "country": "Denmark",
+      "countryImage": "./lib/assets/img/denmark.png"
+    },
+    {
+      "location": [
+        5.03,
+        59.14
+      ],
+      "name": "Hywind",
+      "owner": "Statoil ASA",
+      "capacity": "2.3MW",
+      "turbines": "1",
+      "turbineCapacity": "2.3MW",
+      "status": "Operational",
+      "country": "Norway",
+      "countryImage": "./lib/assets/img/norway.png"
+    },
+    {
+      "location": [
+        24.54,
+        65.65
+      ],
+      "name": "Kemin Ajoksen I",
+      "owner": "OX2",
+      "capacity": "15MW",
+      "turbines": "5",
+      "turbineCapacity": "3MW",
+      "status": "Operational",
+      "country": "Finland",
+      "countryImage": "./lib/assets/img/finland.png"
+    }
+  ]
 }
