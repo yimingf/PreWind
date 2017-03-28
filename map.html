@@ -39,10 +39,6 @@
     opacity: 0.9;
     position: absolute;
   }
-<<<<<<< Updated upstream
-=======
->>>>>>> origin/master
->>>>>>> Stashed changes
 </style>
 </head>
 <body>
@@ -185,38 +181,8 @@ d3.json('https://yimingf.github.io/windmind-2017/data/europe.json', function (er
     _[1]+position[__][1]
   ]);
   console.log(new_positiion);
-  var lines = g.selectAll('line')
-    .data(c).enter()
-    .append('line');
-  d3.interval(function() {
-    lines.call(function animate(selection) {
-      selection
-        .attr('x1', (_, i) => position[i][0])
-        .attr('x2', (_, i) => position[i][0])
-        .attr('y1', (_, i) => position[i][1])
-        .attr('y2', (_, i) => position[i][1])
-        .style('opacity', 1)
-        .style('stroke', 'blue')
-        .style('stroke-width', '2')
-        .transition()
-          .ease(d3.easeLinear)
-          //.easeLinear()
-          .duration(1000)
-          .attr('x2', (_, i) => new_positiion[i][0])
-          .attr('y2', (_, i) => new_positiion[i][1])
-        .transition()
-          .ease(d3.easeLinear)
-          //.easeLinear()
-          .duration(1000)
-          .attr('x1', (_, i) => new_positiion[i][0])
-          .attr('y1', (_, i) => new_positiion[i][1])
-        // .on('end', function() { // don't use 'each'
-        //   d3.selectAll('line').call(animate);
-        // })
-    });
-  }, 2200);
 });
 </script>
-    
+    <rect x="10" y="10" height="30" width="120" class="button" style="fill: rgb(190, 225, 237);"><text x="20" y="20" fill="red" font-family="sans-serif" font-size="40px">show</text></rect>
 </body>
 </html>
