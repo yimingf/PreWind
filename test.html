@@ -44,27 +44,44 @@
         domUtils, esriRequest,
         parser, number, JSON, dom, 
         registry, RasterLayer, WebTiledLayer, esriConfig
-      ){        
+      ){
+        parser.parse();
+
         map = new Map("mapCanvas", {
-          center: [10, 61.5],
-          zoom: 6,
+          center: [-99.076, 39.132],
+          zoom: 3,
           basemap: "dark-gray"
         });
 
-        var layersRequest = esriRequest({
-          url: './gfs.json',
-          content: {},
-          handleAs: "json"
-        });
-        layersRequest.then(
-          function(response) {
-            console.log(response);
-            windy = new Windy({ canvas: rasterLayer._element, data: response });
-            redraw();
-        }, function(error) {
-            console.log("Error: ", error.message);
-        });
-
+        map.on("load", mapLoaded);
+        function mapLoaded() {
+          rasterLayer = new RasterLayer(null, {
+            opacity: 0.75
+          });
+          map.addLayer(rasterLayer);
+          
+          map.on("extent-change", redraw);
+          map.on("resize", function(){});
+          map.on("zoom-start", redraw);
+          map.on("pan-start", redraw);
+          var layersRequest = esriRequest({
+            url: './gfs.json',
+            content: {},
+            handleAs: "json"
+          });
+          layersRequest.then(
+            function(response) {
+              console.log(response);
+              windy = new Windy({ canvas: rasterLayer._element, data: response });
+              redraw();
+          }, function(error) {
+              console.log("Error: ", error.message);
+          });
+        }
+        // does the browser support canvas? 
+        function supports_canvas() {
+          return !!document.createElement("canvas").getContext;
+        }
         function redraw(){
           rasterLayer._element.width = map.width;
           rasterLayer._element.height = map.height;
