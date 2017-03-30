@@ -18,18 +18,19 @@ body {
 }
 
 h1 {
-    font-family: 'Courier New';
-    font-size:80px;
+    font-family: 'Teko', 'Courier New', sans-serif;
+    font-size: 96px;
     color: white;
-    padding: 50px;
+    padding: 75px;
 }
 
 h3 {
     color: white;
-    font-family: "Verdana", Geneva, serif;
+    font-family: "Pacifico", 'Verdana', Geneva, serif;
     font-style: italic;
-    font-size: 20px;
-    margin-top: -20px;
+    font-size: 30px;
+    margin-top: 0px;
+    margin-bottom: 40px
 }
 
 @media(min-width:767px) {
