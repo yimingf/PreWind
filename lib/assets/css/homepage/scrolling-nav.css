@@ -63,7 +63,7 @@ h3 {
 }
 
 .team-section {
-    height: 100%;
+    height: 110%;
     padding-top: 50px;
     text-align: center;
     background-color: rgba(255,255,255,0.7);
@@ -72,12 +72,21 @@ h3 {
 }
 
 .contact-section {
-    height: 100%;
+    height: 75%;
     padding-top: 50px;
     text-align: center;
     background-color: white;
     background: #eee;
     
+}
+
+.copyright-section {
+    height: 8%;
+    background: #fff;
+    text-align: center;
+}
+.copyright-section p{
+    padding-top: 16px;
 }
 
 .namecard{
@@ -97,12 +106,12 @@ h3 {
     width: 160px;
     background-color: grey;
     color: #fff;
-    text-align: center;
+    text-align: left;
     border-radius: 6px;
-    padding: 5px 0;
+    padding: 5px;
     position: absolute;
     z-index: 1;
-    bottom: 30%;
+    top: 0;
     left: 85%;
     margin-left: -60px;
     
