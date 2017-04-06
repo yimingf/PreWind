@@ -18,7 +18,7 @@ body {
 }
 
 h1 {
-    font-family: 'Teko', 'Courier New', sans-serif;
+    font-family: 'Josefin Sans', 'Courier New', sans-serif;
     font-size: 96px;
     color: white;
     padding: 75px;
@@ -26,7 +26,7 @@ h1 {
 
 h3 {
     color: white;
-    font-family: "Pacifico", 'Verdana', Geneva, serif;
+    font-family: 'Josefin Sans', 'Verdana', Geneva, serif;
     font-style: italic;
     font-size: 30px;
     margin-top: 0px;
@@ -103,7 +103,7 @@ h3 {
 
 .tooltiptext {
     visibility: hidden;
-    width: 160px;
+    width: 240px;
     background-color: grey;
     color: #fff;
     text-align: left;
