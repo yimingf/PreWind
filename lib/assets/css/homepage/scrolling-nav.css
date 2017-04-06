@@ -57,26 +57,61 @@ h3 {
 
 .about-section {
     height: 100%;
-    padding-top: 150px;
+    padding-top: 50px;
     text-align: center;
     background: #eee;
 }
 
 .team-section {
     height: 100%;
-    padding-top: 150px;
+    padding-top: 50px;
     text-align: center;
-    background-color: white;
-    opacity: 0.7;
+    background-color: rgba(255,255,255,0.7);
    
 
 }
 
 .contact-section {
     height: 100%;
-    padding-top: 150px;
+    padding-top: 50px;
     text-align: center;
     background-color: white;
     background: #eee;
     
+}
+
+.namecard{
+    height: 150px;
+    margin-top: 15px;
+    margin-bottom: 30px;
+}
+.namecard img{
+    height: 80%;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+
+.tooltiptext {
+    visibility: hidden;
+    width: 160px;
+    background-color: grey;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 30%;
+    left: 85%;
+    margin-left: -60px;
+    
+    /* Fade in tooltip - takes 1 second to go from 0% to 100% opac: */
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+.namecard:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
 }

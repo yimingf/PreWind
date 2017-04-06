@@ -10,8 +10,11 @@ body {
 }
 .viewContainer {
   background-color: rgba(245,245,245,0.6);
+  height: 567px;
   overflow-y:scroll;
+  margin-bottom: 30px;
 }
+
 .tabs button{
   width: 120px;
   height: 33px;
