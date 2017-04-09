@@ -145,7 +145,7 @@ h3 {
 }
 .white-content {
   position: absolute;
-  margin-top: 10%;
+  margin-top: 5%;
   margin-bottom: 5%;
   margin-left: 25%;
   width: 50%;
@@ -154,6 +154,8 @@ h3 {
   border: 16px solid #95d4f1;
   background-color: white;
   z-index: 1002;
+    height: 75%;
+    overflow: auto;
 }
 .white-content h3{
     color: black;
@@ -171,4 +173,3 @@ h3 {
 .close:hover {
     color: red;
 }
-
