@@ -13,6 +13,11 @@
   <link href="./lib/assets/css/homepage/bootstrap.min.css" rel="stylesheet">
   <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
   <link href="./lib/assets/css/dashboard-style.css" rel="stylesheet" type="text/css">
+
+  <!-- plot.ly -->
+  <script src="./lib/bower_components/jquery/dist/jquery.js"></script>
+  <script src="./lib/assets/js/homepage/bootstrap.js"></script>
+  <script type="text/javascript" src="./lib/assets/js/dashboard/chart-scripts.js"></script>
   <script src="lib/assets/js/plotly-latest.min.js"></script>
 
   <!-- Angular -->
@@ -61,13 +66,20 @@
           <!-- Windfarm -->
           <div class="dropdown pull-left m-t-10 m-l-30">
             <button class="btn btn-info dropdown-toggle" style="border:none; background-color:#93b8db" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-              Windfarm: {{nameOfWindfarm}}
+              Windfarm: {{nameOfSelectedWindfarm}}
               <span class="caret"></span>
             </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-              <li><a ng-click="setCurrentWindfarmId('wp1')" href="#">wp1</a></li>
-              <li><a ng-click="setCurrentWindfarmId('wp2')" href="#">wp2</a></li>
-              <li><a ng-click="setCurrentWindfarmId('wp3')" href="#">wp3</a></li>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+              <li><a ng-click="setCurrentWindfarmId('wp1')" href="#">Långå wind park</a></li>
+              <li><a ng-click="setCurrentWindfarmId('wp2')" href="#">Lillgrund</a></li>
+              <li><a ng-click="setCurrentWindfarmId('wp3')" href="#">Karehamn</a></li>
+              <li><a ng-click="setCurrentWindfarmId('wp4')" href="#">Utugruden</a></li>
+              <li><a ng-click="setCurrentWindfarmId('wp5')" href="#">Bockstigen</a></li>
+              <li><a ng-click="setCurrentWindfarmId('wp6')" href="#">Anholt</a></li>
+              <li><a ng-click="setCurrentWindfarmId('wp7')" href="#">Horns Rev II</a></li>
+              <li><a ng-click="setCurrentWindfarmId('wp8')" href="#">Rødsand II</a></li>
+              <li><a ng-click="setCurrentWindfarmId('wp9')" href="#">Hywind</a></li>
+              <li><a ng-click="setCurrentWindfarmId('wp10')" href="#">Kemin Ajoksen I</a></li>
             </ul>
           </div>
           <p ng-if="apiCallStatus !== undefined" ng-bind="apiCallStatus" class="pull-left m-l-30 m-t-15"></p>
@@ -231,11 +243,11 @@
   </div>
   <!-- /#wrapper -->
 
-    <!-- plot.ly -->
-  <script type="text/javascript" src="./lib/assets/js/dashboard/chart-scripts.js"></script>
-  <script src="./lib/bower_components/jquery/dist/jquery.js"></script>
-
 <script type="text/javascript">
+  $(document).ready(function() {
+      $(".dropdown-toggle").dropdown();
+  });
+
   $(".accordion").click(function(e){
       e.preventDefault();
 
