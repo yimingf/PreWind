@@ -49,25 +49,6 @@
 		    background-color: #cccccc;
 		    background-attachment:fixed;
 		}
-		#header{
-			margin:auto;
-			width:100%;
-			height: 780px;
-			text-align:center;
-			padding-top: 230px;
-		}
-		.logo{
-			font-family: sans-serif;
-			font-size:80px;
-			letter-spacing: 1px;
-			color: white;
-		}
-		.header_text{
-			color: white;
-			font-style: italic;
-			margin-top: -20px;
-			letter-spacing: 1px;
-		}
 		#startBtn{
 			margin-top: 20px;
 			border: none;
@@ -145,7 +126,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <h1>WINDMIND</h1>
-                    <h3>A Wind Prediction Website to forecast wind production </h3>
+                    <h3>- A Wind Prediction Website to forecast wind production -</h3>
                     <a href="index.html"><button id="startBtn">Get Started</button></a> 
                 </div>
             </div>
@@ -188,61 +169,49 @@
         <div class="container">
         <h2>Team</h1>
             <div class="row">               
-               <div class="col-lg-4 namecard">
-               <img src="./lib/assets/img/photo_deepika.jpg">
-               	<p>Deepika Dipesh
-               	<br>UX/FrontEnd Developer</p>
-                   <span class="tooltiptext">Individual Contribution</span>
+               <div class="col-lg-4 namecard" onclick="popup('member3')">
+                <!-- Your Photo -->
+               	<img src="./lib/assets/img/photo.jpg">
+               	<p>Yourname
+               	<br>Your Role</p>
                </div>
-               <div class="col-lg-4 namecard">
+               <div class="col-lg-4 namecard" onclick="popup('member2')">
                	<img src="./lib/assets/img/photo_yf.jpg">
                	<p>Yiming Fan
                	<br>FrontEnd</p>
-               	<span class="tooltiptext">
-                  - built website's framework<br>
-                  - built integration with the backend<br>
-                  - visualized and optimized the map<br>
-                  - lessons: human never learn lessons.
-                </span>
                </div>
-               <div class="col-lg-4 namecard">
+               <div class="col-lg-4 namecard" onclick="popup('member4')">
+               <!-- Your Photo -->
                	<img src="./lib/assets/img/photo.jpg">
                	<p>YourName
                	<br>Your Role</p>
-               	<span class="tooltiptext">Individual Contribution</span>
                </div>
             </div>
             <div class="row">               
-               <div class="col-lg-4 namecard">
+               <div class="col-lg-4 namecard" onclick="popup('member1')">
                	<img src="./lib/assets/img/photo_yinan.jpg">
                	<p>Yinan Xu
                	<br>Designer/FrontEnd</p>
-               	<span class="tooltiptext">
-               	1. UI design;
-               	<br>2. Coding with homepage and farmlist page;
-               	<br>3. Group meeting and work toghther (more than 10 times);
-               	<br>I have learned a lot about wind data and how to represent them. During the project I also practice my coding skills.
-               	</span>
-               </div>
-               <div class="col-lg-4 namecard">
-               	<img src="./lib/assets/img/Photo_Rana.jpg">
-               	<p>Rana Salamat
-               	<br>UX/UI, Video</p>
-               	<span class="tooltiptext">Individual Contribution</span>
                </div>
                <div class="col-lg-4 namecard">
                	<img src="./lib/assets/img/photo.jpg">
                	<p>Yourname
                	<br>Your Role</p>
                	<span class="tooltiptext">Individual Contribution</span>
+               </div>
+               <div class="col-lg-4 namecard" onclick="popup('member6')">
+               <!-- Your Photo -->
+               	<img src="./lib/assets/img/photo.jpg">
+               	<p>Yourname
+               	<br>Your Role</p>
                </div>
             </div>
             <div class="row">               
-               <div class="col-lg-4 namecard">
+               <div class="col-lg-4 namecard" onclick="popup('member7')">
+               <!-- Your Photo -->
                	<img src="./lib/assets/img/photo.jpg">
                	<p>Yourname
                	<br>Your Role</p>
-               	<span class="tooltiptext">Individual Contribution</span>
                </div>
             </div>
         </div>
@@ -278,13 +247,134 @@
         </div>
     </section>
 
+    <div id="member1">
+      <div class="view-show">
+        <div class="white-content">
+        <button class="close" onclick="closePop('member1')">&times;</button>
+          <h3>Contribution</h3>
+          <!-- Your Name -->
+          <p>- Yinan Xu -</p>
+          <!-- Your Contribution -->
+          <p> 1. UI design (layout, color, background);
+            <br>2. Coding with homepage and farm-list page;
+            <br>3. Group meeting and work toghther (more than 10 times);
+          </p>
+          <p>What I have learned:
+            <br>I have learned a lot about wind data and how to represent them. During the project I also practice my coding skills.
+          </p>
+        </div>        
+      </div>      
+    </div>
+
+    <div id="member2">
+      <div class="view-show">
+        <div class="white-content">
+        <button class="close" onclick="closePop('member2')">&times;</button>
+          <h3>Contribution</h3>
+          <!-- Your Name -->
+          <p>- Yiming Fan -</p>
+          <!-- Your Contribution -->
+          <p>- built website's framework<br>
+                  - built integration with the backend<br>
+                  - visualized and optimized the map<br>
+                  - lessons: human never learn lessons.
+          </p>
+        </div>        
+      </div>      
+    </div>
+
+    <div id="member3">
+      <div class="view-show">
+        <div class="white-content">
+        <button class="close" onclick="closePop('member3')">&times;</button>
+          <h3>Contribution</h3>
+          <!-- Your Name -->
+          <p>- xxx -</p>
+          <!-- Your Contribution -->
+          <p>balabala
+          </p>
+        </div>        
+      </div>      
+    </div>
+
+    <div id="member4">
+      <div class="view-show">
+        <div class="white-content">
+        <button class="close" onclick="closePop('member4')">&times;</button>
+          <h3>Contribution</h3>
+          <!-- Your Name -->
+          <p>- xxx -</p>
+          <!-- Your Contribution -->
+          <p>balabala
+          </p>
+        </div>        
+      </div>      
+    </div>
+
+    <div id="member5">
+      <div class="view-show">
+        <div class="white-content">
+        <button class="close" onclick="closePop('member5')">&times;</button>
+          <h3>Contribution</h3>
+          <!-- Your Name -->
+          <p>- xxx -</p>
+          <!-- Your Contribution -->
+          <p>balabala
+          </p>
+        </div>        
+      </div>      
+    </div>
+
+    <div id="member6">
+      <div class="view-show">
+        <div class="white-content">
+        <button class="close" onclick="closePop('member6')">&times;</button>
+          <h3>Contribution</h3>
+          <!-- Your Name -->
+          <p>- xxx -</p>
+          <!-- Your Contribution -->
+          <p>balabala
+          </p>
+        </div>        
+      </div>      
+    </div>
+
+    <div id="member7">
+      <div class="view-show">
+        <div class="white-content">
+        <button class="close" onclick="closePop('member7')">&times;</button>
+          <h3>Contribution</h3>
+          <!-- Your Name -->
+          <p>- xxx -</p>
+          <!-- Your Contribution -->
+          <p>balabala          
+          </p>
+        </div>        
+      </div>      
+    </div>
+
+
+
+</body>
+
+<script type="text/javascript">
+  function popup(name) {
+    var item = document.getElementById(name);
+    item.style.display = "block";
+    console.log("open");
+  }
+  function closePop(name) {
+    var item = document.getElementById(name);
+    item.style.display = "none";
+    console.log("close");
+  }
+</script>
+
     <!-- jQuery -->
     <script src="./lib/assets/js/homepage/jquery.js"></script>
 
     <!-- Scrolling Nav JavaScript -->
     <script src="./lib/assets/js/homepage/jquery.easing.min.js"></script>
     <script src="./lib/assets/js/homepage/scrolling-nav.js"></script>
-
-</body>
 
 </html>
