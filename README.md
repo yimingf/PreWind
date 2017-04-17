@@ -1,3 +1,13 @@
-# [foo](http://startbootstrap.com/) - [bar](http://startbootstrap.com/template-overviews/sb-admin/)
+# [WINDMIND 2017](https://yimingf.github.io/windmind-2017/home.html)
 
-github had an internal issue on 8/3/2017 which caused json loading failure. luckily it's been solved.
+WINDMIND 2017 focuses on exploiting wind energy more efficiently. We created a tool to help energy traders better predict future production volumes to more efficiently sell wind power to consumers.
+
+Our solution collects and transforms the complex data into actionable insights. Traders can follow wind farms and view the data gathered from them in the dashboard. The dashboard shows the historical data of production and weather as well as gives a tool to help create the prediction. Instead of presenting raw data the traders can view simple and holisticly formed visualizations, which support their decision making processes.
+
+Packages and Frameworks
+---
+
+- AngularJS
+- D3.js
+- plot.ly
+- restdb.io
